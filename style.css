@@ -1,0 +1,196 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+  --bg-dark: #070B19;
+  --bg-darker: #03050C;
+  --text-light: #F3ECE0;
+  --gold: #D4AF37;
+  --gold-glow: rgba(212, 175, 55, 0.35);
+  --accent-orange: #FF6B35;
+  --accent-yellow: #FFB627;
+  --cyber-blue: #00D2FF;
+  --cyber-green: #00FF66;
+  --glass-dark: rgba(7, 11, 25, 0.75);
+  --glass-border: rgba(212, 175, 55, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  /* Dark overlay on top of custom generated Onam background image */
+  background: radial-gradient(circle, rgba(7, 11, 25, 0.78) 30%, rgba(3, 5, 12, 0.94) 100%), url('onam_bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-light);
+  overflow-x: hidden;
+  min-h: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-orange);
+}
+
+/* Traditional Fonts */
+.font-traditional {
+  font-family: 'Cinzel', serif;
+}
+
+/* Tech/Forensic Fonts */
+.font-tech {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Sleek Gold Accent Border */
+.gold-accent-top {
+  border-top: 4px solid var(--gold);
+  position: relative;
+}
+.gold-accent-top::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--bg-darker);
+}
+
+.gold-accent-bottom {
+  border-bottom: 4px solid var(--gold);
+  position: relative;
+}
+
+/* Glassmorphism Cards (Dark Professional) */
+.glass-card-dark {
+  background: var(--glass-dark);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  color: var(--text-light);
+}
+
+.glass-card-light {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  color: var(--text-light);
+}
+
+/* Gold Glowing Text and Shadows */
+.text-glow-gold {
+  text-shadow: 0 0 10px var(--gold-glow), 0 0 20px var(--gold-glow);
+}
+.text-glow-cyber {
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+}
+.glow-gold-box {
+  box-shadow: 0 0 15px var(--gold-glow);
+}
+.glow-gold-box:hover {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+}
+
+/* Custom Input Styling (Professional Dark) */
+.custom-input {
+  background: rgba(3, 5, 12, 0.65);
+  border: 1.5px solid rgba(212, 175, 55, 0.25);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+.custom-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
+/* Hype Terminal Custom Styling */
+.terminal-screen {
+  background-color: #02040A;
+  border: 1px solid rgba(0, 255, 102, 0.2);
+  box-shadow: inset 0 0 20px rgba(0, 255, 102, 0.1);
+}
+
+/* Buttons */
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), #A28020);
+  color: var(--bg-darker);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-orange {
+  background: linear-gradient(135deg, var(--accent-orange), #D64F1C);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-orange:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+}
+
+.btn-navy {
+  background: linear-gradient(135deg, #1E293B, #0F172A);
+  color: var(--text-light);
+  border: 1px solid var(--gold);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-navy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
+  border-color: var(--gold);
+}
+
+/* Success Ticket Grid pattern overlay */
+.ticket-grid {
+  background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+.ticket-cutout {
+  position: relative;
+}
+.ticket-cutout::before, .ticket-cutout::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: var(--bg-dark);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.ticket-cutout::before {
+  left: -10px;
+  box-shadow: inset -3px 0 3px rgba(0, 0, 0, 0.5);
+}
+.ticket-cutout::after {
+  right: -10px;
+  box-shadow: inset 3px 0 3px rgba(0, 0, 0, 0.5);
+}

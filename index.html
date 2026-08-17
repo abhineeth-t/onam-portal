@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onam @ NFSU TC | Event Portal</title>
+  <!-- Meta Descriptions for SEO -->
+  <meta name="description" content="Official event portal for Onam @ NFSU TC. Reserve your Food Coupon, register for cultural events, and get your digital QR ticket. All logs synced to Drive.">
+  <meta name="keywords" content="Onam, NFSU, NFSU TC, College Celebration, Food Coupon, Performer Registration, Cyber Forensics">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: '#070B19',
+            gold: {
+              DEFAULT: '#D4AF37',
+              dark: '#B8860B',
+              glow: 'rgba(212, 175, 55, 0.45)',
+            },
+            accent: {
+              orange: '#FF6B35',
+              yellow: '#FFB627',
+            },
+            navy: {
+              DEFAULT: '#0A1128',
+              slate: '#1C2541',
+            },
+            cyber: {
+              green: '#00FF66',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen relative pb-12 flex flex-col justify-between">
+
+  <!-- Premium Header & Navigation -->
+  <header class="gold-accent-top bg-navy/90 backdrop-blur-md sticky top-0 z-40 shadow-sm border-b border-gold/15 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <!-- Digital forensic icon -->
+        <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center border-2 border-gold glow-gold-box relative overflow-hidden group">
+          <i class="fa-solid fa-microchip text-gold text-xl absolute transition-all duration-500 group-hover:scale-0"></i>
+          <i class="fa-solid fa-gift text-accent-yellow text-xl absolute scale-0 transition-all duration-500 group-hover:scale-100"></i>
+        </div>
+        <div>
+          <h1 class="text-white font-traditional font-bold text-lg leading-none">ONAM <span class="text-gold">@ NFSU TC</span></h1>
+          <p class="text-[10px] font-tech text-gold/60 tracking-wider">EVENT PORTAL // STUDENT ASSOCIATION</p>
+        </div>
+      </div>
+      
+      <!-- Quick Action Info / Admin trigger -->
+      <div class="flex items-center space-x-4">
+        <span class="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold bg-gold/10 text-gold border border-gold/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold animate-ping"></span>
+          Drive Database Synced
+        </span>
+        <button id="admin-trigger" class="text-white/80 hover:text-gold transition-colors p-2" title="Admin Scanner Console">
+          <i class="fa-solid fa-shield-halved text-lg"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Split-Screen Section -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12 relative z-10">
+    
+    <!-- Title Section -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-gold/10 text-gold text-[10px] font-bold tracking-widest uppercase border border-gold/20">
+        NFSU TC Celebration Portal
+      </span>
+      <h2 class="text-3xl md:text-5xl font-bold font-traditional text-white text-glow-gold">
+        ONAM CELEBRATION 2026
+      </h2>
+      <p class="text-xs md:text-sm text-white/70">
+        Submit your contribution to secure your digital Food Pass Coupon, or register as a performer for our cultural schedule. All records automatically log to our secure Drive spreadsheet.
+      </p>
+      <div class="w-12 h-0.5 bg-gold mx-auto mt-2 rounded-full"></div>
+    </div>
+
+    <!-- Split forms grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      
+      <!-- COLUMN 1: Food Pass Registration -->
+      <section class="glass-card-dark rounded-3xl p-6 md:p-8 border border-gold/30 space-y-6 flex flex-col justify-between">
+        <div class="space-y-1.5 border-b border-gold/20 pb-4">
+          <h3 class="text-xl font-traditional font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-ticket text-gold"></i>
+            Food Pass & Coupon Registry
+          </h3>
+          <p class="text-xs text-white/60">
+            A minimum contribution of ₹100 is required to generate your food court entry ticket and QR coupon.
+          </p>
+        </div>
+
+        <!-- Form -->
+        <form id="payment-form" onsubmit="handlePaymentSubmit(event)" class="space-y-5">
+          <div class="space-y-4">
+            <!-- Full Name -->
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Full Name <span class="text-gold">*</span></label>
+              <input type="text" id="contributor-name" required placeholder="Enter full name" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
+            </div>
+            
+            <!-- Roll Number / Email -->
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Roll No. / College Email <span class="text-gold">*</span></label>
+              <input type="text" id="contributor-roll" required placeholder="NFSU/TR/2026/..." class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
+            </div>
+
+            <!-- Phone / Amount grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Phone Number -->
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Phone Number (WhatsApp) <span class="text-gold">*</span></label>
+                <input type="tel" id="contributor-phone" required placeholder="10-digit number" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
+              </div>
+              <!-- Contribution Amount -->
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Contribution Amount (₹) <span class="text-gold">*</span></label>
+                <div class="relative">
+                  <span class="absolute left-4 top-2.5 text-white/40 text-xs font-semibold">₹</span>
+                  <input type="number" id="contributor-amount" min="100" required placeholder="Min 100" class="w-full pl-8 pr-4 py-2.5 rounded-xl custom-input text-xs">
+                </div>
+                <p id="amount-validation-msg" class="text-[9px] text-gold mt-1 font-semibold hidden"><i class="fa-solid fa-triangle-exclamation"></i> Minimum amount is ₹100.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic QR Code QR Generator trigger (Hidden by default) -->
+          <div id="payment-qr-container" class="hidden p-4 bg-slate-950/80 rounded-2xl border border-gold/25 flex flex-col sm:flex-row items-center gap-4">
+            <div class="bg-white p-2.5 rounded-xl shadow-md border border-gold/20" id="upi-qr-display">
+              <!-- QR code generated here dynamically -->
+            </div>
+            <div class="space-y-2 text-white flex-1">
+              <h5 class="text-xs font-bold flex items-center gap-1.5">
+                <span class="flex h-1.5 w-1.5 relative">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+                </span>
+                Scan QR code to pay
+              </h5>
+              <p class="text-[10px] text-white/60">
+                Scan with GPay, PhonePe, Paytm, or BHIM. Or transfer directly to UPI ID: <code class="font-tech bg-slate-800 px-1 py-0.5 rounded text-gold font-bold select-all">nfsumalayalis@oksbi</code>.
+              </p>
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-white/70 mb-1">UPI Transaction / UTR ID <span class="text-gold">*</span></label>
+                <input type="text" id="transaction-id" placeholder="12-digit number (e.g., 624519...)" class="w-full px-3 py-2 rounded-xl custom-input text-[11px]">
+                <p id="utr-validation-msg" class="text-[9px] text-gold mt-1 font-semibold hidden"><i class="fa-solid fa-triangle-exclamation"></i> Transaction ID is required.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <button type="button" id="pay-qr-btn" onclick="generatePaymentQR()" class="w-full sm:w-auto btn-navy px-5 py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <i class="fa-solid fa-qrcode"></i> Generate Payment QR
+            </button>
+            <button type="submit" id="submit-payment-btn" disabled class="w-full sm:w-auto btn-gold px-5 py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 opacity-50 cursor-not-allowed">
+              <i class="fa-solid fa-shield-check"></i> Submit Details & Generate Pass
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- COLUMN 2: Cultural Event Registration -->
+      <section class="glass-card-dark rounded-3xl p-6 md:p-8 border border-gold/30 space-y-6 flex flex-col justify-between">
+        <div class="space-y-1.5 border-b border-gold/20 pb-4">
+          <h3 class="text-xl font-traditional font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-microphone text-gold"></i>
+            Cultural Performance Registry
+          </h3>
+          <p class="text-xs text-white/60">
+            Submit your performance details to secure your spot in the official event timeline.
+          </p>
+        </div>
+
+        <!-- Form -->
+        <form id="performer-form" onsubmit="handlePerformerSubmit(event)" class="space-y-5">
+          <div class="space-y-4">
+            <!-- Full Name -->
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Participant Name <span class="text-gold">*</span></label>
+              <input type="text" id="perf-name" required placeholder="Enter full name" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
+            </div>
+
+            <!-- Semester -->
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Semester / Course Year <span class="text-gold">*</span></label>
+              <select id="perf-semester" required class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
+                <option value="" disabled selected>Select current semester</option>
+                <option value="Semester 1">Semester 1 (UG)</option>
+                <option value="Semester 2">Semester 2 (UG)</option>
+                <option value="Semester 3">Semester 3 (UG)</option>
+                <option value="Semester 4">Semester 4 (UG)</option>
+                <option value="Semester 5">Semester 5 (UG)</option>
+                <option value="Semester 6">Semester 6 (UG)</option>
+                <option value="Semester 7">Semester 7 (UG)</option>
+                <option value="Semester 8">Semester 8 (UG)</option>
+                <option value="PG Semester 1">Post Graduate Sem 1</option>
+                <option value="PG Semester 2">Post Graduate Sem 2</option>
+                <option value="PG Semester 3">Post Graduate Sem 3</option>
+                <option value="PG Semester 4">Post Graduate Sem 4</option>
+                <option value="Research Scholar">Research Scholar</option>
+              </select>
+            </div>
+
+            <!-- Performance Category -->
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Performance Category <span class="text-gold">*</span></label>
+              <select id="perf-category" required class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
+                <option value="" disabled selected>Select performance category</option>
+                <option value="Solo Song">Solo Song</option>
+                <option value="Group Dance">Group Dance</option>
+                <option value="Instrumental">Instrumental / Percussion</option>
+                <option value="Skit / Drama">Skit / Drama / Anchoring</option>
+                <option value="Volunteer Team">Volunteer Coordination</option>
+              </select>
+            </div>
+
+            <!-- Performance Title -->
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Performance Title / Brief Description <span class="text-gold">*</span></label>
+              <input type="text" id="perf-title" required placeholder="e.g., Acoustic classical medley / Group folk performance" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
+            </div>
+          </div>
+
+          <!-- Alert boxes -->
+          <div id="perf-success-alert" class="hidden p-4 bg-green-500/15 border border-green-500/30 rounded-xl text-green-400 text-xs flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-lg"></i>
+            <span>Registration logged to database! The committee will contact you shortly.</span>
+          </div>
+
+          <!-- Action Button -->
+          <button type="submit" id="perf-submit-btn" class="w-full sm:w-auto btn-orange px-6 py-3.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
+            <i class="fa-solid fa-paper-plane"></i> Submit Registration
+          </button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Ticket Confirmation Modal Display (Pops up on successful contribution submit) -->
+  <div id="ticket-modal-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="w-full max-w-md bg-slate-900 rounded-3xl shadow-2xl border-2 border-gold overflow-hidden relative ticket-grid animate-[scaleIn_0.3s_ease-out] text-white">
+      <!-- top header border -->
+      <div class="gold-accent-top h-4 bg-slate-850"></div>
+      
+      <div class="p-6 space-y-6">
+        <div class="flex justify-between items-start">
+          <div>
+            <span class="text-[10px] font-tech text-white/50 tracking-wider">OFFICIAL EVENT PASS</span>
+            <h4 class="font-traditional font-bold text-white text-lg mt-0.5">ONAM @ NFSU TC 2026</h4>
+          </div>
+          <button onclick="closeTicketModal()" class="text-white/40 hover:text-white p-1">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        
+        <div class="border-t-2 border-dashed border-gold/30 pt-4 space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <span class="block text-[10px] uppercase font-tech text-white/40">NAME</span>
+              <span id="ticket-display-name" class="font-bold text-white text-sm">-</span>
+            </div>
+            <div>
+              <span class="block text-[10px] uppercase font-tech text-white/40">ROLL NO</span>
+              <span id="ticket-display-roll" class="font-bold text-white text-sm font-tech">-</span>
+            </div>
+            <div>
+              <span class="block text-[10px] uppercase font-tech text-white/40">TICKET ID</span>
+              <span id="ticket-display-id" class="font-bold text-gold text-sm font-tech">-</span>
+            </div>
+            <div>
+              <span class="block text-[10px] uppercase font-tech text-white/40">AMOUNT PAID</span>
+              <span id="ticket-display-amount" class="font-bold text-white text-sm">-</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider with Ticket Cutouts -->
+        <div class="ticket-cutout my-4 h-[2px] border-t-2 border-dashed border-white/20 relative"></div>
+
+        <!-- QR Code Display area -->
+        <div class="flex flex-col items-center space-y-3">
+          <div class="bg-white p-3 rounded-2xl shadow-inner border border-white/10" id="ticket-qr-code">
+            <!-- QRCode generated here -->
+          </div>
+          <div class="text-center space-y-1">
+            <span class="block text-[10px] font-tech text-cyber-green bg-black px-2 py-0.5 rounded font-bold uppercase tracking-wider text-glow-cyber">CRYPTOGRAPHIC SIGNATURE VALID</span>
+            <span class="text-[9px] font-tech text-white/40 select-all" id="ticket-display-hash">HASH: 0x-</span>
+          </div>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="bg-slate-950 p-3.5 rounded-xl border border-gold/20 text-center space-y-1">
+          <p class="text-xs font-bold text-white flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-bowl-food text-gold"></i> Food Coupon Included
+          </p>
+          <p class="text-[10px] text-white/60">Present this QR code at the entrance to scan and claim your Feast Food Coupon.</p>
+        </div>
+
+        <!-- Print / Action buttons -->
+        <div class="flex gap-3">
+          <button onclick="window.print()" class="flex-1 btn-navy py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+            <i class="fa-solid fa-print"></i> Print Coupon
+          </button>
+          <button onclick="closeTicketModal()" class="flex-1 btn-gold py-2.5 rounded-xl text-xs font-bold">
+            Done
+          </button>
+        </div>
+      </div>
+      <div class="bg-black p-3 text-center text-[10px] font-tech text-white/40">
+        SECURE LOGISTICS // SYNCED TO MICROSOFT ONEDRIVE & GOOGLE DRIVE
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Verification Portal Modal (Hidden) -->
+  <section id="admin-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="w-full max-w-lg bg-slate-955 rounded-3xl border border-gold/30 overflow-hidden relative shadow-2xl animate-[scaleIn_0.3s_ease-out] text-white">
+      <!-- Admin Screen Header -->
+      <div class="p-5 border-b border-gold/20 flex justify-between items-center bg-slate-900">
+        <div class="flex items-center space-x-2.5">
+          <i class="fa-solid fa-shield-halved text-gold text-lg"></i>
+          <div>
+            <h4 class="font-tech text-xs font-bold uppercase tracking-wider text-glow-gold">Admin Security Scanner</h4>
+            <p class="text-[9px] font-tech text-white/50">EVENT LOGISTICS // CRYPTO PASS CHECK</p>
+          </div>
+        </div>
+        <button onclick="closeAdminPortal()" class="text-white/50 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Passcode validation screen -->
+      <div id="admin-passcode-view" class="p-8 space-y-6">
+        <div class="text-center space-y-2">
+          <i class="fa-solid fa-lock text-4xl text-gold/60"></i>
+          <h5 class="text-sm font-bold font-tech uppercase tracking-wide">Enter Administrative Credentials</h5>
+          <p class="text-xs text-white/60">To operate the HTML5 QR camera scanner, confirm your 4-digit credential key.</p>
+        </div>
+        <div class="space-y-4">
+          <input type="password" id="admin-pin" placeholder="Enter PIN (Default: 1947)" class="w-full text-center tracking-widest font-tech font-bold text-lg px-4 py-3 rounded-xl custom-input">
+          <p id="admin-pin-error" class="text-[10px] text-red-500 font-semibold font-tech text-center hidden"><i class="fa-solid fa-circle-exclamation mr-1"></i> Authentication failed. Invalid admin passcode.</p>
+          <button onclick="validateAdminPin()" class="w-full btn-gold py-3 rounded-xl text-xs font-bold">Authenticate & Open Scanner</button>
+        </div>
+      </div>
+
+      <!-- QR Scanner viewport screen (Locked behind authentication) -->
+      <div id="admin-scanner-view" class="p-6 space-y-6 hidden">
+        
+        <!-- Camera Stream Frame -->
+        <div class="relative rounded-2xl border-2 border-dashed border-gold/30 bg-black/60 aspect-video overflow-hidden flex items-center justify-center">
+          <div id="scanner-reader" class="w-full h-full">
+            <!-- HTML5 QR Scanner library hooks this element -->
+          </div>
+          <!-- Target outline overlay -->
+          <div id="scanner-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-4 pointer-events-none text-center space-y-2">
+            <i class="fa-solid fa-camera text-3xl text-gold/40 animate-pulse"></i>
+            <span class="text-xs text-white/40 font-tech">Camera stream loading...</span>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <button onclick="startScanning()" class="flex-1 btn-gold py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-play"></i> Start Camera
+          </button>
+          <button onclick="stopScanning()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-stop"></i> Stop Camera
+          </button>
+        </div>
+
+        <!-- Verification Results Console -->
+        <div class="terminal-screen rounded-xl p-4 font-tech text-xs min-h-[140px] flex flex-col justify-between">
+          <div class="flex justify-between items-center text-[10px] text-white/40 border-b border-white/10 pb-1.5">
+            <span>VERIFICATION GATEWAY OUTPUT</span>
+            <span id="scan-status-pill" class="px-2 py-0.5 rounded bg-white/15 text-white/70 font-bold uppercase">Ready</span>
+          </div>
+
+          <div id="scanner-output" class="my-3 space-y-2">
+            <p class="text-white/50">// Awaiting QR code detection...</p>
+          </div>
+
+          <!-- Quick Food served toggle (Appears when valid ticket detected) -->
+          <div id="food-served-panel" class="hidden pt-2.5 border-t border-white/10 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <i class="fa-solid fa-bowl-food text-gold"></i>
+              <span class="text-[10px] font-bold">Food Pass Status:</span>
+              <span id="food-status-badge" class="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase">-</span>
+            </div>
+            <button id="toggle-food-btn" class="bg-cyber-green hover:bg-white text-bgDark font-bold px-3 py-1 rounded text-[10px] transition-colors">
+              Toggle Claim Status
+            </button>
+          </div>
+        </div>
+        
+        <!-- Back to Admin main / Clear logs -->
+        <div class="flex justify-between text-[10px] text-white/40 font-tech">
+          <button onclick="resetScannerConsole()" class="hover:text-cream"><i class="fa-solid fa-trash-can mr-1"></i> Clear Log</button>
+          <span>SECURE CHECKSUM CHECKS ON</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-gold/15 pt-8 pb-8 text-center text-white/40 space-y-3 relative z-10">
+    <div class="flex justify-center space-x-4">
+      <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:text-gold hover:bg-gold hover:text-bgDark transition-all">
+        <a href="https://github.com" target="_blank"><i class="fa-brands fa-github text-sm"></i></a>
+      </div>
+      <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:text-gold hover:bg-gold hover:text-bgDark transition-all">
+        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram text-sm"></i></a>
+      </div>
+    </div>
+    <div class="text-xs space-y-1">
+      <p class="font-bold text-white/60">&copy; 2026 Student Association, NFSU Tripura Campus.</p>
+      <p class="text-[9px] font-tech text-white/30">// ENCRYPTED TRANSACTION INTEGRITY SIGNED // SYNCED TO DRIVE</p>
+    </div>
+  </footer>
+
+  <!-- QR Code and HTML5 Scanner Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  
+  <!-- Main Application Logic Script -->
+  <script src="app.js"></script>
+</body>
+</html>
