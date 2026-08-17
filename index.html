@@ -136,22 +136,22 @@
     <div class="card">
       <div class="card-title"><i class="fa-solid fa-ticket"></i> Food Pass &amp; Sadhya</div>
       <div class="card-sub">Generate your instant digital food pass (Min. ₹100).</div>
-      <form id="food-form" onsubmit="submitFoodPass(event)">
+      <form id="food-form" onsubmit="submitFoodPass(event)" autocomplete="off">
         <div class="form-group">
           <label>Full Name *</label>
-          <input type="text" id="f-name" required placeholder="Your full name">
+          <input type="text" id="f-name" required placeholder="Your full name" autocomplete="off">
         </div>
         <div class="form-group">
-          <label>Email *</label>
-          <input type="email" id="f-email" required placeholder="your@email.com">
+          <label>Institutional Email *</label>
+          <input type="text" id="f-email" required placeholder="name@nfsu.ac.in" autocomplete="off">
         </div>
         <div class="form-group">
-          <label>Phone *</label>
-          <input type="tel" id="f-phone" required placeholder="10-digit number">
+          <label>Contact Number *</label>
+          <input type="text" id="f-phone" inputmode="numeric" maxlength="10" required placeholder="10-digit mobile" autocomplete="off">
         </div>
         <div class="form-group">
-          <label>Amount (₹) *</label>
-          <input type="number" id="f-amount" min="100" required placeholder="Min 100">
+          <label>Contribution Amount (₹) *</label>
+          <input type="number" id="f-amount" min="100" required placeholder="Min 100" autocomplete="off">
         </div>
         <div class="qr-container">
           <img src="https://quickchart.io/qr?text=upi%3A%2F%2Fpay%3Fpa%3Dabhineetht1-2%40oksbi%26pn%3DOnam%2520NFSU%2520TC%26cu%3DINR&size=100&margin=1" alt="QR">
@@ -161,8 +161,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label>UTR / Transaction ID *</label>
-          <input type="text" id="f-txid" required placeholder="12-digit UTR ID">
+          <label>UTR / Reference ID *</label>
+          <input type="text" id="f-txid" required placeholder="12-digit UTR number" autocomplete="off">
         </div>
         <button type="submit" id="food-btn" class="btn btn-gold">Generate Food Pass</button>
       </form>
@@ -172,10 +172,10 @@
     <div class="card">
       <div class="card-title"><i class="fa-solid fa-microphone"></i> Cultural Programme</div>
       <div class="card-sub">Register your event performance.</div>
-      <form id="cultural-form" onsubmit="submitCultural(event)">
+      <form id="cultural-form" onsubmit="submitCultural(event)" autocomplete="off">
         <div class="form-group">
           <label>Participant Name *</label>
-          <input type="text" id="c-name" required placeholder="Your full name">
+          <input type="text" id="c-name" required placeholder="Your full name" autocomplete="off">
         </div>
         <div class="form-group">
           <label>Semester / Year *</label>
@@ -203,9 +203,9 @@
         </div>
         <div class="form-group">
           <label>Performance Title *</label>
-          <input type="text" id="c-title" required placeholder="Song/Performance title">
+          <input type="text" id="c-title" required placeholder="Song/Performance title" autocomplete="off">
         </div>
-        <div class="alert" id="c-alert">Registration recorded in Google Sheets!</div>
+        <div class="alert" id="c-alert">Registration recorded!</div>
         <button type="submit" id="cult-btn" class="btn btn-orange">Submit Registration</button>
       </form>
     </div>
