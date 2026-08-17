@@ -1,203 +1,94 @@
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;800&display=swap');
-
-:root {
-  --bg-dark: #070B19;
-  --bg-darker: #03050C;
-  --text-light: #F3ECE0;
-  --gold: #D4AF37;
-  --gold-glow: rgba(212, 175, 55, 0.35);
-  --accent-orange: #FF6B35;
-  --accent-yellow: #FFB627;
-  --cyber-blue: #00D2FF;
-  --cyber-green: #00FF66;
-  --glass-dark: rgba(7, 11, 25, 0.75);
-  --glass-border: rgba(212, 175, 55, 0.2);
-}
-
-* {
-  box-sizing: border-box;
+/* Force true dark theme across all elements */
+html, body {
+  background-color: #070B19 !important;
+  color: #F3ECE0 !important;
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: 'Outfit', sans-serif;
-  /* Fallback dark color if image fails to load */
-  background-color: #070B19;
-  /* Dark overlay on top of custom Onam background image */
-  background-image: 
-    radial-gradient(circle at center, rgba(7, 11, 25, 0.82) 0%, rgba(3, 5, 12, 0.96) 100%),
-    url('./onam_bg.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  color: var(--text-light);
-  overflow-x: hidden;
   min-height: 100vh;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-darker);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--gold);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-orange);
+/* Force dark backgrounds on container cards */
+.card, .grid-section > div, section, form {
+  background: rgba(12, 18, 37, 0.95) !important;
+  background-color: #0C1225 !important;
+  border: 1px solid rgba(212, 175, 55, 0.28) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
 }
 
-/* Traditional Fonts */
-.font-traditional {
-  font-family: 'Cinzel', serif;
+/* Headings & Text visibility */
+h1, h2, h3, h4, .hero h2, .card-title {
+  color: #FFFFFF !important;
 }
 
-/* Tech/Forensic Fonts */
-.font-tech {
-  font-family: 'JetBrains Mono', monospace;
+h2 span, h1 span, .card-title i, .hero-badge {
+  color: #D4AF37 !important;
 }
 
-/* Sleek Gold Accent Border */
-.gold-accent-top {
-  border-top: 4px solid var(--gold);
-  position: relative;
-}
-.gold-accent-top::before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--bg-darker);
+p, .card-sub, .hero p, span:not(.req):not(.live-dot):not(.qr-live-dot) {
+  color: #9CA3AF !important;
 }
 
-.gold-accent-bottom {
-  border-bottom: 4px solid var(--gold);
-  position: relative;
+/* Form labels */
+.form-label, label {
+  color: #E2D7C5 !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  display: block !important;
+  margin-bottom: 6px !important;
 }
 
-/* Glassmorphism Cards (Dark Professional) */
-.glass-card-dark {
-  background: var(--glass-dark);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-  color: var(--text-light);
+.form-label .req {
+  color: #D4AF37 !important;
 }
 
-.glass-card-light {
-  background: rgba(15, 23, 42, 0.55);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(212, 175, 55, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-  color: var(--text-light);
+/* Inputs & Dropdowns */
+input, select, textarea, .form-input, .form-select {
+  background-color: rgba(3, 5, 12, 0.85) !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(212, 175, 55, 0.3) !important;
+  border-radius: 10px !important;
+  padding: 12px 14px !important;
+  font-size: 13px !important;
 }
 
-/* Gold Glowing Text and Shadows */
-.text-glow-gold {
-  text-shadow: 0 0 10px var(--gold-glow), 0 0 20px var(--gold-glow);
-}
-.text-glow-cyber {
-  text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
-}
-.glow-gold-box {
-  box-shadow: 0 0 15px var(--gold-glow);
-}
-.glow-gold-box:hover {
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+input::placeholder, textarea::placeholder {
+  color: rgba(243, 236, 224, 0.4) !important;
 }
 
-/* Custom Input Styling (Professional Dark) */
-.custom-input {
-  background: rgba(3, 5, 12, 0.65);
-  border: 1.5px solid rgba(212, 175, 55, 0.25);
-  color: var(--text-light);
-  transition: all 0.3s ease;
-}
-.custom-input:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px var(--gold-glow);
+input:focus, select:focus, textarea:focus {
+  border-color: #D4AF37 !important;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.35) !important;
+  outline: none !important;
 }
 
-/* Hype Terminal Custom Styling */
-.terminal-screen {
-  background-color: #02040A;
-  border: 1px solid rgba(0, 255, 102, 0.2);
-  box-shadow: inset 0 0 20px rgba(0, 255, 102, 0.1);
+select option {
+  background-color: #0C1225 !important;
+  color: #FFFFFF !important;
 }
 
 /* Buttons */
-.btn-gold {
-  background: linear-gradient(135deg, var(--gold), #A28020);
-  color: var(--bg-darker);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-weight: 700;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.btn-gold:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+.btn-gold, button[type="submit"]#submit-payment-btn {
+  background: linear-gradient(135deg, #D4AF37, #B8860B) !important;
+  color: #070B19 !important;
+  font-weight: 700 !important;
 }
 
-.btn-orange {
-  background: linear-gradient(135deg, var(--accent-orange), #D64F1C);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-weight: 700;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.btn-orange:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+.btn-orange, button[type="submit"]#perf-submit-btn {
+  background: linear-gradient(135deg, #FF6B35, #D64F1C) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
 }
 
-.btn-navy {
-  background: linear-gradient(135deg, #1E293B, #0F172A);
-  color: var(--text-light);
-  border: 1px solid var(--gold);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.btn-navy:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
-  border-color: var(--gold);
+/* QR Box */
+.qr-box {
+  background: rgba(3, 5, 12, 0.9) !important;
+  border: 1px solid rgba(212, 175, 55, 0.25) !important;
 }
 
-/* Success Ticket Grid pattern overlay */
-.ticket-grid {
-  background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1.5px, transparent 1.5px);
-  background-size: 16px 16px;
-}
-
-.ticket-cutout {
-  position: relative;
-}
-.ticket-cutout::before, .ticket-cutout::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  background: var(--bg-dark);
-  border-radius: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-}
-.ticket-cutout::before {
-  left: -10px;
-  box-shadow: inset -3px 0 3px rgba(0, 0, 0, 0.5);
-}
-.ticket-cutout::after {
-  right: -10px;
-  box-shadow: inset 3px 0 3px rgba(0, 0, 0, 0.5);
+.qr-upi {
+  color: #D4AF37 !important;
+  background: #02040A !important;
 }
