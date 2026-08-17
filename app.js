@@ -10,6 +10,8 @@ async function submitFoodPass(e) {
   const name = document.getElementById('f-name').value.trim();
   const email = document.getElementById('f-email').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
+  const semester = document.getElementById('f-sem').value;
+  const diet = document.getElementById('f-diet').value;
   const amount = document.getElementById('f-amount').value;
   const txid = document.getElementById('f-txid').value.trim();
 
@@ -22,6 +24,8 @@ async function submitFoodPass(e) {
     name: name,
     email: email,
     phone: phone,
+    semester: semester,
+    diet: diet,
     amount: amount,
     txid: txid,
     hash: hash
@@ -35,14 +39,15 @@ async function submitFoodPass(e) {
   });
 
   // Display Pass Modal
-  document.getElementById('m-name').innerText = name;
+  document.getElementById('m-name').innerText = name + " (" + semester + ")";
   document.getElementById('m-id').innerText = "Pass ID: " + ticketId;
+  document.getElementById('m-diet').innerText = "Preference: " + diet;
   document.getElementById('m-amt').innerText = "Amount Paid: ₹" + amount;
   
   const qrBox = document.getElementById('m-qr');
   qrBox.innerHTML = "";
   new QRCode(qrBox, {
-    text: JSON.stringify({ id: ticketId, name: name, amount: amount }),
+    text: JSON.stringify({ id: ticketId, name: name, sem: semester, diet: diet, amount: amount }),
     width: 120,
     height: 120
   });

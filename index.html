@@ -18,18 +18,20 @@
     header {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 24px 0;
+      padding: 20px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid rgba(212,175,55,0.2);
     }
-    .brand { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: #fff; }
+    .brand-box { display: flex; flex-direction: column; }
+    .brand { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: #fff; line-height: 1.2; }
     .brand span { color: #D4AF37; }
-    .hero { text-align: center; max-width: 600px; margin: 36px auto 30px; }
-    .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(26px, 4vw, 36px); margin-bottom: 8px; }
+    .brand-sub { font-size: 11px; color: #D4AF37; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; margin-top: 2px; }
+    .hero { text-align: center; max-width: 600px; margin: 30px auto 26px; }
+    .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(24px, 4vw, 34px); margin-bottom: 6px; }
     .hero h1 span { color: #D4AF37; }
-    .hero p { color: #9CA3AF; font-size: 14px; }
+    .hero p { color: #9CA3AF; font-size: 13px; }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -56,8 +58,8 @@
     }
     .card-title i { color: #D4AF37; }
     .card-sub { font-size: 12px; color: #9CA3AF; margin-bottom: 18px; }
-    .form-group { margin-bottom: 14px; }
-    label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #C8B9A0; margin-bottom: 6px; letter-spacing: 0.5px; }
+    .form-group { margin-bottom: 13px; }
+    label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #C8B9A0; margin-bottom: 5px; letter-spacing: 0.5px; }
     input, select {
       width: 100%;
       padding: 10px 12px;
@@ -73,15 +75,15 @@
       background: #03050C;
       border: 1px solid rgba(212,175,55,0.2);
       border-radius: 12px;
-      padding: 14px;
+      padding: 12px;
       display: flex;
       gap: 12px;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .qr-container img { width: 100px; height: 100px; background: #fff; padding: 4px; border-radius: 6px; }
+    .qr-container img { width: 95px; height: 95px; background: #fff; padding: 4px; border-radius: 6px; }
     .qr-text { font-size: 11px; color: #9CA3AF; }
-    .qr-text code { display: block; color: #D4AF37; font-weight: 700; margin: 4px 0; user-select: all; }
+    .qr-text code { display: block; color: #D4AF37; font-weight: 700; margin: 3px 0; user-select: all; }
     .btn {
       width: 100%;
       padding: 12px;
@@ -90,7 +92,7 @@
       font-weight: 700;
       font-size: 13px;
       cursor: pointer;
-      margin-top: auto;
+      margin-top: 10px;
     }
     .btn-gold { background: linear-gradient(135deg, #D4AF37, #B8860B); color: #070B19; }
     .btn-orange { background: linear-gradient(135deg, #FF6B35, #D64F1C); color: #fff; }
@@ -117,12 +119,15 @@
       padding: 24px;
       text-align: center;
     }
-    .ticket-qr { margin: 16px auto; background: #fff; padding: 10px; display: inline-block; border-radius: 8px; }
+    .ticket-qr { margin: 14px auto; background: #fff; padding: 10px; display: inline-block; border-radius: 8px; }
   </style>
 </head>
 <body>
   <header>
-    <div class="brand">ONAM <span>@ NFSU TC</span></div>
+    <div class="brand-box">
+      <div class="brand">ONAM <span>@ NFSU TC</span></div>
+      <div class="brand-sub">smart boyz</div>
+    </div>
     <div style="font-size:12px; color:#D4AF37;"><i class="fa-solid fa-circle" style="font-size:8px;"></i> Live Portal</div>
   </header>
 
@@ -134,7 +139,7 @@
   <div class="grid">
     <!-- Food Form -->
     <div class="card">
-      <div class="card-title"><i class="fa-solid fa-ticket"></i> Food Pass &amp; Sadhya</div>
+      <div class="card-title"><i class="fa-solid fa-ticket"></i> Food Pass</div>
       <div class="card-sub">Generate your instant digital food pass (Min. ₹100).</div>
       <form id="food-form" onsubmit="submitFoodPass(event)" autocomplete="off">
         <div class="form-group">
@@ -148,6 +153,38 @@
         <div class="form-group">
           <label>Contact Number *</label>
           <input type="text" id="f-phone" inputmode="numeric" maxlength="10" required placeholder="10-digit mobile" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Semester / Program *</label>
+          <select id="f-sem" required>
+            <option value="" disabled selected>Select Semester</option>
+            <optgroup label="B.Tech - M.Tech (Integrated)">
+              <option value="B.Tech-M.Tech Sem 1">B.Tech - M.Tech Sem 1</option>
+              <option value="B.Tech-M.Tech Sem 3">B.Tech - M.Tech Sem 3</option>
+              <option value="B.Tech-M.Tech Sem 5">B.Tech - M.Tech Sem 5</option>
+              <option value="B.Tech-M.Tech Sem 7">B.Tech - M.Tech Sem 7</option>
+              <option value="B.Tech-M.Tech Sem 9">B.Tech - M.Tech Sem 9</option>
+            </optgroup>
+            <optgroup label="B.Sc - M.Sc (Integrated)">
+              <option value="B.Sc-M.Sc Sem 1">B.Sc - M.Sc Sem 1</option>
+              <option value="B.Sc-M.Sc Sem 3">B.Sc - M.Sc Sem 3</option>
+              <option value="B.Sc-M.Sc Sem 5">B.Sc - M.Sc Sem 5</option>
+              <option value="B.Sc-M.Sc Sem 7">B.Sc - M.Sc Sem 7</option>
+              <option value="B.Sc-M.Sc Sem 9">B.Sc - M.Sc Sem 9</option>
+            </optgroup>
+            <optgroup label="M.Sc">
+              <option value="M.Sc Sem 1">M.Sc Sem 1</option>
+              <option value="M.Sc Sem 3">M.Sc Sem 3</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Dietary Preference *</label>
+          <select id="f-diet" required>
+            <option value="" disabled selected>Select Preference</option>
+            <option value="Veg">Veg</option>
+            <option value="Non-Veg">Non-Veg</option>
+          </select>
         </div>
         <div class="form-group">
           <label>Contribution Amount (₹) *</label>
@@ -178,17 +215,27 @@
           <input type="text" id="c-name" required placeholder="Your full name" autocomplete="off">
         </div>
         <div class="form-group">
-          <label>Semester / Year *</label>
+          <label>Semester / Program *</label>
           <select id="c-sem" required>
             <option value="" disabled selected>Select Semester</option>
-            <option value="Semester 1">Semester 1 (UG)</option>
-            <option value="Semester 2">Semester 2 (UG)</option>
-            <option value="Semester 3">Semester 3 (UG)</option>
-            <option value="Semester 4">Semester 4 (UG)</option>
-            <option value="Semester 5">Semester 5 (UG)</option>
-            <option value="Semester 6">Semester 6 (UG)</option>
-            <option value="PG Semester 1">PG Semester 1</option>
-            <option value="PG Semester 2">PG Semester 2</option>
+            <optgroup label="B.Tech - M.Tech (Integrated)">
+              <option value="B.Tech-M.Tech Sem 1">B.Tech - M.Tech Sem 1</option>
+              <option value="B.Tech-M.Tech Sem 3">B.Tech - M.Tech Sem 3</option>
+              <option value="B.Tech-M.Tech Sem 5">B.Tech - M.Tech Sem 5</option>
+              <option value="B.Tech-M.Tech Sem 7">B.Tech - M.Tech Sem 7</option>
+              <option value="B.Tech-M.Tech Sem 9">B.Tech - M.Tech Sem 9</option>
+            </optgroup>
+            <optgroup label="B.Sc - M.Sc (Integrated)">
+              <option value="B.Sc-M.Sc Sem 1">B.Sc - M.Sc Sem 1</option>
+              <option value="B.Sc-M.Sc Sem 3">B.Sc - M.Sc Sem 3</option>
+              <option value="B.Sc-M.Sc Sem 5">B.Sc - M.Sc Sem 5</option>
+              <option value="B.Sc-M.Sc Sem 7">B.Sc - M.Sc Sem 7</option>
+              <option value="B.Sc-M.Sc Sem 9">B.Sc - M.Sc Sem 9</option>
+            </optgroup>
+            <optgroup label="M.Sc">
+              <option value="M.Sc Sem 1">M.Sc Sem 1</option>
+              <option value="M.Sc Sem 3">M.Sc Sem 3</option>
+            </optgroup>
           </select>
         </div>
         <div class="form-group">
@@ -218,6 +265,7 @@
       <p style="font-size:12px; color:#9CA3AF; margin-top:4px;" id="m-name"></p>
       <div class="ticket-qr" id="m-qr"></div>
       <p style="font-size:13px; font-weight:700; color:#fff;" id="m-id"></p>
+      <p style="font-size:12px; color:#D4AF37; margin-top:2px;" id="m-diet"></p>
       <p style="font-size:11px; color:#9CA3AF;" id="m-amt"></p>
       <button onclick="document.getElementById('ticket-modal').classList.remove('show')" class="btn btn-gold" style="margin-top:16px;">Done</button>
     </div>
