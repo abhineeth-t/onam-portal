@@ -19,34 +19,15 @@
       overflow-x: hidden;
     }
 
-    /* Fixed Dark Athapookkalam Floral & Lamp Festive Backdrop */
+    /* Full-Screen Direct Vector Canvas */
     .bg-canvas {
       position: fixed;
       inset: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: 0;
       pointer-events: none;
-      background: 
-        radial-gradient(circle at 50% 10%, rgba(255, 170, 0, 0.25) 0%, transparent 45%),
-        radial-gradient(circle at 10% 85%, rgba(212, 175, 55, 0.22) 0%, transparent 45%),
-        radial-gradient(circle at 90% 85%, rgba(255, 107, 53, 0.22) 0%, transparent 45%),
-        linear-gradient(180deg, rgba(6, 9, 20, 0.85) 0%, rgba(3, 5, 12, 0.95) 100%);
-    }
-
-    /* Large Visible Athapookkalam Center Pattern */
-    .bg-pookkalam-center {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: min(95vw, 800px);
-      height: min(95vw, 800px);
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.28;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Ccircle cx='250' cy='250' r='240' fill='%23D4AF37' fill-opacity='0.15' stroke='%23D4AF37' stroke-width='4' stroke-dasharray='12,8'/%3E%3Ccircle cx='250' cy='250' r='190' fill='%23FF6B35' fill-opacity='0.2' stroke='%23FF6B35' stroke-width='3'/%3E%3Ccircle cx='250' cy='250' r='140' fill='%2300C853' fill-opacity='0.25' stroke='%23D4AF37' stroke-width='3' stroke-dasharray='8,6'/%3E%3Ccircle cx='250' cy='250' r='90' fill='%23FFD700' fill-opacity='0.35' stroke='%23FFD700' stroke-width='2'/%3E%3Ccircle cx='250' cy='250' r='40' fill='%23D62828' fill-opacity='0.5'/%3E%3Cpath d='M250 10 L270 230 L490 250 L270 270 L250 490 L230 270 L10 250 L230 230 Z' fill='%23FFD700' fill-opacity='0.25'/%3E%3Cpath d='M80 80 L230 230 L420 80 L270 230 L420 420 L250 270 L80 420 L230 250 Z' fill='%23FF6B35' fill-opacity='0.2'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
+      object-fit: cover;
     }
 
     header, .hero, .grid, .modal {
@@ -55,7 +36,7 @@
     }
 
     header {
-      max-width: 1040px;
+      max-width: 1060px;
       margin: 0 auto;
       padding: 22px 0 18px;
       display: flex;
@@ -68,7 +49,7 @@
     .brand span { color: #D4AF37; text-shadow: 0 0 12px rgba(212, 175, 55, 0.6); }
     .brand-sub { font-size: 11px; color: #E5C358; letter-spacing: 3px; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
     
-    .hero { text-align: center; max-width: 650px; margin: 28px auto 26px; }
+    .hero { text-align: center; max-width: 650px; margin: 26px auto 24px; }
     .hero h1 { 
       font-family: 'Cinzel', serif; 
       font-size: clamp(28px, 4.5vw, 42px); 
@@ -83,16 +64,16 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 28px;
-      max-width: 1040px;
+      max-width: 1060px;
       margin: 0 auto;
     }
 
     .card {
-      background: rgba(10, 16, 32, 0.84);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(8, 13, 28, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(212, 175, 55, 0.45);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(212, 175, 55, 0.15);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), 0 0 22px rgba(212, 175, 55, 0.15);
       border-radius: 18px;
       padding: 26px;
       display: flex;
@@ -117,7 +98,7 @@
     input, select {
       width: 100%;
       padding: 10px 12px;
-      background: rgba(4, 7, 18, 0.85);
+      background: rgba(3, 6, 16, 0.88);
       border: 1px solid rgba(212, 175, 55, 0.35);
       border-radius: 8px;
       color: #fff;
@@ -129,7 +110,7 @@
     .file-dropzone {
       position: relative;
       border: 1.5px dashed rgba(212, 175, 55, 0.55);
-      background: rgba(4, 7, 18, 0.85);
+      background: rgba(3, 6, 16, 0.88);
       border-radius: 8px;
       padding: 14px;
       text-align: center;
@@ -150,7 +131,7 @@
     .file-chosen-name { font-size: 11px; color: #4ADE80; margin-top: 5px; font-weight: 600; display: none; }
 
     .qr-container {
-      background: rgba(4, 7, 18, 0.85);
+      background: rgba(3, 6, 16, 0.88);
       border: 1px solid rgba(212, 175, 55, 0.3);
       border-radius: 12px;
       padding: 12px;
@@ -193,7 +174,7 @@
     }
     .modal.show { display: flex; }
     .modal-card {
-      background: rgba(10, 16, 32, 0.96);
+      background: rgba(8, 13, 28, 0.96);
       border: 2px solid #D4AF37;
       box-shadow: 0 10px 45px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.3);
       border-radius: 16px;
@@ -206,9 +187,130 @@
   </style>
 </head>
 <body>
-  <!-- Fixed Athapookkalam Layers -->
-  <div class="bg-canvas"></div>
-  <div class="bg-pookkalam-center"></div>
+
+  <!-- 100% Native Inline Kerala Onam Festive Canvas -->
+  <svg class="bg-canvas" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#060914" />
+        <stop offset="50%" stop-color="#0B132B" />
+        <stop offset="100%" stop-color="#04060E" />
+      </linearGradient>
+
+      <!-- Flame Glow Gradient -->
+      <radialGradient id="flameGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFF3B0" />
+        <stop offset="30%" stop-color="#FFB703" />
+        <stop offset="70%" stop-color="#FB8500" stop-opacity="0.8" />
+        <stop offset="100%" stop-color="#D00000" stop-opacity="0" />
+      </radialGradient>
+
+      <!-- Pookkalam Concentric Gradient -->
+      <radialGradient id="pookkalamGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFE600" />
+        <stop offset="25%" stop-color="#FF6B35" />
+        <stop offset="50%" stop-color="#D62828" />
+        <stop offset="75%" stop-color="#007F5F" />
+        <stop offset="100%" stop-color="#04060E" stop-opacity="0" />
+      </radialGradient>
+
+      <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="8" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      </filter>
+    </defs>
+
+    <!-- Base Night Canvas -->
+    <rect width="1440" height="900" fill="url(#skyGrad)" />
+
+    <!-- TOP FESTIVAL GARLANDS (TORAN) -->
+    <g opacity="0.85">
+      <path d="M0,0 Q180,50 360,0 Q540,50 720,0 Q900,50 1080,0 Q1260,50 1440,0" fill="none" stroke="#D4AF37" stroke-width="2" />
+      <!-- Hanging Marigold & Mango Leaves -->
+      <g fill="#FFB703">
+        <circle cx="180" cy="35" r="10" /><circle cx="540" cy="35" r="10" /><circle cx="900" cy="35" r="10" /><circle cx="1260" cy="35" r="10" />
+      </g>
+      <g fill="#FB8500">
+        <circle cx="140" cy="25" r="8" /><circle cx="220" cy="25" r="8" /><circle cx="500" cy="25" r="8" /><circle cx="580" cy="25" r="8" />
+        <circle cx="860" cy="25" r="8" /><circle cx="940" cy="25" r="8" /><circle cx="1220" cy="25" r="8" /><circle cx="1300" cy="25" r="8" />
+      </g>
+      <!-- Mango Leaf Accents -->
+      <g fill="#2D6A4F" opacity="0.8">
+        <polygon points="180,45 174,65 186,65" /><polygon points="540,45 534,65 546,65" />
+        <polygon points="900,45 894,65 906,65" /><polygon points="1260,45 1254,65 1266,65" />
+      </g>
+    </g>
+
+    <!-- LEFT SIDE: LUSH BANANA TREE & GOLDEN NILAVILAKKU -->
+    <!-- Banana Leaves -->
+    <g opacity="0.6">
+      <path d="M-50,450 Q40,320 140,350 Q160,370 70,470 Z" fill="#1B4332" />
+      <path d="M-30,520 Q80,420 180,440 Q190,460 90,560 Z" fill="#2D6A4F" />
+      <path d="M-60,600 Q60,520 160,570 Q150,600 50,680 Z" fill="#40916C" />
+    </g>
+
+    <!-- Brass Nilavilakku (Traditional Lamp) -->
+    <g transform="translate(130, 480)" filter="url(#goldGlow)">
+      <!-- Base & Stem -->
+      <ellipse cx="0" cy="280" rx="45" ry="14" fill="#D4AF37" />
+      <path d="M-15,280 L-6,140 L6,140 L15,280 Z" fill="#B8860B" />
+      <ellipse cx="0" cy="140" rx="30" ry="10" fill="#D4AF37" />
+      <path d="M-8,140 L-4,30 L4,30 L8,140 Z" fill="#B8860B" />
+      <ellipse cx="0" cy="30" rx="48" ry="16" fill="#D4AF37" />
+      <!-- Top Crown / Thiri Holder -->
+      <path d="M0,30 L0,-15 L4,-8 Z" stroke="#D4AF37" stroke-width="4" />
+      
+      <!-- Glowing Lamp Flames -->
+      <circle cx="-42" cy="26" r="16" fill="url(#flameGrad)" />
+      <circle cx="42" cy="26" r="16" fill="url(#flameGrad)" />
+      <circle cx="-24" cy="18" r="16" fill="url(#flameGrad)" />
+      <circle cx="24" cy="18" r="16" fill="url(#flameGrad)" />
+      <circle cx="0" cy="-18" r="20" fill="url(#flameGrad)" />
+    </g>
+
+    <!-- RIGHT SIDE: KATHAKALI / MAVELI HEADGEAR & VALLAM KALI -->
+    <!-- Kathakali Crown (Kireedam) & Visage -->
+    <g transform="translate(1280, 420)" opacity="0.85" filter="url(#goldGlow)">
+      <!-- Golden Outer Halo (Kireedam Disk) -->
+      <circle cx="0" cy="0" r="85" fill="none" stroke="#D4AF37" stroke-width="6" stroke-dasharray="14,6" />
+      <circle cx="0" cy="0" r="70" fill="rgba(212,175,55,0.15)" stroke="#FF6B35" stroke-width="3" />
+      <!-- Crown Cones -->
+      <path d="M-35,-20 L0,-100 L35,-20 Z" fill="#D4AF37" />
+      <polygon points="0,-115 -10,-100 10,-100" fill="#FFB703" />
+      <!-- Emerald Green Visage (Paccha Vesham) -->
+      <path d="M-38,20 Q0,90 38,20 Q48,-10 0,-15 Q-48,-10 -38,20 Z" fill="#007F5F" stroke="#fff" stroke-width="2" />
+      <!-- Red Eyes & Lips & Tilak -->
+      <ellipse cx="-16" cy="18" rx="8" ry="3" fill="#D90429" />
+      <ellipse cx="16" cy="18" rx="8" ry="3" fill="#D90429" />
+      <path d="M-10,55 Q0,65 10,55 Z" fill="#D90429" />
+      <circle cx="0" cy="5" r="5" fill="#FFE600" />
+    </g>
+
+    <!-- Traditional Snake Boat (Vallam Kali) -->
+    <g transform="translate(1120, 720)" opacity="0.65">
+      <path d="M-140,20 Q0,5 180,-35 Q190,-40 200,-70 Q192,-30 140,25 Q0,40 -140,20 Z" fill="#8B4513" stroke="#D4AF37" stroke-width="1.5" />
+      <!-- Oarsmen Silhouettes -->
+      <circle cx="-90" cy="10" r="4" fill="#D4AF37" /><circle cx="-60" cy="8" r="4" fill="#D4AF37" /><circle cx="-30" cy="6" r="4" fill="#D4AF37" /><circle cx="0" cy="4" r="4" fill="#D4AF37" /><circle cx="30" cy="2" r="4" fill="#D4AF37" /><circle cx="60" cy="0" r="4" fill="#D4AF37" />
+    </g>
+
+    <!-- BOTTOM CENTER: GRAND ATHAPOOKKALAM (FLORAL CARPET) -->
+    <g transform="translate(720, 840)">
+      <!-- Giant Floral Radiance -->
+      <circle cx="0" cy="0" r="380" fill="url(#pookkalamGrad)" opacity="0.45" />
+      
+      <!-- Outer Concentric Flower Petals -->
+      <circle cx="0" cy="0" r="320" fill="none" stroke="#FFD700" stroke-width="4" stroke-dasharray="16,10" opacity="0.6" />
+      <circle cx="0" cy="0" r="260" fill="none" stroke="#FF6B35" stroke-width="5" stroke-dasharray="10,6" opacity="0.7" />
+      
+      <!-- 8-Point Star Flower Petals -->
+      <path d="M0,-240 L40,-80 L240,0 L40,80 L0,240 L-40,80 L-240,0 L-40,-80 Z" fill="rgba(255, 183, 3, 0.3)" stroke="#D4AF37" stroke-width="2" />
+      <path d="M-170,-170 L0,-50 L170,-170 L50,0 L170,170 L0,50 L-170,170 L-50,0 Z" fill="rgba(217, 4, 41, 0.3)" stroke="#FF6B35" stroke-width="2" />
+
+      <circle cx="0" cy="0" r="140" fill="rgba(0, 127, 95, 0.4)" stroke="#00FF87" stroke-width="2" />
+      <circle cx="0" cy="0" r="80" fill="rgba(255, 215, 0, 0.6)" stroke="#FFF" stroke-width="2" />
+      <circle cx="0" cy="0" r="30" fill="#D90429" />
+    </g>
+  </svg>
 
   <header>
     <div class="brand-box">
@@ -366,6 +468,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="app.js?v=2026"></script>
+  <script src="app.js?v=20260818"></script>
 </body>
 </html>
