@@ -1,6 +1,27 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf2Pe-YgCOevvSQHQz_FMnp5ipIj4D5LMAeWCN3RPHzGwt6kStvefq0eCqOi1idzDWeA/exec";
 
-// 1. Food Pass Submission with Single Email Verification
+// Handle UI Display for File Upload
+function handleFileSelected(input) {
+  const chosenText = document.getElementById('chosen-file-name');
+  if (input.files && input.files[0]) {
+    chosenText.innerText = "✓ Attached: " + input.files[0].name;
+    chosenText.style.display = 'block';
+  } else {
+    chosenText.style.display = 'none';
+  }
+}
+
+// Convert File to Base64 String
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = error => reject(error);
+    reader.readAsDataURL(file);
+  });
+}
+
+// 1. Food Pass Submission with Screenshot Upload
 async function submitFoodPass(e) {
   e.preventDefault();
   const btn = document.getElementById('food-btn');
@@ -8,7 +29,7 @@ async function submitFoodPass(e) {
   
   if (errorAlert) errorAlert.style.display = 'none';
   btn.disabled = true;
-  btn.innerText = "Checking & Verifying...";
+  btn.innerText = "Uploading & Verifying...";
 
   const name = document.getElementById('f-name').value.trim();
   const email = document.getElementById('f-email').value.trim().toLowerCase();
@@ -16,10 +37,21 @@ async function submitFoodPass(e) {
   const semester = document.getElementById('f-sem').value;
   const diet = document.getElementById('f-diet').value;
   const amount = document.getElementById('f-amount').value;
-  const txid = document.getElementById('f-txid').value.trim();
+  const fileInput = document.getElementById('f-screenshot');
 
   const ticketId = 'ONAM-' + Math.random().toString(36).substr(2, 6).toUpperCase();
   const hash = Math.random().toString(36).substring(2, 10);
+
+  let fileBase64 = "";
+  let fileName = "";
+  let fileType = "";
+
+  if (fileInput.files && fileInput.files[0]) {
+    const file = fileInput.files[0];
+    fileName = file.name;
+    fileType = file.type;
+    fileBase64 = await fileToBase64(file);
+  }
 
   const payload = {
     action: "food_pass",
@@ -30,7 +62,9 @@ async function submitFoodPass(e) {
     semester: semester,
     diet: diet,
     amount: amount,
-    txid: txid,
+    imageBytes: fileBase64,
+    imageName: fileName,
+    imageType: fileType,
     hash: hash
   };
 
@@ -45,10 +79,8 @@ async function submitFoodPass(e) {
 
     if (result.status === 'duplicate') {
       if (errorAlert) {
-        errorAlert.innerText = "This email is already registered for a pass!";
+        errorAlert.innerText = "This email is already registered for a Food Pass!";
         errorAlert.style.display = 'block';
-      } else {
-        alert("This email is already registered for a pass!");
       }
       btn.disabled = false;
       btn.innerText = "Generate Food Pass";
@@ -71,11 +103,12 @@ async function submitFoodPass(e) {
 
     document.getElementById('ticket-modal').classList.add('show');
     document.getElementById('food-form').reset();
+    document.getElementById('chosen-file-name').style.display = 'none';
     btn.disabled = false;
     btn.innerText = "Generate Food Pass";
 
   } catch (err) {
-    // Fallback if network stream closes early
+    // Fallback display
     document.getElementById('m-name').innerText = name + " (" + semester + ")";
     document.getElementById('m-id').innerText = "Pass ID: " + ticketId;
     document.getElementById('m-diet').innerText = "Preference: " + diet;
@@ -91,6 +124,7 @@ async function submitFoodPass(e) {
 
     document.getElementById('ticket-modal').classList.add('show');
     document.getElementById('food-form').reset();
+    document.getElementById('chosen-file-name').style.display = 'none';
     btn.disabled = false;
     btn.innerText = "Generate Food Pass";
   }
