@@ -19,33 +19,33 @@
       overflow-x: hidden;
     }
 
-    /* Fullscreen High-Detail Self-Contained Kerala Festive Canvas */
+    /* Fixed Dark Athapookkalam Floral & Lamp Festive Backdrop */
     .bg-canvas {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
       background: 
-        radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.18) 0%, transparent 40%),
-        radial-gradient(circle at 90% 20%, rgba(255, 107, 53, 0.18) 0%, transparent 40%),
-        radial-gradient(circle at 50% 85%, rgba(255, 170, 0, 0.22) 0%, transparent 55%),
-        linear-gradient(180deg, #070B18 0%, #03050C 100%);
+        radial-gradient(circle at 50% 10%, rgba(255, 170, 0, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 10% 85%, rgba(212, 175, 55, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(255, 107, 53, 0.22) 0%, transparent 45%),
+        linear-gradient(180deg, rgba(6, 9, 20, 0.85) 0%, rgba(3, 5, 12, 0.95) 100%);
     }
 
-    /* Dedicated Bottom Athapookkalam Flower Carpet Vector Overlay */
-    .bg-pookkalam {
+    /* Large Visible Athapookkalam Center Pattern */
+    .bg-pookkalam-center {
       position: fixed;
-      bottom: -120px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      width: min(100vw, 850px);
-      height: 480px;
+      transform: translate(-50%, -50%);
+      width: min(95vw, 800px);
+      height: min(95vw, 800px);
       z-index: 0;
       pointer-events: none;
-      opacity: 0.85;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Cdefs%3E%3CradialGradient id='g1' cx='50%25' cy='100%25' r='80%25'%3E%3Cstop offset='0%25' stop-color='%23FFD700' stop-opacity='0.9'/%3E%3Cstop offset='40%25' stop-color='%23FF6B35' stop-opacity='0.8'/%3E%3Cstop offset='70%25' stop-color='%23D62828' stop-opacity='0.6'/%3E%3Cstop offset='100%25' stop-color='%2300C853' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cellipse cx='400' cy='480' rx='380' ry='220' fill='url(%23g1)'/%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='2' stroke-opacity='0.6'%3E%3Cellipse cx='400' cy='480' rx='340' ry='195' stroke-dasharray='10,8'/%3E%3Cellipse cx='400' cy='480' rx='280' ry='160'/%3E%3Cellipse cx='400' cy='480' rx='210' ry='120' stroke-dasharray='6,6'/%3E%3Cellipse cx='400' cy='480' rx='130' ry='75'/%3E%3C/g%3E%3C!-- Golden Festive Lamp Flames --%3E%3Ccircle cx='400' cy='320' r='14' fill='%23FFE600' filter='drop-shadow(0 0 10px %23FF9900)'/%3E%3Ccircle cx='220' cy='390' r='10' fill='%23FFE600' filter='drop-shadow(0 0 8px %23FF9900)'/%3E%3Ccircle cx='580' cy='390' r='10' fill='%23FFE600' filter='drop-shadow(0 0 8px %23FF9900)'/%3E%3C/svg%3E");
+      opacity: 0.28;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Ccircle cx='250' cy='250' r='240' fill='%23D4AF37' fill-opacity='0.15' stroke='%23D4AF37' stroke-width='4' stroke-dasharray='12,8'/%3E%3Ccircle cx='250' cy='250' r='190' fill='%23FF6B35' fill-opacity='0.2' stroke='%23FF6B35' stroke-width='3'/%3E%3Ccircle cx='250' cy='250' r='140' fill='%2300C853' fill-opacity='0.25' stroke='%23D4AF37' stroke-width='3' stroke-dasharray='8,6'/%3E%3Ccircle cx='250' cy='250' r='90' fill='%23FFD700' fill-opacity='0.35' stroke='%23FFD700' stroke-width='2'/%3E%3Ccircle cx='250' cy='250' r='40' fill='%23D62828' fill-opacity='0.5'/%3E%3Cpath d='M250 10 L270 230 L490 250 L270 270 L250 490 L230 270 L10 250 L230 230 Z' fill='%23FFD700' fill-opacity='0.25'/%3E%3Cpath d='M80 80 L230 230 L420 80 L270 230 L420 420 L250 270 L80 420 L230 250 Z' fill='%23FF6B35' fill-opacity='0.2'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: center bottom;
+      background-position: center;
       background-size: contain;
     }
 
@@ -88,7 +88,7 @@
     }
 
     .card {
-      background: rgba(10, 16, 32, 0.86);
+      background: rgba(10, 16, 32, 0.84);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(212, 175, 55, 0.45);
@@ -206,9 +206,9 @@
   </style>
 </head>
 <body>
-  <!-- Embedded High-Resolution Canvas Layers -->
+  <!-- Fixed Athapookkalam Layers -->
   <div class="bg-canvas"></div>
-  <div class="bg-pookkalam"></div>
+  <div class="bg-pookkalam-center"></div>
 
   <header>
     <div class="brand-box">
@@ -366,6 +366,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=2026"></script>
 </body>
 </html>
