@@ -23,12 +23,19 @@
 
 body {
   font-family: 'Outfit', sans-serif;
-  /* Dark overlay on top of custom generated Onam background image */
-  background: radial-gradient(circle, rgba(7, 11, 25, 0.78) 30%, rgba(3, 5, 12, 0.94) 100%), url('onam_bg.jpg') no-repeat center center fixed;
+  /* Fallback dark color if image fails to load */
+  background-color: #070B19;
+  /* Dark overlay on top of custom Onam background image */
+  background-image: 
+    radial-gradient(circle at center, rgba(7, 11, 25, 0.82) 0%, rgba(3, 5, 12, 0.96) 100%),
+    url('./onam_bg.jpg');
   background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--text-light);
   overflow-x: hidden;
-  min-h: 100vh;
+  min-height: 100vh;
 }
 
 /* Custom Scrollbar */

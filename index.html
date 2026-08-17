@@ -115,10 +115,10 @@
               <input type="text" id="contributor-name" required placeholder="Enter full name" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
             </div>
             
-            <!-- Roll Number / Email -->
+            <!-- Email -->
             <div>
-              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Roll No. / College Email <span class="text-gold">*</span></label>
-              <input type="text" id="contributor-roll" required placeholder="NFSU/TR/2026/..." class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Email Address <span class="text-gold">*</span></label>
+              <input type="email" id="contributor-roll" required placeholder="your@email.com" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
             </div>
 
             <!-- Phone / Amount grid -->
@@ -140,37 +140,46 @@
             </div>
           </div>
 
-          <!-- Dynamic QR Code QR Generator trigger (Hidden by default) -->
-          <div id="payment-qr-container" class="hidden p-4 bg-slate-950/80 rounded-2xl border border-gold/25 flex flex-col sm:flex-row items-center gap-4">
-            <div class="bg-white p-2.5 rounded-xl shadow-md border border-gold/20" id="upi-qr-display">
-              <!-- QR code generated here dynamically -->
-            </div>
-            <div class="space-y-2 text-white flex-1">
-              <h5 class="text-xs font-bold flex items-center gap-1.5">
-                <span class="flex h-1.5 w-1.5 relative">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
-                </span>
-                Scan QR code to pay
-              </h5>
-              <p class="text-[10px] text-white/60">
-                Scan with GPay, PhonePe, Paytm, or BHIM. Or transfer directly to UPI ID: <code class="font-tech bg-slate-800 px-1 py-0.5 rounded text-gold font-bold select-all">nfsumalayalis@oksbi</code>.
-              </p>
-              <div>
-                <label class="block text-[10px] font-bold uppercase tracking-wider text-white/70 mb-1">UPI Transaction / UTR ID <span class="text-gold">*</span></label>
-                <input type="text" id="transaction-id" placeholder="12-digit number (e.g., 624519...)" class="w-full px-3 py-2 rounded-xl custom-input text-[11px]">
-                <p id="utr-validation-msg" class="text-[9px] text-gold mt-1 font-semibold hidden"><i class="fa-solid fa-triangle-exclamation"></i> Transaction ID is required.</p>
+          <!-- Static Payment QR Code - Always Visible -->
+          <div class="p-4 bg-slate-950/80 rounded-2xl border border-gold/25">
+            <h5 class="text-xs font-bold text-white flex items-center gap-1.5 mb-3">
+              <span class="flex h-1.5 w-1.5 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+              </span>
+              Scan QR Code to Pay
+            </h5>
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+              <!-- Static UPI QR generated via QuickChart API -->
+              <div class="bg-white p-2.5 rounded-xl shadow-md border border-gold/20 flex-shrink-0">
+                <img
+                  src="https://quickchart.io/qr?text=upi%3A%2F%2Fpay%3Fpa%3Dabhineetht1-2%40oksbi%26pn%3DOnam%2520NFSU%2520TC%26cu%3DINR&size=140&margin=1&ecLevel=H"
+                  alt="UPI Payment QR Code"
+                  width="140"
+                  height="140"
+                  style="display:block;"
+                />
+              </div>
+              <div class="space-y-2 text-white flex-1">
+                <p class="text-[10px] text-white/70 leading-relaxed">
+                  Scan with <strong>GPay, PhonePe, Paytm</strong> or any UPI app. Or pay directly to:
+                </p>
+                <code class="block font-tech bg-slate-800 px-3 py-1.5 rounded text-gold font-bold text-xs select-all border border-gold/20">
+                  abhineetht1-2@oksbi
+                </code>
+                <div class="pt-1">
+                  <label class="block text-[10px] font-bold uppercase tracking-wider text-white/70 mb-1">UPI Transaction / UTR ID <span class="text-gold">*</span></label>
+                  <input type="text" id="transaction-id" placeholder="12-digit UTR (e.g., 624519...)" class="w-full px-3 py-2 rounded-xl custom-input text-[11px]">
+                  <p id="utr-validation-msg" class="text-[9px] text-gold mt-1 font-semibold hidden"><i class="fa-solid fa-triangle-exclamation"></i> Transaction ID is required.</p>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="flex flex-col sm:flex-row gap-3 pt-2">
-            <button type="button" id="pay-qr-btn" onclick="generatePaymentQR()" class="w-full sm:w-auto btn-navy px-5 py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-              <i class="fa-solid fa-qrcode"></i> Generate Payment QR
-            </button>
-            <button type="submit" id="submit-payment-btn" disabled class="w-full sm:w-auto btn-gold px-5 py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 opacity-50 cursor-not-allowed">
-              <i class="fa-solid fa-shield-check"></i> Submit Details & Generate Pass
+          <!-- Action Button -->
+          <div class="pt-1">
+            <button type="submit" id="submit-payment-btn" class="w-full btn-gold px-5 py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <i class="fa-solid fa-shield-check"></i> Submit Details & Generate Food Pass
             </button>
           </div>
         </form>

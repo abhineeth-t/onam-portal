@@ -13,64 +13,8 @@ const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMOCK_U
 // ============================================================================
 // 5. Contribution & Payment QR Logic
 // ============================================================================
-let selectedContributionAmt = 0;
 let upiQrInstance = null;
 let ticketQrInstance = null;
-
-// Watch amount input to remove manual warning
-document.getElementById('contributor-amount').addEventListener('input', (e) => {
-  const amt = parseInt(e.target.value);
-  if (amt >= 100) {
-    document.getElementById('amount-validation-msg').classList.add('hidden');
-  }
-});
-
-// Dynamic UPI QR Generation
-function generatePaymentQR() {
-  const amtInput = document.getElementById('contributor-amount');
-  const amount = parseInt(amtInput.value);
-  
-  // Basic validation check
-  if (isNaN(amount) || amount < 100) {
-    document.getElementById('amount-validation-msg').classList.remove('hidden');
-    amtInput.focus();
-    return;
-  }
-  
-  document.getElementById('amount-validation-msg').classList.add('hidden');
-  
-  // Reveal UPI QR Container
-  const qrContainer = document.getElementById('payment-qr-container');
-  qrContainer.classList.remove('hidden');
-  
-  // Generate UPI URI
-  const vpa = "nfsumalayalis@oksbi";
-  const name = "Onam Celebration NFSU TC";
-  const note = "Onam Contribution Food Coupon";
-  const upiUri = `upi://pay?pa=${vpa}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
-  
-  // Clear previous QR
-  const qrDisplay = document.getElementById('upi-qr-display');
-  qrDisplay.innerHTML = "";
-  
-  // Generate new QR using qrcode.js
-  upiQrInstance = new QRCode(qrDisplay, {
-    text: upiUri,
-    width: 140,
-    height: 140,
-    colorDark : "#0A1128", // Navy
-    colorLight : "#FFFFFF",
-    correctLevel : QRCode.CorrectLevel.H
-  });
-  
-  // Enable submit buttons
-  const submitBtn = document.getElementById('submit-payment-btn');
-  submitBtn.disabled = false;
-  submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-  
-  // Scroll down to QR viewport smoothly
-  qrContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
 
 // Client-side Cryptographic Hashing (SHA-256)
 async function generateSignature(message) {
@@ -91,8 +35,15 @@ async function handlePaymentSubmit(event) {
   const amount = parseInt(document.getElementById('contributor-amount').value);
   const txid = document.getElementById('transaction-id').value.trim();
   
-  const utrWarning = document.getElementById('utr-validation-msg');
+  // Validate amount
+  if (isNaN(amount) || amount < 100) {
+    document.getElementById('amount-validation-msg').classList.remove('hidden');
+    document.getElementById('contributor-amount').focus();
+    return;
+  }
+  document.getElementById('amount-validation-msg').classList.add('hidden');
   
+  const utrWarning = document.getElementById('utr-validation-msg');
   if (!txid) {
     utrWarning.classList.remove('hidden');
     document.getElementById('transaction-id').focus();
@@ -177,9 +128,8 @@ async function handlePaymentSubmit(event) {
   
   // Reset form
   document.getElementById('payment-form').reset();
-  document.getElementById('payment-qr-container').classList.add('hidden');
   submitBtn.disabled = false;
-  submitBtn.innerHTML = `<i class="fa-solid fa-shield-check"></i> Submit Contribution & Generate Pass`;
+  submitBtn.innerHTML = `<i class="fa-solid fa-shield-check"></i> Submit Details & Generate Food Pass`;
 }
 
 function closeTicketModal() {
