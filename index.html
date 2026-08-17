@@ -1,453 +1,390 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onam @ NFSU TC | Event Portal</title>
-  <!-- Meta Descriptions for SEO -->
-  <meta name="description" content="Official event portal for Onam @ NFSU TC. Reserve your Food Coupon, register for cultural events, and get your digital QR ticket. All logs synced to Drive.">
-  <meta name="keywords" content="Onam, NFSU, NFSU TC, College Celebration, Food Coupon, Performer Registration, Cyber Forensics">
-  
-  <!-- CSS Stylesheets -->
-  <link rel="stylesheet" href="style.css">
-  
-  <!-- FontAwesome Icons -->
+  <title>Onam @ NFSU TC | Event Portal 2026</title>
+  <meta name="description" content="Official Onam 2026 event portal for NFSU Tripura Campus.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            bgDark: '#070B19',
-            gold: {
-              DEFAULT: '#D4AF37',
-              dark: '#B8860B',
-              glow: 'rgba(212, 175, 55, 0.45)',
-            },
-            accent: {
-              orange: '#FF6B35',
-              yellow: '#FFB627',
-            },
-            navy: {
-              DEFAULT: '#0A1128',
-              slate: '#1C2541',
-            },
-            cyber: {
-              green: '#00FF66',
-            }
-          }
-        }
-      }
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#070B19;--bg2:#0C1225;--card:rgba(12,18,37,0.92);
+      --gold:#D4AF37;--gold2:#B8860B;--orange:#FF6B35;
+      --text:#F3ECE0;--text2:#9CA3AF;
+      --border:rgba(212,175,55,0.28);--input-bg:rgba(3,5,12,0.7);
+      --green:#00C853;--red:#FF1744;
     }
-  </script>
+    html{scroll-behavior:smooth}
+    body{font-family:'Outfit',sans-serif;background-color:var(--bg);background-image:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,0.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(255,107,53,0.06) 0%,transparent 50%);color:var(--text);min-height:100vh;overflow-x:hidden}
+    ::-webkit-scrollbar{width:7px}::-webkit-scrollbar-track{background:#03050C}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px}
+    header{position:sticky;top:0;z-index:100;background:rgba(7,11,25,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);border-top:3px solid var(--gold);box-shadow:0 4px 24px rgba(0,0,0,0.5)}
+    .header-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
+    .logo-area{display:flex;align-items:center;gap:14px}
+    .logo-icon{width:46px;height:46px;background:#000;border:2px solid var(--gold);border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(212,175,55,0.35)}
+    .logo-icon i{color:var(--gold);font-size:18px}
+    .logo-text h1{font-family:'Cinzel',serif;font-size:17px;color:#fff;line-height:1}
+    .logo-text h1 span{color:var(--gold)}
+    .logo-text p{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(212,175,55,0.55);letter-spacing:2px;margin-top:3px;text-transform:uppercase}
+    .header-right{display:flex;align-items:center;gap:12px}
+    .live-badge{display:flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.2);border-radius:20px;font-size:10px;font-weight:600;color:var(--gold);letter-spacing:0.5px}
+    .live-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:ping 1.4s infinite}
+    @keyframes ping{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}
+    .admin-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.6);font-size:18px;padding:6px;transition:color 0.2s}
+    .admin-btn:hover{color:var(--gold)}
+    .hero{text-align:center;padding:52px 24px 32px;max-width:680px;margin:0 auto}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);border-radius:20px;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+    .hero h2{font-family:'Cinzel',serif;font-size:clamp(26px,5vw,44px);font-weight:900;color:#fff;line-height:1.1;text-shadow:0 0 40px rgba(212,175,55,0.3);margin-bottom:14px}
+    .hero h2 span{color:var(--gold)}
+    .hero p{font-size:13px;color:var(--text2);line-height:1.7;max-width:520px;margin:0 auto 18px}
+    .hero-divider{width:48px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;margin:0 auto}
+    .grid-section{max-width:1100px;margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    @media(max-width:768px){.grid-section{grid-template-columns:1fr;gap:20px;padding:0 16px 48px}.hero{padding:36px 16px 24px}.live-badge{display:none}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px;backdrop-filter:blur(20px);box-shadow:0 8px 40px rgba(0,0,0,0.45);position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--orange),transparent);border-radius:24px 24px 0 0}
+    .card-header{border-bottom:1px solid rgba(212,175,55,0.18);padding-bottom:18px;margin-bottom:22px}
+    .card-title{display:flex;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:6px}
+    .card-title i{color:var(--gold);font-size:16px}
+    .card-sub{font-size:12px;color:var(--text2);line-height:1.6}
+    .form-group{margin-bottom:16px}
+    .form-label{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#C8B9A0;margin-bottom:7px}
+    .form-label .req{color:var(--gold);margin-left:2px}
+    .form-input,.form-select{width:100%;padding:11px 14px;background:var(--input-bg);border:1.5px solid rgba(212,175,55,0.22);border-radius:12px;color:var(--text);font-size:13px;font-family:'Outfit',sans-serif;outline:none;transition:border-color 0.25s,box-shadow 0.25s;-webkit-appearance:none;appearance:none}
+    .form-input::placeholder{color:rgba(243,236,224,0.3)}
+    .form-input:focus,.form-select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,0.18)}
+    .form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23D4AF37' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:38px;cursor:pointer}
+    .form-select option{background:#0C1225;color:var(--text)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:480px){.form-row{grid-template-columns:1fr}}
+    .amount-wrap{position:relative}
+    .amount-prefix{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:rgba(243,236,224,0.4);font-size:13px;font-weight:600;pointer-events:none}
+    .amount-input{padding-left:28px!important}
+    .validation-msg{display:none;font-size:10px;color:var(--gold);font-weight:600;margin-top:5px}
+    .validation-msg.show{display:block}
+    .qr-box{background:rgba(3,5,12,0.7);border:1px solid rgba(212,175,55,0.22);border-radius:16px;padding:18px;margin-bottom:16px}
+    .qr-box-title{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#fff;margin-bottom:14px}
+    .qr-live-dot{position:relative;display:inline-block;width:8px;height:8px;flex-shrink:0}
+    .qr-live-dot::before{content:'';position:absolute;inset:0;background:var(--green);border-radius:50%;animation:ping 1.4s infinite}
+    .qr-live-dot::after{content:'';position:absolute;inset:1px;background:var(--green);border-radius:50%}
+    .qr-content{display:flex;align-items:flex-start;gap:16px}
+    @media(max-width:500px){.qr-content{flex-direction:column}}
+    .qr-img-wrap{background:#fff;padding:8px;border-radius:12px;border:1px solid rgba(212,175,55,0.2);flex-shrink:0}
+    .qr-img-wrap img{display:block;width:130px;height:130px;border-radius:6px}
+    .qr-info{flex:1}
+    .qr-info p{font-size:11px;color:var(--text2);line-height:1.7;margin-bottom:8px}
+    .qr-upi{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--gold);background:rgba(3,5,12,0.8);border:1px solid rgba(212,175,55,0.25);border-radius:8px;padding:8px 12px;margin-bottom:12px;user-select:all;cursor:copy;word-break:break-all}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:12px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,opacity 0.2s;width:100%}
+    .btn:hover:not(:disabled){transform:translateY(-2px)}
+    .btn:disabled{opacity:0.5;cursor:not-allowed}
+    .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#070B19;box-shadow:0 4px 16px rgba(212,175,55,0.3)}
+    .btn-gold:hover:not(:disabled){box-shadow:0 8px 24px rgba(212,175,55,0.45)}
+    .btn-orange{background:linear-gradient(135deg,var(--orange),#D64F1C);color:#fff;box-shadow:0 4px 16px rgba(255,107,53,0.3)}
+    .btn-orange:hover:not(:disabled){box-shadow:0 8px 24px rgba(255,107,53,0.45)}
+    .btn-dark{background:linear-gradient(135deg,#1E293B,#0F172A);color:var(--text);border:1px solid var(--gold);box-shadow:0 4px 16px rgba(0,0,0,0.3)}
+    .success-alert{display:none;align-items:center;gap:10px;padding:14px 16px;background:rgba(0,200,83,0.12);border:1px solid rgba(0,200,83,0.3);border-radius:12px;color:#4ADE80;font-size:13px;margin-bottom:14px}
+    .success-alert.show{display:flex}
+    .success-alert i{font-size:18px;flex-shrink:0}
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:200;display:none;align-items:center;justify-content:center;padding:16px}
+    .modal-overlay.show{display:flex}
+    .modal-box{background:#0C1225;border:2px solid var(--gold);border-radius:24px;width:100%;max-width:440px;overflow:hidden;animation:popIn 0.3s ease-out;box-shadow:0 24px 60px rgba(0,0,0,0.7),0 0 40px rgba(212,175,55,0.15)}
+    @keyframes popIn{from{opacity:0;transform:scale(0.88)}to{opacity:1;transform:scale(1)}}
+    .modal-top-bar{height:4px;background:linear-gradient(90deg,var(--gold),var(--orange))}
+    .modal-body{padding:24px}
+    .modal-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+    .modal-head-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);letter-spacing:2px;text-transform:uppercase}
+    .modal-head-title{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:#fff;margin-top:3px}
+    .modal-close-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.4);font-size:20px;padding:0;transition:color 0.2s}
+    .modal-close-btn:hover{color:#fff}
+    .ticket-divider{border:none;border-top:2px dashed rgba(212,175,55,0.25);margin:16px 0}
+    .ticket-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+    .ticket-field span{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+    .ticket-field strong{font-size:13px;color:#fff}
+    .ticket-field.gold strong{color:var(--gold)}
+    .ticket-qr-center{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:16px}
+    .ticket-qr-wrap{background:#fff;padding:10px;border-radius:14px;border:1px solid rgba(212,175,55,0.2)}
+    .ticket-sig{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);background:rgba(0,200,83,0.08);padding:5px 10px;border-radius:6px;text-align:center}
+    .ticket-note{background:rgba(3,5,12,0.7);border:1px solid rgba(212,175,55,0.2);border-radius:12px;padding:12px;text-align:center;margin-bottom:16px}
+    .ticket-note p{font-size:12px;font-weight:700;color:#fff;margin-bottom:4px}
+    .ticket-note small{font-size:11px;color:var(--text2)}
+    .ticket-note i{color:var(--gold);margin-right:5px}
+    .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .modal-footer{background:#070B19;padding:10px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:1px}
+    .admin-modal-box{background:#0C1225;border:1px solid rgba(212,175,55,0.3);border-radius:24px;width:100%;max-width:500px;overflow:hidden;animation:popIn 0.3s ease-out;max-height:90vh;overflow-y:auto}
+    .admin-header{background:#070B19;padding:18px 22px;border-bottom:1px solid rgba(212,175,55,0.18);display:flex;justify-content:space-between;align-items:center}
+    .admin-header-left{display:flex;align-items:center;gap:10px}
+    .admin-header-left i{color:var(--gold);font-size:18px}
+    .admin-header h4{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px}
+    .admin-header p{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text2);margin-top:2px}
+    .admin-body{padding:28px}
+    .admin-pin-icon{text-align:center;font-size:36px;color:rgba(212,175,55,0.5);margin-bottom:14px}
+    .admin-pin-title{text-align:center;font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+    .admin-pin-sub{text-align:center;font-size:12px;color:var(--text2);margin-bottom:20px}
+    .pin-error{font-size:11px;color:var(--red);text-align:center;margin-top:8px;display:none;font-weight:600}
+    .pin-error.show{display:block}
+    .terminal-screen{background:#02040A;border:1px solid rgba(0,255,102,0.2);border-radius:12px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:11px;min-height:130px;color:rgba(255,255,255,0.7)}
+    .scanner-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+    .btn-start{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#070B19;border:none;border-radius:10px;padding:10px;font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+    .btn-stop{background:var(--red);color:#fff;border:none;border-radius:10px;padding:10px;font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+    .scanner-view-container{position:relative;background:#000;border-radius:14px;border:2px dashed rgba(212,175,55,0.3);overflow:hidden;aspect-ratio:16/9;margin-bottom:14px;display:flex;align-items:center;justify-content:center}
+    .scanner-placeholder-inner{text-align:center;color:rgba(255,255,255,0.35);position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+    .scanner-placeholder-inner i{font-size:32px;animation:ping 2s infinite}
+    .scanner-placeholder-inner p{font-size:11px;font-family:'JetBrains Mono',monospace}
+    #scanner-reader{width:100%;height:100%}
+    .scan-status{display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.35);border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:8px;margin-bottom:10px}
+    .status-pill{padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);font-weight:700;font-size:8px}
+    .food-panel{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08)}
+    .food-panel.hidden{display:none!important}
+    .food-badge{padding:2px 6px;border-radius:4px;font-size:8px;font-weight:700;text-transform:uppercase}
+    .food-badge.claimed{background:var(--red);color:#fff}
+    .food-badge.unclaimed{background:var(--green);color:#fff}
+    .toggle-food{background:var(--green);color:#070B19;border:none;padding:5px 12px;border-radius:6px;font-weight:700;font-size:10px;cursor:pointer;font-family:'Outfit',sans-serif}
+    .admin-clear-bar{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);margin-top:10px}
+    .admin-clear-bar button{background:none;border:none;color:inherit;cursor:pointer;font-family:inherit;font-size:inherit}
+    .admin-clear-bar button:hover{color:rgba(255,255,255,0.7)}
+    footer{border-top:1px solid rgba(212,175,55,0.15);padding:32px 24px;text-align:center;color:rgba(255,255,255,0.35)}
+    .footer-socials{display:flex;justify-content:center;gap:12px;margin-bottom:16px}
+    .social-icon{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);text-decoration:none;font-size:14px;transition:all 0.2s}
+    .social-icon:hover{background:var(--gold);color:#070B19}
+    footer p{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:4px}
+    footer small{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-transform:uppercase}
+  </style>
 </head>
-<body class="min-h-screen relative pb-12 flex flex-col justify-between">
-
-  <!-- Premium Header & Navigation -->
-  <header class="gold-accent-top bg-navy/90 backdrop-blur-md sticky top-0 z-40 shadow-sm border-b border-gold/15 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <!-- Digital forensic icon -->
-        <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center border-2 border-gold glow-gold-box relative overflow-hidden group">
-          <i class="fa-solid fa-microchip text-gold text-xl absolute transition-all duration-500 group-hover:scale-0"></i>
-          <i class="fa-solid fa-gift text-accent-yellow text-xl absolute scale-0 transition-all duration-500 group-hover:scale-100"></i>
-        </div>
-        <div>
-          <h1 class="text-white font-traditional font-bold text-lg leading-none">ONAM <span class="text-gold">@ NFSU TC</span></h1>
-          <p class="text-[10px] font-tech text-gold/60 tracking-wider">EVENT PORTAL // STUDENT ASSOCIATION</p>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <div class="logo-icon"><i class="fa-solid fa-microchip"></i></div>
+        <div class="logo-text">
+          <h1>ONAM <span>@ NFSU TC</span></h1>
+          <p>Event Portal // Student Association</p>
         </div>
       </div>
-      
-      <!-- Quick Action Info / Admin trigger -->
-      <div class="flex items-center space-x-4">
-        <span class="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold bg-gold/10 text-gold border border-gold/20">
-          <span class="w-1.5 h-1.5 rounded-full bg-gold animate-ping"></span>
-          Drive Database Synced
-        </span>
-        <button id="admin-trigger" class="text-white/80 hover:text-gold transition-colors p-2" title="Admin Scanner Console">
-          <i class="fa-solid fa-shield-halved text-lg"></i>
-        </button>
+      <div class="header-right">
+        <div class="live-badge"><span class="live-dot"></span>Drive Database Synced</div>
+        <button class="admin-btn" id="admin-trigger" title="Admin Scanner"><i class="fa-solid fa-shield-halved"></i></button>
       </div>
     </div>
   </header>
 
-  <!-- Main Split-Screen Section -->
-  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12 relative z-10">
-    
-    <!-- Title Section -->
-    <div class="text-center max-w-3xl mx-auto space-y-3">
-      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-gold/10 text-gold text-[10px] font-bold tracking-widest uppercase border border-gold/20">
-        NFSU TC Celebration Portal
-      </span>
-      <h2 class="text-3xl md:text-5xl font-bold font-traditional text-white text-glow-gold">
-        ONAM CELEBRATION 2026
-      </h2>
-      <p class="text-xs md:text-sm text-white/70">
-        Submit your contribution to secure your digital Food Pass Coupon, or register as a performer for our cultural schedule. All records automatically log to our secure Drive spreadsheet.
-      </p>
-      <div class="w-12 h-0.5 bg-gold mx-auto mt-2 rounded-full"></div>
+  <div class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-star"></i> NFSU TC Celebration Portal</div>
+    <h2>ONAM CELEBRATION <span>2026</span></h2>
+    <p>Book your Food Coupon or register for the Cultural Programme. All entries are securely stored in our Google Drive database.</p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <div class="grid-section">
+    <!-- FOOD COUPON CARD -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><i class="fa-solid fa-ticket"></i> Food Pass &amp; Coupon Registry</div>
+        <p class="card-sub">A minimum contribution of Rs.100 is required to generate your food court entry pass and digital QR coupon.</p>
+      </div>
+      <form id="payment-form" onsubmit="handlePaymentSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name<span class="req">*</span></label>
+          <input type="text" id="contributor-name" class="form-input" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address<span class="req">*</span></label>
+          <input type="email" id="contributor-roll" class="form-input" placeholder="your@email.com" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Phone (WhatsApp)<span class="req">*</span></label>
+            <input type="tel" id="contributor-phone" class="form-input" placeholder="10-digit number" required>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Amount (Rs.)<span class="req">*</span></label>
+            <div class="amount-wrap">
+              <span class="amount-prefix">Rs.</span>
+              <input type="number" id="contributor-amount" class="form-input amount-input" min="100" placeholder="Min 100" required>
+            </div>
+            <p class="validation-msg" id="amount-validation-msg"><i class="fa-solid fa-triangle-exclamation"></i> Minimum amount is Rs.100</p>
+          </div>
+        </div>
+
+        <div class="qr-box" style="margin-top:18px">
+          <div class="qr-box-title"><span class="qr-live-dot"></span> Scan QR Code to Pay</div>
+          <div class="qr-content">
+            <div class="qr-img-wrap">
+              <img src="https://quickchart.io/qr?text=upi%3A%2F%2Fpay%3Fpa%3Dabhineetht1-2%40oksbi%26pn%3DOnam%2520NFSU%2520TC%26cu%3DINR&size=130&margin=1&ecLevel=H" alt="UPI QR Code" width="130" height="130">
+            </div>
+            <div class="qr-info">
+              <p>Scan with <strong style="color:#fff">GPay, PhonePe, Paytm</strong> or any UPI app. Or pay directly:</p>
+              <code class="qr-upi">abhineetht1-2@oksbi</code>
+              <div class="form-group" style="margin-bottom:0">
+                <label class="form-label">UTR / Transaction ID<span class="req">*</span></label>
+                <input type="text" id="transaction-id" class="form-input" placeholder="12-digit UTR number">
+                <p class="validation-msg" id="utr-validation-msg"><i class="fa-solid fa-triangle-exclamation"></i> Transaction ID is required</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="submit-payment-btn" class="btn btn-gold" style="margin-top:6px">
+          <i class="fa-solid fa-shield-check"></i> Submit &amp; Generate Food Pass
+        </button>
+      </form>
     </div>
 
-    <!-- Split forms grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-      
-      <!-- COLUMN 1: Food Pass Registration -->
-      <section class="glass-card-dark rounded-3xl p-6 md:p-8 border border-gold/30 space-y-6 flex flex-col justify-between">
-        <div class="space-y-1.5 border-b border-gold/20 pb-4">
-          <h3 class="text-xl font-traditional font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-ticket text-gold"></i>
-            Food Pass & Coupon Registry
-          </h3>
-          <p class="text-xs text-white/60">
-            A minimum contribution of ₹100 is required to generate your food court entry ticket and QR coupon.
-          </p>
-        </div>
-
-        <!-- Form -->
-        <form id="payment-form" onsubmit="handlePaymentSubmit(event)" class="space-y-5">
-          <div class="space-y-4">
-            <!-- Full Name -->
-            <div>
-              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Full Name <span class="text-gold">*</span></label>
-              <input type="text" id="contributor-name" required placeholder="Enter full name" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
-            </div>
-            
-            <!-- Email -->
-            <div>
-              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Email Address <span class="text-gold">*</span></label>
-              <input type="email" id="contributor-roll" required placeholder="your@email.com" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
-            </div>
-
-            <!-- Phone / Amount grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Phone Number -->
-              <div>
-                <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Phone Number (WhatsApp) <span class="text-gold">*</span></label>
-                <input type="tel" id="contributor-phone" required placeholder="10-digit number" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
-              </div>
-              <!-- Contribution Amount -->
-              <div>
-                <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Contribution Amount (₹) <span class="text-gold">*</span></label>
-                <div class="relative">
-                  <span class="absolute left-4 top-2.5 text-white/40 text-xs font-semibold">₹</span>
-                  <input type="number" id="contributor-amount" min="100" required placeholder="Min 100" class="w-full pl-8 pr-4 py-2.5 rounded-xl custom-input text-xs">
-                </div>
-                <p id="amount-validation-msg" class="text-[9px] text-gold mt-1 font-semibold hidden"><i class="fa-solid fa-triangle-exclamation"></i> Minimum amount is ₹100.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Static Payment QR Code - Always Visible -->
-          <div class="p-4 bg-slate-950/80 rounded-2xl border border-gold/25">
-            <h5 class="text-xs font-bold text-white flex items-center gap-1.5 mb-3">
-              <span class="flex h-1.5 w-1.5 relative">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
-              </span>
-              Scan QR Code to Pay
-            </h5>
-            <div class="flex flex-col sm:flex-row items-center gap-4">
-              <!-- Static UPI QR generated via QuickChart API -->
-              <div class="bg-white p-2.5 rounded-xl shadow-md border border-gold/20 flex-shrink-0">
-                <img
-                  src="https://quickchart.io/qr?text=upi%3A%2F%2Fpay%3Fpa%3Dabhineetht1-2%40oksbi%26pn%3DOnam%2520NFSU%2520TC%26cu%3DINR&size=140&margin=1&ecLevel=H"
-                  alt="UPI Payment QR Code"
-                  width="140"
-                  height="140"
-                  style="display:block;"
-                />
-              </div>
-              <div class="space-y-2 text-white flex-1">
-                <p class="text-[10px] text-white/70 leading-relaxed">
-                  Scan with <strong>GPay, PhonePe, Paytm</strong> or any UPI app. Or pay directly to:
-                </p>
-                <code class="block font-tech bg-slate-800 px-3 py-1.5 rounded text-gold font-bold text-xs select-all border border-gold/20">
-                  abhineetht1-2@oksbi
-                </code>
-                <div class="pt-1">
-                  <label class="block text-[10px] font-bold uppercase tracking-wider text-white/70 mb-1">UPI Transaction / UTR ID <span class="text-gold">*</span></label>
-                  <input type="text" id="transaction-id" placeholder="12-digit UTR (e.g., 624519...)" class="w-full px-3 py-2 rounded-xl custom-input text-[11px]">
-                  <p id="utr-validation-msg" class="text-[9px] text-gold mt-1 font-semibold hidden"><i class="fa-solid fa-triangle-exclamation"></i> Transaction ID is required.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Action Button -->
-          <div class="pt-1">
-            <button type="submit" id="submit-payment-btn" class="w-full btn-gold px-5 py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-              <i class="fa-solid fa-shield-check"></i> Submit Details & Generate Food Pass
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <!-- COLUMN 2: Cultural Event Registration -->
-      <section class="glass-card-dark rounded-3xl p-6 md:p-8 border border-gold/30 space-y-6 flex flex-col justify-between">
-        <div class="space-y-1.5 border-b border-gold/20 pb-4">
-          <h3 class="text-xl font-traditional font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-microphone text-gold"></i>
-            Cultural Performance Registry
-          </h3>
-          <p class="text-xs text-white/60">
-            Submit your performance details to secure your spot in the official event timeline.
-          </p>
-        </div>
-
-        <!-- Form -->
-        <form id="performer-form" onsubmit="handlePerformerSubmit(event)" class="space-y-5">
-          <div class="space-y-4">
-            <!-- Full Name -->
-            <div>
-              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Participant Name <span class="text-gold">*</span></label>
-              <input type="text" id="perf-name" required placeholder="Enter full name" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
-            </div>
-
-            <!-- Semester -->
-            <div>
-              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Semester / Course Year <span class="text-gold">*</span></label>
-              <select id="perf-semester" required class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
-                <option value="" disabled selected>Select current semester</option>
-                <option value="Semester 1">Semester 1 (UG)</option>
-                <option value="Semester 2">Semester 2 (UG)</option>
-                <option value="Semester 3">Semester 3 (UG)</option>
-                <option value="Semester 4">Semester 4 (UG)</option>
-                <option value="Semester 5">Semester 5 (UG)</option>
-                <option value="Semester 6">Semester 6 (UG)</option>
-                <option value="Semester 7">Semester 7 (UG)</option>
-                <option value="Semester 8">Semester 8 (UG)</option>
-                <option value="PG Semester 1">Post Graduate Sem 1</option>
-                <option value="PG Semester 2">Post Graduate Sem 2</option>
-                <option value="PG Semester 3">Post Graduate Sem 3</option>
-                <option value="PG Semester 4">Post Graduate Sem 4</option>
-                <option value="Research Scholar">Research Scholar</option>
-              </select>
-            </div>
-
-            <!-- Performance Category -->
-            <div>
-              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Performance Category <span class="text-gold">*</span></label>
-              <select id="perf-category" required class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
-                <option value="" disabled selected>Select performance category</option>
-                <option value="Solo Song">Solo Song</option>
-                <option value="Group Dance">Group Dance</option>
-                <option value="Instrumental">Instrumental / Percussion</option>
-                <option value="Skit / Drama">Skit / Drama / Anchoring</option>
-                <option value="Volunteer Team">Volunteer Coordination</option>
-              </select>
-            </div>
-
-            <!-- Performance Title -->
-            <div>
-              <label class="block text-[11px] font-bold uppercase tracking-wider text-white/80 mb-1.5">Performance Title / Brief Description <span class="text-gold">*</span></label>
-              <input type="text" id="perf-title" required placeholder="e.g., Acoustic classical medley / Group folk performance" class="w-full px-4 py-2.5 rounded-xl custom-input text-xs">
-            </div>
-          </div>
-
-          <!-- Alert boxes -->
-          <div id="perf-success-alert" class="hidden p-4 bg-green-500/15 border border-green-500/30 rounded-xl text-green-400 text-xs flex items-center gap-2">
-            <i class="fa-solid fa-circle-check text-lg"></i>
-            <span>Registration logged to database! The committee will contact you shortly.</span>
-          </div>
-
-          <!-- Action Button -->
-          <button type="submit" id="perf-submit-btn" class="w-full sm:w-auto btn-orange px-6 py-3.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
-            <i class="fa-solid fa-paper-plane"></i> Submit Registration
-          </button>
-        </form>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- Ticket Confirmation Modal Display (Pops up on successful contribution submit) -->
-  <div id="ticket-modal-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="w-full max-w-md bg-slate-900 rounded-3xl shadow-2xl border-2 border-gold overflow-hidden relative ticket-grid animate-[scaleIn_0.3s_ease-out] text-white">
-      <!-- top header border -->
-      <div class="gold-accent-top h-4 bg-slate-850"></div>
-      
-      <div class="p-6 space-y-6">
-        <div class="flex justify-between items-start">
-          <div>
-            <span class="text-[10px] font-tech text-white/50 tracking-wider">OFFICIAL EVENT PASS</span>
-            <h4 class="font-traditional font-bold text-white text-lg mt-0.5">ONAM @ NFSU TC 2026</h4>
-          </div>
-          <button onclick="closeTicketModal()" class="text-white/40 hover:text-white p-1">
-            <i class="fa-solid fa-xmark text-lg"></i>
-          </button>
-        </div>
-        
-        <div class="border-t-2 border-dashed border-gold/30 pt-4 space-y-4">
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <span class="block text-[10px] uppercase font-tech text-white/40">NAME</span>
-              <span id="ticket-display-name" class="font-bold text-white text-sm">-</span>
-            </div>
-            <div>
-              <span class="block text-[10px] uppercase font-tech text-white/40">ROLL NO</span>
-              <span id="ticket-display-roll" class="font-bold text-white text-sm font-tech">-</span>
-            </div>
-            <div>
-              <span class="block text-[10px] uppercase font-tech text-white/40">TICKET ID</span>
-              <span id="ticket-display-id" class="font-bold text-gold text-sm font-tech">-</span>
-            </div>
-            <div>
-              <span class="block text-[10px] uppercase font-tech text-white/40">AMOUNT PAID</span>
-              <span id="ticket-display-amount" class="font-bold text-white text-sm">-</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Divider with Ticket Cutouts -->
-        <div class="ticket-cutout my-4 h-[2px] border-t-2 border-dashed border-white/20 relative"></div>
-
-        <!-- QR Code Display area -->
-        <div class="flex flex-col items-center space-y-3">
-          <div class="bg-white p-3 rounded-2xl shadow-inner border border-white/10" id="ticket-qr-code">
-            <!-- QRCode generated here -->
-          </div>
-          <div class="text-center space-y-1">
-            <span class="block text-[10px] font-tech text-cyber-green bg-black px-2 py-0.5 rounded font-bold uppercase tracking-wider text-glow-cyber">CRYPTOGRAPHIC SIGNATURE VALID</span>
-            <span class="text-[9px] font-tech text-white/40 select-all" id="ticket-display-hash">HASH: 0x-</span>
-          </div>
-        </div>
-        
-        <!-- Instructions -->
-        <div class="bg-slate-950 p-3.5 rounded-xl border border-gold/20 text-center space-y-1">
-          <p class="text-xs font-bold text-white flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-bowl-food text-gold"></i> Food Coupon Included
-          </p>
-          <p class="text-[10px] text-white/60">Present this QR code at the entrance to scan and claim your Feast Food Coupon.</p>
-        </div>
-
-        <!-- Print / Action buttons -->
-        <div class="flex gap-3">
-          <button onclick="window.print()" class="flex-1 btn-navy py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-            <i class="fa-solid fa-print"></i> Print Coupon
-          </button>
-          <button onclick="closeTicketModal()" class="flex-1 btn-gold py-2.5 rounded-xl text-xs font-bold">
-            Done
-          </button>
-        </div>
+    <!-- CULTURAL CARD -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><i class="fa-solid fa-microphone"></i> Cultural Performance Registry</div>
+        <p class="card-sub">Submit your performance details to secure your spot in the official Onam event lineup.</p>
       </div>
-      <div class="bg-black p-3 text-center text-[10px] font-tech text-white/40">
-        SECURE LOGISTICS // SYNCED TO MICROSOFT ONEDRIVE & GOOGLE DRIVE
-      </div>
+      <form id="performer-form" onsubmit="handlePerformerSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Participant Name<span class="req">*</span></label>
+          <input type="text" id="perf-name" class="form-input" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Semester / Course Year<span class="req">*</span></label>
+          <select id="perf-semester" class="form-select" required>
+            <option value="" disabled selected>Select current semester</option>
+            <option value="Semester 1">Semester 1 (UG)</option>
+            <option value="Semester 2">Semester 2 (UG)</option>
+            <option value="Semester 3">Semester 3 (UG)</option>
+            <option value="Semester 4">Semester 4 (UG)</option>
+            <option value="Semester 5">Semester 5 (UG)</option>
+            <option value="Semester 6">Semester 6 (UG)</option>
+            <option value="Semester 7">Semester 7 (UG)</option>
+            <option value="Semester 8">Semester 8 (UG)</option>
+            <option value="PG Semester 1">Post Graduate Sem 1</option>
+            <option value="PG Semester 2">Post Graduate Sem 2</option>
+            <option value="PG Semester 3">Post Graduate Sem 3</option>
+            <option value="PG Semester 4">Post Graduate Sem 4</option>
+            <option value="Research Scholar">Research Scholar</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Performance Category<span class="req">*</span></label>
+          <select id="perf-category" class="form-select" required>
+            <option value="" disabled selected>Select performance category</option>
+            <option value="Solo Song">Solo Song</option>
+            <option value="Group Dance">Group Dance</option>
+            <option value="Instrumental">Instrumental / Percussion</option>
+            <option value="Skit / Drama">Skit / Drama / Anchoring</option>
+            <option value="Volunteer Team">Volunteer Coordination</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Performance Title / Description<span class="req">*</span></label>
+          <input type="text" id="perf-title" class="form-input" placeholder="e.g. Acoustic classical medley" required>
+        </div>
+        <div class="success-alert" id="perf-success-alert">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Registration submitted! The committee will contact you shortly.</span>
+        </div>
+        <button type="submit" id="perf-submit-btn" class="btn btn-orange">
+          <i class="fa-solid fa-paper-plane"></i> Submit Registration
+        </button>
+      </form>
     </div>
   </div>
 
-  <!-- Admin Verification Portal Modal (Hidden) -->
-  <section id="admin-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-    <div class="w-full max-w-lg bg-slate-955 rounded-3xl border border-gold/30 overflow-hidden relative shadow-2xl animate-[scaleIn_0.3s_ease-out] text-white">
-      <!-- Admin Screen Header -->
-      <div class="p-5 border-b border-gold/20 flex justify-between items-center bg-slate-900">
-        <div class="flex items-center space-x-2.5">
-          <i class="fa-solid fa-shield-halved text-gold text-lg"></i>
+  <!-- TICKET MODAL -->
+  <div class="modal-overlay" id="ticket-modal-overlay">
+    <div class="modal-box">
+      <div class="modal-top-bar"></div>
+      <div class="modal-body">
+        <div class="modal-head">
           <div>
-            <h4 class="font-tech text-xs font-bold uppercase tracking-wider text-glow-gold">Admin Security Scanner</h4>
-            <p class="text-[9px] font-tech text-white/50">EVENT LOGISTICS // CRYPTO PASS CHECK</p>
+            <div class="modal-head-label">Official Event Pass</div>
+            <div class="modal-head-title">ONAM @ NFSU TC 2026</div>
           </div>
+          <button class="modal-close-btn" onclick="closeTicketModal()"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <button onclick="closeAdminPortal()" class="text-white/50 hover:text-white p-1">
-          <i class="fa-solid fa-xmark text-lg"></i>
-        </button>
+        <div class="ticket-grid">
+          <div class="ticket-field"><span>Name</span><strong id="ticket-display-name">-</strong></div>
+          <div class="ticket-field"><span>Email</span><strong id="ticket-display-roll" style="font-size:11px">-</strong></div>
+          <div class="ticket-field gold"><span>Ticket ID</span><strong id="ticket-display-id">-</strong></div>
+          <div class="ticket-field"><span>Amount Paid</span><strong id="ticket-display-amount">-</strong></div>
+        </div>
+        <hr class="ticket-divider">
+        <div class="ticket-qr-center">
+          <div class="ticket-qr-wrap"><div id="ticket-qr-code"></div></div>
+          <div class="ticket-sig">CRYPTOGRAPHIC SIGNATURE VALID</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.35);text-align:center" id="ticket-display-hash">HASH: 0x-</div>
+        </div>
+        <div class="ticket-note">
+          <p><i class="fa-solid fa-bowl-food"></i>Food Coupon Included</p>
+          <small>Present this QR code at the entrance to claim your meal.</small>
+        </div>
+        <div class="modal-btns">
+          <button onclick="window.print()" class="btn btn-dark"><i class="fa-solid fa-print"></i> Print Pass</button>
+          <button onclick="closeTicketModal()" class="btn btn-gold">Done</button>
+        </div>
       </div>
+      <div class="modal-footer">SECURE PASS // SYNCED TO GOOGLE DRIVE</div>
+    </div>
+  </div>
 
-      <!-- Passcode validation screen -->
-      <div id="admin-passcode-view" class="p-8 space-y-6">
-        <div class="text-center space-y-2">
-          <i class="fa-solid fa-lock text-4xl text-gold/60"></i>
-          <h5 class="text-sm font-bold font-tech uppercase tracking-wide">Enter Administrative Credentials</h5>
-          <p class="text-xs text-white/60">To operate the HTML5 QR camera scanner, confirm your 4-digit credential key.</p>
+  <!-- ADMIN MODAL -->
+  <div class="modal-overlay" id="admin-modal">
+    <div class="admin-modal-box">
+      <div class="admin-header">
+        <div class="admin-header-left">
+          <i class="fa-solid fa-shield-halved"></i>
+          <div><h4>Admin Security Scanner</h4><p>EVENT LOGISTICS // CRYPTO PASS CHECK</p></div>
         </div>
-        <div class="space-y-4">
-          <input type="password" id="admin-pin" placeholder="Enter PIN (Default: 1947)" class="w-full text-center tracking-widest font-tech font-bold text-lg px-4 py-3 rounded-xl custom-input">
-          <p id="admin-pin-error" class="text-[10px] text-red-500 font-semibold font-tech text-center hidden"><i class="fa-solid fa-circle-exclamation mr-1"></i> Authentication failed. Invalid admin passcode.</p>
-          <button onclick="validateAdminPin()" class="w-full btn-gold py-3 rounded-xl text-xs font-bold">Authenticate & Open Scanner</button>
-        </div>
+        <button class="modal-close-btn" onclick="closeAdminPortal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
-
-      <!-- QR Scanner viewport screen (Locked behind authentication) -->
-      <div id="admin-scanner-view" class="p-6 space-y-6 hidden">
-        
-        <!-- Camera Stream Frame -->
-        <div class="relative rounded-2xl border-2 border-dashed border-gold/30 bg-black/60 aspect-video overflow-hidden flex items-center justify-center">
-          <div id="scanner-reader" class="w-full h-full">
-            <!-- HTML5 QR Scanner library hooks this element -->
-          </div>
-          <!-- Target outline overlay -->
-          <div id="scanner-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-4 pointer-events-none text-center space-y-2">
-            <i class="fa-solid fa-camera text-3xl text-gold/40 animate-pulse"></i>
-            <span class="text-xs text-white/40 font-tech">Camera stream loading...</span>
+      <div class="admin-body" id="admin-passcode-view">
+        <div class="admin-pin-icon"><i class="fa-solid fa-lock"></i></div>
+        <div class="admin-pin-title">Enter Administrative Credentials</div>
+        <div class="admin-pin-sub">Enter your 4-digit admin PIN to access the QR scanner.</div>
+        <input type="password" id="admin-pin" class="form-input" placeholder="Enter PIN" style="text-align:center;font-size:20px;letter-spacing:8px;font-family:'JetBrains Mono',monospace" maxlength="4">
+        <p class="pin-error" id="admin-pin-error"><i class="fa-solid fa-circle-exclamation"></i> Invalid PIN. Access denied.</p>
+        <button onclick="validateAdminPin()" class="btn btn-gold" style="margin-top:16px">Authenticate &amp; Open Scanner</button>
+      </div>
+      <div class="admin-body" id="admin-scanner-view" style="display:none">
+        <div class="scanner-view-container">
+          <div id="scanner-reader"></div>
+          <div id="scanner-placeholder" class="scanner-placeholder-inner">
+            <i class="fa-solid fa-camera"></i><p>Camera stream loading...</p>
           </div>
         </div>
-
-        <div class="flex gap-4">
-          <button onclick="startScanning()" class="flex-1 btn-gold py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-play"></i> Start Camera
-          </button>
-          <button onclick="stopScanning()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-stop"></i> Stop Camera
-          </button>
+        <div class="scanner-controls">
+          <button onclick="startScanning()" class="btn-start"><i class="fa-solid fa-play"></i> Start Camera</button>
+          <button onclick="stopScanning()" class="btn-stop"><i class="fa-solid fa-stop"></i> Stop Camera</button>
         </div>
-
-        <!-- Verification Results Console -->
-        <div class="terminal-screen rounded-xl p-4 font-tech text-xs min-h-[140px] flex flex-col justify-between">
-          <div class="flex justify-between items-center text-[10px] text-white/40 border-b border-white/10 pb-1.5">
+        <div class="terminal-screen">
+          <div class="scan-status">
             <span>VERIFICATION GATEWAY OUTPUT</span>
-            <span id="scan-status-pill" class="px-2 py-0.5 rounded bg-white/15 text-white/70 font-bold uppercase">Ready</span>
+            <span class="status-pill" id="scan-status-pill">READY</span>
           </div>
-
-          <div id="scanner-output" class="my-3 space-y-2">
-            <p class="text-white/50">// Awaiting QR code detection...</p>
-          </div>
-
-          <!-- Quick Food served toggle (Appears when valid ticket detected) -->
-          <div id="food-served-panel" class="hidden pt-2.5 border-t border-white/10 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-              <i class="fa-solid fa-bowl-food text-gold"></i>
-              <span class="text-[10px] font-bold">Food Pass Status:</span>
-              <span id="food-status-badge" class="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase">-</span>
+          <div id="scanner-output" style="color:rgba(255,255,255,0.4)">// Awaiting QR code detection...</div>
+          <div class="food-panel hidden" id="food-served-panel">
+            <div style="display:flex;align-items:center;gap:8px">
+              <i class="fa-solid fa-bowl-food" style="color:var(--gold)"></i>
+              <span style="font-size:10px;font-weight:700">Food Pass Status:</span>
+              <span class="food-badge unclaimed" id="food-status-badge">-</span>
             </div>
-            <button id="toggle-food-btn" class="bg-cyber-green hover:bg-white text-bgDark font-bold px-3 py-1 rounded text-[10px] transition-colors">
-              Toggle Claim Status
-            </button>
+            <button class="toggle-food" id="toggle-food-btn">Toggle Claim</button>
           </div>
         </div>
-        
-        <!-- Back to Admin main / Clear logs -->
-        <div class="flex justify-between text-[10px] text-white/40 font-tech">
-          <button onclick="resetScannerConsole()" class="hover:text-cream"><i class="fa-solid fa-trash-can mr-1"></i> Clear Log</button>
+        <div class="admin-clear-bar">
+          <button onclick="resetScannerConsole()"><i class="fa-solid fa-trash-can"></i> Clear Log</button>
           <span>SECURE CHECKSUM CHECKS ON</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer class="mt-16 border-t border-gold/15 pt-8 pb-8 text-center text-white/40 space-y-3 relative z-10">
-    <div class="flex justify-center space-x-4">
-      <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:text-gold hover:bg-gold hover:text-bgDark transition-all">
-        <a href="https://github.com" target="_blank"><i class="fa-brands fa-github text-sm"></i></a>
-      </div>
-      <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:text-gold hover:bg-gold hover:text-bgDark transition-all">
-        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram text-sm"></i></a>
-      </div>
+  <footer>
+    <div class="footer-socials">
+      <a href="https://instagram.com" class="social-icon" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://github.com" class="social-icon" target="_blank"><i class="fa-brands fa-github"></i></a>
     </div>
-    <div class="text-xs space-y-1">
-      <p class="font-bold text-white/60">&copy; 2026 Student Association, NFSU Tripura Campus.</p>
-      <p class="text-[9px] font-tech text-white/30">// ENCRYPTED TRANSACTION INTEGRITY SIGNED // SYNCED TO DRIVE</p>
-    </div>
+    <p>&copy; 2026 Student Association, NFSU Tripura Campus</p>
+    <small>// Encrypted Transaction Integrity // Synced to Drive</small>
   </footer>
 
-  <!-- QR Code and HTML5 Scanner Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://unpkg.com/html5-qrcode"></script>
-  
-  <!-- Main Application Logic Script -->
   <script src="app.js"></script>
 </body>
 </html>

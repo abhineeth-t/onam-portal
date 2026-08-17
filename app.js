@@ -8,7 +8,7 @@ const CRYPTO_SALT = "NFSU-KASAVU-CYBER-2026-SECRET-KEY";
 // Google Apps Script Web App Deployment URL
 // IMPORTANT: Replace this with your deployed Apps Script URL after following
 // the setup instructions in google-apps-script.js
-const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMOCK_URL_REPLACE_THIS/exec";
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzd22I35ojGUmZEVbzb8pQE7jIbe_Mta4YtuEuLOMn6hyOrwslJ95_MuqOwZUgPykeRSg/exec";
 
 // ============================================================================
 // 5. Contribution & Payment QR Logic
