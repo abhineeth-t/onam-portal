@@ -1,14 +1,17 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf2Pe-YgCOevvSQHQz_FMnp5ipIj4D5LMAeWCN3RPHzGwt6kStvefq0eCqOi1idzDWeA/exec";
 
-// 1. Food Pass Submission
+// 1. Food Pass Submission with Single Email Verification
 async function submitFoodPass(e) {
   e.preventDefault();
   const btn = document.getElementById('food-btn');
+  const errorAlert = document.getElementById('food-error');
+  
+  if (errorAlert) errorAlert.style.display = 'none';
   btn.disabled = true;
-  btn.innerText = "Processing...";
+  btn.innerText = "Checking & Verifying...";
 
   const name = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim();
+  const email = document.getElementById('f-email').value.trim().toLowerCase();
   const phone = document.getElementById('f-phone').value.trim();
   const semester = document.getElementById('f-sem').value;
   const diet = document.getElementById('f-diet').value;
@@ -31,31 +34,66 @@ async function submitFoodPass(e) {
     hash: hash
   };
 
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify(payload)
-  });
+  try {
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
 
-  // Display Pass Modal
-  document.getElementById('m-name').innerText = name + " (" + semester + ")";
-  document.getElementById('m-id').innerText = "Pass ID: " + ticketId;
-  document.getElementById('m-diet').innerText = "Preference: " + diet;
-  document.getElementById('m-amt').innerText = "Amount Paid: ₹" + amount;
-  
-  const qrBox = document.getElementById('m-qr');
-  qrBox.innerHTML = "";
-  new QRCode(qrBox, {
-    text: JSON.stringify({ id: ticketId, name: name, sem: semester, diet: diet, amount: amount }),
-    width: 120,
-    height: 120
-  });
+    const result = await response.json();
 
-  document.getElementById('ticket-modal').classList.add('show');
-  document.getElementById('food-form').reset();
-  btn.disabled = false;
-  btn.innerText = "Generate Food Pass";
+    if (result.status === 'duplicate') {
+      if (errorAlert) {
+        errorAlert.innerText = "This email is already registered for a pass!";
+        errorAlert.style.display = 'block';
+      } else {
+        alert("This email is already registered for a pass!");
+      }
+      btn.disabled = false;
+      btn.innerText = "Generate Food Pass";
+      return;
+    }
+
+    // Display Pass Modal on success
+    document.getElementById('m-name').innerText = name + " (" + semester + ")";
+    document.getElementById('m-id').innerText = "Pass ID: " + ticketId;
+    document.getElementById('m-diet').innerText = "Preference: " + diet;
+    document.getElementById('m-amt').innerText = "Amount Paid: ₹" + amount;
+    
+    const qrBox = document.getElementById('m-qr');
+    qrBox.innerHTML = "";
+    new QRCode(qrBox, {
+      text: JSON.stringify({ id: ticketId, name: name, sem: semester, diet: diet, amount: amount }),
+      width: 120,
+      height: 120
+    });
+
+    document.getElementById('ticket-modal').classList.add('show');
+    document.getElementById('food-form').reset();
+    btn.disabled = false;
+    btn.innerText = "Generate Food Pass";
+
+  } catch (err) {
+    // Fallback if network stream closes early
+    document.getElementById('m-name').innerText = name + " (" + semester + ")";
+    document.getElementById('m-id').innerText = "Pass ID: " + ticketId;
+    document.getElementById('m-diet').innerText = "Preference: " + diet;
+    document.getElementById('m-amt').innerText = "Amount Paid: ₹" + amount;
+    
+    const qrBox = document.getElementById('m-qr');
+    qrBox.innerHTML = "";
+    new QRCode(qrBox, {
+      text: JSON.stringify({ id: ticketId, name: name, sem: semester, diet: diet, amount: amount }),
+      width: 120,
+      height: 120
+    });
+
+    document.getElementById('ticket-modal').classList.add('show');
+    document.getElementById('food-form').reset();
+    btn.disabled = false;
+    btn.innerText = "Generate Food Pass";
+  }
 }
 
 // 2. Cultural Submission
