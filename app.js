@@ -1,4 +1,4 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkEM0zAJkLiA-o5R64cJ-t_o-klPc2s2vw410gAbj5UHLAUhrtQDqvWuqMVaKxpAX56A/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf2Pe-YgCOevvSQHQz_FMnp5ipIj4D5LMAeWCN3RPHzGwt6kStvefq0eCqOi1idzDWeA/exec";
 
 // 1. Food Pass Submission
 async function submitFoodPass(e) {
