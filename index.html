@@ -1,357 +1,193 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onam @ NFSU TC | 2026 Portal</title>
-  
-  <!-- Inline SVG Favicon (Eliminates 404 Console Error) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-      background-color: #050711;
-      min-height: 100vh;
-      padding: 0 16px 50px;
-      position: relative;
-      color: #F3ECE0;
-      font-family: 'Outfit', sans-serif;
-      overflow-x: hidden;
-    }
-
-    .bg-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: 
-        radial-gradient(circle at 50% 50%, rgba(5, 8, 20, 0.3) 0%, rgba(5, 8, 20, 0.7) 100%),
-        url("bg.png") center center/cover no-repeat;
-      filter: contrast(1.1) brightness(1.05) saturate(1.15);
-    }
-
-    header, .hero, .grid, .modal {
-      position: relative;
-      z-index: 2;
-    }
-
-    header {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px 0 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.5);
-      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-    }
-    .brand-box { display: flex; flex-direction: column; }
-    .brand { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: 0.5px; }
-    .brand span { color: #FFD700; text-shadow: 0 0 14px rgba(255, 215, 0, 0.7); }
-    .brand-sub { font-size: 11px; color: #FCE8A2; letter-spacing: 3px; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
-    
-    .hero { text-align: center; max-width: 650px; margin: 24px auto 22px; }
-    .hero h1 { 
-      font-family: 'Cinzel', serif; 
-      font-size: clamp(28px, 4.5vw, 42px); 
-      margin-bottom: 6px; 
-      letter-spacing: 1.5px;
-      color: #FFFFFF;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 1), 0 0 30px rgba(255, 215, 0, 0.6); 
-    }
-    .hero h1 span { color: #FFD700; }
-    .hero p { color: #F1F5F9; font-size: 14px; font-weight: 500; text-shadow: 0 2px 12px rgba(0,0,0,1); }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 26px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: rgba(7, 12, 26, 0.78);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 215, 0, 0.5);
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 215, 0, 0.15);
-      border-radius: 18px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card-title {
-      font-family: 'Cinzel', serif;
-      font-size: 18px;
-      color: #fff;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    }
-    .card-title i { color: #FFD700; }
-    .card-sub { font-size: 12px; color: #CBD5E1; margin-bottom: 16px; }
-    
-    .form-group { margin-bottom: 12px; }
-    label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #FCE8A2; margin-bottom: 5px; letter-spacing: 0.5px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
-    
-    input, select {
-      width: 100%;
-      padding: 10px 12px;
-      background: rgba(3, 6, 16, 0.88);
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      border-radius: 8px;
-      color: #fff;
-      font-size: 13px;
-      outline: none;
-    }
-    input:focus, select:focus { border-color: #FFD700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.45); }
-
-    .file-dropzone {
-      position: relative;
-      border: 1.5px dashed rgba(255, 215, 0, 0.55);
-      background: rgba(3, 6, 16, 0.85);
-      border-radius: 8px;
-      padding: 14px;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .file-dropzone:hover { border-color: #FFD700; background: rgba(255, 215, 0, 0.1); }
-    .file-dropzone input[type="file"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-    }
-    .file-dropzone-text { font-size: 12px; color: #E2E8F0; }
-    .file-dropzone-text i { font-size: 22px; color: #FFD700; display: block; margin-bottom: 6px; }
-    .file-chosen-name { font-size: 11px; color: #4ADE80; margin-top: 5px; font-weight: 600; display: none; }
-
-    .qr-container {
-      background: rgba(3, 6, 16, 0.88);
-      border: 1px solid rgba(255, 215, 0, 0.35);
-      border-radius: 12px;
-      padding: 12px;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-    .qr-container img { width: 95px; height: 95px; background: #fff; padding: 4px; border-radius: 6px; }
-    .qr-text { font-size: 11px; color: #CBD5E1; }
-    .qr-text code { display: block; color: #FFD700; font-weight: 700; margin: 3px 0; user-select: all; font-size: 12px; }
-
-    .btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 13px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: transform 0.1s ease;
-    }
-    .btn:active { transform: scale(0.98); }
-    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .btn-gold { background: linear-gradient(135deg, #FFD700, #B8860B); color: #070B16; box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4); }
-    .btn-orange { background: linear-gradient(135deg, #FF6B35, #D64F1C); color: #fff; box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4); }
-    
-    .alert { display: none; padding: 10px; background: rgba(0,200,83,0.25); border: 1px solid #00E676; border-radius: 8px; color: #69F0AE; font-size: 12px; margin-bottom: 12px; text-align: center; font-weight: 600; }
-    
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.88);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      z-index: 100;
-    }
-    .modal.show { display: flex; }
-    .modal-card {
-      background: rgba(8, 14, 28, 0.96);
-      border: 2px solid #FFD700;
-      box-shadow: 0 10px 45px rgba(0,0,0,0.9), 0 0 25px rgba(255,215,0,0.3);
-      border-radius: 16px;
-      max-width: 380px;
-      width: 100%;
-      padding: 24px;
-      text-align: center;
-    }
-    .ticket-qr { margin: 14px auto; background: #fff; padding: 10px; display: inline-block; border-radius: 8px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ONAM @ NFSU TC</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-  <div class="bg-canvas"></div>
+  <!-- Ambient background overlay -->
+  <div class="bg-overlay"></div>
 
-  <header>
-    <div class="brand-box">
-      <div class="brand">ONAM <span>@ NFSU TC</span></div>
-      <div class="brand-sub">smart boyz</div>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="container header-container">
+      <div class="brand-badge">
+        <span class="live-indicator"><span class="dot"></span> Live Portal</span>
+      </div>
+      <div class="brand-titles">
+        <h1 class="portal-main-title">ONAM <span class="accent-lamp">🪔</span> NFSU TC</h1>
+        <p class="portal-sub">SMART BOYZ</p>
+      </div>
+      <h2 class="portal-event-heading">CELEBRATION 2026</h2>
+      <p class="portal-inst">Fill either or both sections below to register.</p>
     </div>
-    <div style="font-size:12px; color:#FFD700; text-shadow:0 0 10px rgba(255,215,0,0.8);"><i class="fa-solid fa-circle" style="font-size:8px; color:#00E676;"></i> Live Portal</div>
   </header>
 
-  <div class="hero">
-    <h1>CELEBRATION <span>2026</span></h1>
-    <p>Fill either or both sections below to register.</p>
-  </div>
+  <!-- Main Forms Container -->
+  <main class="container main-content">
+    <div class="grid-layout">
+      
+      <!-- FOOD PASS CARD -->
+      <section class="portal-card">
+        <div class="card-header">
+          <h2><span class="icon">🎟️</span> FOOD PASS</h2>
+          <p>Generate your instant digital food pass (Min. ₹100).</p>
+        </div>
 
-  <div class="grid">
-    <!-- Food Form -->
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-ticket"></i> Food Pass</div>
-      <div class="card-sub">Generate your instant digital food pass (Min. ₹100).</div>
-      <form id="food-form" onsubmit="submitFoodPass(event)" autocomplete="off">
-        <div class="form-group">
-          <label>Full Name *</label>
-          <input type="text" id="f-name" required placeholder="Your full name" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label>Email *</label>
-          <input type="text" id="f-email" required placeholder="your@email.com" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label>Contact Number *</label>
-          <input type="text" id="f-phone" inputmode="numeric" maxlength="10" required placeholder="10-digit mobile" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label>Semester / Program *</label>
-          <select id="f-sem" required>
-            <option value="" disabled selected>Select Semester</option>
-            <optgroup label="B.Tech - M.Tech (Integrated)">
-              <option value="B.Tech-M.Tech Sem 1">B.Tech - M.Tech Sem 1</option>
-              <option value="B.Tech-M.Tech Sem 3">B.Tech - M.Tech Sem 3</option>
-              <option value="B.Tech-M.Tech Sem 5">B.Tech - M.Tech Sem 5</option>
-              <option value="B.Tech-M.Tech Sem 7">B.Tech - M.Tech Sem 7</option>
-              <option value="B.Tech-M.Tech Sem 9">B.Tech - M.Tech Sem 9</option>
-            </optgroup>
-            <optgroup label="B.Sc - M.Sc (Integrated)">
-              <option value="B.Sc-M.Sc Sem 1">B.Sc - M.Sc Sem 1</option>
-              <option value="B.Sc-M.Sc Sem 3">B.Sc - M.Sc Sem 3</option>
-              <option value="B.Sc-M.Sc Sem 5">B.Sc - M.Sc Sem 5</option>
-              <option value="B.Sc-M.Sc Sem 7">B.Sc - M.Sc Sem 7</option>
-              <option value="B.Sc-M.Sc Sem 9">B.Sc - M.Sc Sem 9</option>
-            </optgroup>
-            <optgroup label="M.Sc">
-              <option value="M.Sc Sem 1">M.Sc Sem 1</option>
-              <option value="M.Sc Sem 3">M.Sc Sem 3</option>
-            </optgroup>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Dietary Preference *</label>
-          <select id="f-diet" required>
-            <option value="" disabled selected>Select Preference</option>
-            <option value="Veg">Veg</option>
-            <option value="Non-Veg">Non-Veg</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Contribution Amount (₹) *</label>
-          <input type="number" id="f-amount" min="100" required placeholder="Min 100" autocomplete="off">
-        </div>
-        <div class="qr-container">
-          <img src="https://quickchart.io/qr?text=upi%3A%2F%2Fpay%3Fpa%3Dabhineetht1-2%40oksbi%26pn%3DOnam%2520NFSU%2520TC%26cu%3DINR&size=100&margin=1" alt="QR">
-          <div class="qr-text">
-            <span>Scan to pay with UPI:</span>
-            <code>abhineetht1-2@oksbi</code>
+        <form id="food-form" onsubmit="submitFoodPass(event)" autocomplete="off">
+          <div class="input-block">
+            <label for="f-name">FULL NAME *</label>
+            <input type="text" id="f-name" name="name" placeholder="Your full name" autocomplete="name" required />
           </div>
-        </div>
-        <div class="form-group">
-          <label>Payment Screenshot *</label>
-          <div class="file-dropzone">
-            <input type="file" id="f-screenshot" accept="image/*" required onchange="handleFileSelected(this)">
-            <div class="file-dropzone-text">
-              <i class="fa-solid fa-cloud-arrow-up"></i>
-              <span>Click to Upload Payment Screenshot</span>
+
+          <div class="input-block">
+            <label for="f-email">EMAIL *</label>
+            <input type="email" id="f-email" name="email" placeholder="your@email.com" autocomplete="email" required />
+          </div>
+
+          <div class="input-block">
+            <label for="f-phone">CONTACT NUMBER *</label>
+            <input 
+              type="tel" 
+              id="f-phone" 
+              name="phone" 
+              placeholder="10-digit mobile" 
+              pattern="[0-9]{10}"
+              maxlength="10" 
+              inputmode="numeric" 
+              autocomplete="tel" 
+              required 
+            />
+          </div>
+
+          <div class="input-block">
+            <label for="f-sem">SEMESTER / PROGRAM *</label>
+            <select id="f-sem" name="sem" required>
+              <option value="" disabled selected>Select Semester</option>
+              <option value="B.Tech - M.Tech Sem 1">B.Tech - M.Tech Sem 1</option>
+              <option value="B.Tech - M.Tech Sem 3">B.Tech - M.Tech Sem 3</option>
+              <option value="B.Tech - M.Tech Sem 5">B.Tech - M.Tech Sem 5</option>
+              <option value="B.Tech - M.Tech Sem 7">B.Tech - M.Tech Sem 7</option>
+              <option value="M.Sc / PG Programs">M.Sc / PG Programs</option>
+              <option value="Faculty / Staff">Faculty / Staff</option>
+            </select>
+          </div>
+
+          <div class="input-block">
+            <label for="f-diet">DIETARY PREFERENCE *</label>
+            <select id="f-diet" name="diet" required>
+              <option value="" disabled selected>Select Preference</option>
+              <option value="Veg">Veg</option>
+              <option value="Non-Veg">Non-Veg</option>
+            </select>
+          </div>
+
+          <div class="input-block">
+            <label for="f-amount">CONTRIBUTION AMOUNT (₹) *</label>
+            <input type="number" id="f-amount" name="amount" min="100" placeholder="Min 100" required />
+          </div>
+
+          <!-- UPI Display Box with QR -->
+          <div class="upi-box">
+            <div class="upi-qr">
+              <img 
+                src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi%3A%2F%2Fpay%3Fpa%3Dabhineetht1-2%40oksbi%26pn%3DOnam%20Celebration%26cu%3DINR" 
+                alt="UPI QR Code" 
+              />
             </div>
-            <div class="file-chosen-name" id="chosen-file-name"></div>
+            <div class="upi-info">
+              <span>Scan to pay with UPI:</span>
+              <strong>abhineetht1-2@oksbi</strong>
+            </div>
           </div>
-        </div>
-        <div id="food-error" style="display:none; padding:10px; background:rgba(239,68,68,0.15); border:1px solid #EF4444; border-radius:8px; color:#F87171; font-size:12px; margin-bottom:12px; text-align:center;"></div>
-        <button type="submit" id="food-btn" class="btn btn-gold">Generate Food Pass</button>
-      </form>
-    </div>
 
-    <!-- Cultural Form -->
-    <div class="card">
-      <div class="card-title"><i class="fa-solid fa-microphone"></i> Cultural Programme</div>
-      <div class="card-sub">Register your event performance.</div>
-      <form id="cultural-form" onsubmit="submitCultural(event)" autocomplete="off">
-        <div class="form-group">
-          <label>Participant Name *</label>
-          <input type="text" id="c-name" required placeholder="Your full name" autocomplete="off">
+          <div class="input-block">
+            <label class="custom-file-label" for="f-screenshot">
+              <span>📁 Upload Payment Screenshot *</span>
+              <input type="file" id="f-screenshot" accept="image/*" onchange="handleFileSelected(this)" required />
+            </label>
+            <div id="chosen-file-name" class="file-name-text"></div>
+          </div>
+
+          <div id="food-error" class="error-msg"></div>
+          <button type="submit" id="food-btn" class="btn-gold">Generate Food Pass</button>
+        </form>
+      </section>
+
+      <!-- CULTURAL PROGRAMME CARD -->
+      <section class="portal-card">
+        <div class="card-header">
+          <h2><span class="icon">🎤</span> CULTURAL PROGRAMME</h2>
+          <p>Register your event performance.</p>
         </div>
-        <div class="form-group">
-          <label>Semester / Program *</label>
-          <select id="c-sem" required>
-            <option value="" disabled selected>Select Semester</option>
-            <optgroup label="B.Tech - M.Tech (Integrated)">
-              <option value="B.Tech-M.Tech Sem 1">B.Tech - M.Tech Sem 1</option>
-              <option value="B.Tech-M.Tech Sem 3">B.Tech - M.Tech Sem 3</option>
-              <option value="B.Tech-M.Tech Sem 5">B.Tech - M.Tech Sem 5</option>
-              <option value="B.Tech-M.Tech Sem 7">B.Tech - M.Tech Sem 7</option>
-              <option value="B.Tech-M.Tech Sem 9">B.Tech - M.Tech Sem 9</option>
-            </optgroup>
-            <optgroup label="B.Sc - M.Sc (Integrated)">
-              <option value="B.Sc-M.Sc Sem 1">B.Sc - M.Sc Sem 1</option>
-              <option value="B.Sc-M.Sc Sem 3">B.Sc - M.Sc Sem 3</option>
-              <option value="B.Sc-M.Sc Sem 5">B.Sc - M.Sc Sem 5</option>
-              <option value="B.Sc-M.Sc Sem 7">B.Sc - M.Sc Sem 7</option>
-              <option value="B.Sc-M.Sc Sem 9">B.Sc - M.Sc Sem 9</option>
-            </optgroup>
-            <optgroup label="M.Sc">
-              <option value="M.Sc Sem 1">M.Sc Sem 1</option>
-              <option value="M.Sc Sem 3">M.Sc Sem 3</option>
-            </optgroup>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Category *</label>
-          <select id="c-cat" required>
-            <option value="" disabled selected>Select Category</option>
-            <option value="Solo Song">Solo Song</option>
-            <option value="Group Dance">Group Dance</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Performance Title *</label>
-          <input type="text" id="c-title" required placeholder="Song/Dance title" autocomplete="off">
-        </div>
-        <div class="alert" id="c-alert">Registration recorded!</div>
-        <button type="submit" id="cult-btn" class="btn btn-orange">Submit Registration</button>
-      </form>
+
+        <form id="cultural-form" onsubmit="submitCultural(event)" autocomplete="off">
+          <div class="input-block">
+            <label for="c-name">PARTICIPANT NAME *</label>
+            <input type="text" id="c-name" name="name" placeholder="Your full name" autocomplete="name" required />
+          </div>
+
+          <div class="input-block">
+            <label for="c-sem">SEMESTER / PROGRAM *</label>
+            <select id="c-sem" name="sem" required>
+              <option value="" disabled selected>Select Semester</option>
+              <option value="B.Tech - M.Tech Sem 1">B.Tech - M.Tech Sem 1</option>
+              <option value="B.Tech - M.Tech Sem 3">B.Tech - M.Tech Sem 3</option>
+              <option value="B.Tech - M.Tech Sem 5">B.Tech - M.Tech Sem 5</option>
+              <option value="B.Tech - M.Tech Sem 7">B.Tech - M.Tech Sem 7</option>
+              <option value="M.Sc / PG Programs">M.Sc / PG Programs</option>
+              <option value="Faculty / Staff">Faculty / Staff</option>
+            </select>
+          </div>
+
+          <div class="input-block">
+            <label for="c-cat">CATEGORY *</label>
+            <select id="c-cat" name="category" required>
+              <option value="" disabled selected>Select Category</option>
+              <option value="Solo Song">Solo Song</option>
+              <option value="Group Song">Group Song</option>
+              <option value="Solo Dance">Solo Dance</option>
+              <option value="Group Dance">Group Dance</option>
+              <option value="Drama / Skit">Drama / Skit</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="input-block">
+            <label for="c-title">PERFORMANCE TITLE *</label>
+            <input type="text" id="c-title" name="title" placeholder="Song/Dance title" required />
+          </div>
+
+          <div id="c-alert" class="success-msg"></div>
+          <button type="submit" id="cult-btn" class="btn-orange">Submit Registration</button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Pass Modal -->
+  <div id="ticket-modal" class="modal-backdrop">
+    <div class="ticket-container">
+      <div class="ticket-top">
+        <h4 id="m-id">PASS ID: #ONAM-XXXX</h4>
+        <span class="badge">CONFIRMED</span>
+      </div>
+      <div class="ticket-body">
+        <h2 id="m-name">Participant Name</h2>
+        <p id="m-diet">Preference: Veg</p>
+        <p id="m-amt">Paid: ₹100</p>
+        <div id="m-qr" class="ticket-qr"></div>
+        <p class="hint-text">Show this digital pass at the counter.</p>
+      </div>
+      <button type="button" onclick="closeModal()" class="btn-dismiss">Close Pass</button>
     </div>
   </div>
 
-  <!-- Ticket Modal -->
-  <div class="modal" id="ticket-modal">
-    <div class="modal-card">
-      <h2 style="font-family:'Cinzel',serif; color:#FFD700; font-size:18px;">ONAM 2026 FOOD PASS</h2>
-      <p style="font-size:12px; color:#9CA3AF; margin-top:4px;" id="m-name"></p>
-      <div class="ticket-qr" id="m-qr"></div>
-      <p style="font-size:13px; font-weight:700; color:#fff;" id="m-id"></p>
-      <p style="font-size:12px; color:#FFD700; margin-top:2px;" id="m-diet"></p>
-      <p style="font-size:11px; color:#9CA3AF;" id="m-amt"></p>
-      <p style="font-size:11px; color:#4ADE80; margin-top:6px;"><i class="fa-solid fa-envelope"></i> Confirmation sent to your email</p>
-      <button onclick="document.getElementById('ticket-modal').classList.remove('show')" class="btn btn-gold" style="margin-top:14px;">Done</button>
-    </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="app.js?v=2026_deploy_final"></script>
+  <script src="app.js"></script>
 </body>
 </html>

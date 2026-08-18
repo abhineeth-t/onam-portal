@@ -1,4 +1,3 @@
-// Newly Deployed Google Apps Script Web App Endpoint
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf2Pe-YgCOevvSQHQz_FMnp5ipIj4D5LMAeWCN3RPHzGwt6kStvefq0eCqOi1idzDWeA/exec";
 const ADMIN_EMAILS = ["abhineetht1@gmail.com", "abhineeth.btmtcs25@tr.nfsu.edu.in"];
 
@@ -10,6 +9,10 @@ function handleFileSelected(input) {
   } else {
     chosenName.style.display = "none";
   }
+}
+
+function closeModal() {
+  document.getElementById("ticket-modal").classList.remove("show");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -71,7 +74,7 @@ function getCompressedBase64(file) {
   });
 }
 
-// 1. Food Pass Handler
+// 1. Food Pass Registration
 async function submitFoodPass(e) {
   e.preventDefault();
   const btn = document.getElementById("food-btn");
@@ -118,7 +121,7 @@ async function submitFoodPass(e) {
 
     if (result.status === "success") {
       document.getElementById("m-name").innerText = payload.name + (isAdmin ? " (VIP ACCESS)" : "");
-      document.getElementById("m-id").innerText = "PASS ID: #ONAM-" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById("m-id").innerText = "PASS ID: #" + (result.passId || "ONAM-2026");
       document.getElementById("m-diet").innerText = "Preference: " + payload.diet;
       document.getElementById("m-amt").innerText = isAdmin ? "Unlimited VIP Access" : "Paid: ₹" + payload.amount;
 
@@ -126,8 +129,8 @@ async function submitFoodPass(e) {
       qrBox.innerHTML = "";
       new QRCode(qrBox, {
         text: `ONAM-2026|${payload.name}|${payload.phone}|${payload.diet}|${isAdmin ? 'VIP' : payload.amount}`,
-        width: 128,
-        height: 128
+        width: 120,
+        height: 120
       });
 
       document.getElementById("ticket-modal").classList.add("show");
@@ -145,7 +148,7 @@ async function submitFoodPass(e) {
   }
 }
 
-// 2. Cultural Programme Handler
+// 2. Cultural Programme Registration
 async function submitCultural(e) {
   e.preventDefault();
   const btn = document.getElementById("cult-btn");
