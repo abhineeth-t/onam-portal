@@ -17,14 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const screenshotInput = document.getElementById("f-screenshot");
   const amountInput = document.getElementById("f-amount");
 
-  // Prevent non-numeric entries in phone
   if (phoneInput) {
     phoneInput.addEventListener("input", (e) => {
       e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
     });
   }
 
-  // Admin auto-whitelist
   if (emailInput) {
     emailInput.addEventListener("input", (e) => {
       const email = e.target.value.toLowerCase().trim();
@@ -72,6 +70,7 @@ function getCompressedBase64(file) {
   });
 }
 
+// 1. Food Pass Submission
 async function submitFoodPass(e) {
   e.preventDefault();
   const btn = document.getElementById("food-btn");
@@ -89,7 +88,7 @@ async function submitFoodPass(e) {
 
   errBox.style.display = "none";
   btn.disabled = true;
-  btn.innerText = isAdmin ? "Issuing Unlimited VIP Pass..." : "Verifying & Generating Pass...";
+  btn.innerText = isAdmin ? "Issuing Unlimited VIP Pass..." : "Generating Pass...";
 
   try {
     let base64Image = "";
@@ -98,6 +97,7 @@ async function submitFoodPass(e) {
     }
 
     const payload = {
+      type: "food",
       name: document.getElementById("f-name").value.trim(),
       email: emailVal,
       phone: phoneVal,
@@ -109,9 +109,7 @@ async function submitFoodPass(e) {
 
     const response = await fetch(SCRIPT_URL, {
       method: "POST",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
     });
 
@@ -146,12 +144,46 @@ async function submitFoodPass(e) {
   }
 }
 
-function submitCultural(e) {
+// 2. Cultural Programme Submission (Connected to Sheet)
+async function submitCultural(e) {
   e.preventDefault();
+  const btn = document.getElementById("cult-btn");
   const alertBox = document.getElementById("c-alert");
-  alertBox.style.display = "block";
-  setTimeout(() => {
-    alertBox.style.display = "none";
-    document.getElementById("cultural-form").reset();
-  }, 4000);
+
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
+
+  const payload = {
+    type: "cultural",
+    name: document.getElementById("c-name").value.trim(),
+    sem: document.getElementById("c-sem").value,
+    category: document.getElementById("c-cat").value,
+    title: document.getElementById("c-title").value.trim()
+  };
+
+  try {
+    const response = await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      alertBox.style.display = "block";
+      alertBox.innerText = "Registration recorded successfully!";
+      document.getElementById("cultural-form").reset();
+      setTimeout(() => {
+        alertBox.style.display = "none";
+      }, 4000);
+    } else {
+      alert("Error submitting cultural registration: " + (result.message || "Please try again."));
+    }
+  } catch (err) {
+    alert("Submission failed: " + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerText = "Submit Registration";
+  }
 }
