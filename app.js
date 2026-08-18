@@ -1,5 +1,5 @@
 // Newly Deployed Google Apps Script Web App Endpoint
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6cw_4gm5a00GGPKX1ITM5ALhQoQtuwyLF0Gc2_V3bIdMW_Qbj5-YkgqA1XGHtEluA/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf2Pe-YgCOevvSQHQz_FMnp5ipIj4D5LMAeWCN3RPHzGwt6kStvefq0eCqOi1idzDWeA/exec";
 const ADMIN_EMAILS = ["abhineetht1@gmail.com", "abhineeth.btmtcs25@tr.nfsu.edu.in"];
 
 function handleFileSelected(input) {
