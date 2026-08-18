@@ -1,4 +1,5 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf2Pe-YgCOevvSQHQz_FMnp5ipIj4D5LMAeWCN3RPHzGwt6kStvefq0eCqOi1idzDWeA/exec";
+// Active Google Apps Script Web App Endpoint
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzodJkbLyH4Cj7wOSd3FkB0B_gwprl24E9I1qEXFDtzHmBcBEA7Si2-1jE2XuiCiNJrbg/exec";
 const ADMIN_EMAILS = ["abhineetht1@gmail.com", "abhineeth.btmtcs25@tr.nfsu.edu.in"];
 
 function handleFileSelected(input) {
@@ -92,7 +93,7 @@ async function submitFoodPass(e) {
       screenshot: base64Image
     };
 
-    // Sending as text/plain prevents CORS preflight errors on Google Apps Script
+    // Text/plain avoids CORS preflight blockage on Google Apps Script
     const response = await fetch(SCRIPT_URL, {
       method: "POST",
       headers: {
