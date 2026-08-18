@@ -10,12 +10,12 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     :root {
-      --bg-dark: #070B18;
+      --bg-dark: #050814;
       --gold-primary: #D4AF37;
-      --gold-light: #F3E5AB;
+      --gold-light: #FCE8A2;
       --gold-deep: #AA771C;
       --text-main: #F4EEDD;
-      --text-muted: #9BA3B5;
+      --text-muted: #A0AABF;
     }
 
     body {
@@ -28,9 +28,7 @@
       overflow-x: hidden;
     }
 
-    /* =========================================================================
-       HIGH-END LUXURY VECTOR CANVAS (MAHABALI, VALLAMKALI, KATHAKALI, POOKKALAM)
-       ========================================================================= */
+    /* High-Definition Background Vector Layer */
     .bg-artwork {
       position: fixed;
       inset: 0;
@@ -41,13 +39,13 @@
       object-fit: cover;
     }
 
-    /* Ambient Soft Bokeh & Vignette Blur */
+    /* Ambient Soft Vignette */
     .bg-vignette {
       position: fixed;
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      background: radial-gradient(circle at center, transparent 35%, rgba(7, 11, 24, 0.6) 80%, rgba(7, 11, 24, 0.95) 100%);
+      background: radial-gradient(circle at center, transparent 30%, rgba(5, 8, 20, 0.55) 75%, rgba(5, 8, 20, 0.95) 100%);
     }
 
     header, .hero, .grid, .modal {
@@ -62,7 +60,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
     }
 
     .brand-box { display: flex; flex-direction: column; }
@@ -107,22 +105,19 @@
       margin: 0 auto;
     }
 
-    /* Luxury Frosted Dark Glass Cards */
     .card {
-      background: rgba(10, 16, 32, 0.72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(212, 175, 55, 0.28);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.06);
+      background: rgba(9, 14, 30, 0.76);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(212, 175, 55, 0.32);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.08);
       border-radius: 20px;
       padding: 28px;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.3s ease, transform 0.2s ease;
+      transition: border-color 0.3s ease;
     }
-    .card:hover {
-      border-color: rgba(212, 175, 55, 0.45);
-    }
+    .card:hover { border-color: rgba(212, 175, 55, 0.5); }
 
     .card-title {
       font-family: 'Cinzel', serif;
@@ -144,8 +139,8 @@
     input, select {
       width: 100%;
       padding: 11px 14px;
-      background: rgba(5, 8, 18, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.25);
+      background: rgba(4, 7, 16, 0.88);
+      border: 1px solid rgba(212, 175, 55, 0.28);
       border-radius: 9px;
       color: #FFFFFF;
       font-size: 13px;
@@ -154,22 +149,21 @@
     }
     input:focus, select:focus { 
       border-color: var(--gold-primary); 
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.25); 
-      background: rgba(7, 12, 26, 0.95);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.3); 
+      background: rgba(6, 10, 24, 0.95);
     }
 
-    /* Minimalist Dropzone */
     .file-dropzone {
       position: relative;
-      border: 1.5px dashed rgba(212, 175, 55, 0.4);
-      background: rgba(5, 8, 18, 0.75);
+      border: 1.5px dashed rgba(212, 175, 55, 0.45);
+      background: rgba(4, 7, 16, 0.8);
       border-radius: 9px;
       padding: 16px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .file-dropzone:hover { border-color: var(--gold-primary); background: rgba(212, 175, 55, 0.05); }
+    .file-dropzone:hover { border-color: var(--gold-primary); background: rgba(212, 175, 55, 0.06); }
     .file-dropzone input[type="file"] {
       position: absolute;
       inset: 0;
@@ -183,8 +177,8 @@
     .file-chosen-name { font-size: 11px; color: #4ADE80; margin-top: 6px; font-weight: 600; display: none; }
 
     .qr-container {
-      background: rgba(5, 8, 18, 0.8);
-      border: 1px solid rgba(212, 175, 55, 0.2);
+      background: rgba(4, 7, 16, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.22);
       border-radius: 12px;
       padding: 12px 14px;
       display: flex;
@@ -206,24 +200,23 @@
       letter-spacing: 0.5px;
       cursor: pointer;
       margin-top: 10px;
-      transition: transform 0.1s ease, filter 0.2s ease;
+      transition: transform 0.1s ease;
     }
     .btn:active { transform: scale(0.98); }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .btn-gold { 
       background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-deep) 100%); 
       color: #070B18; 
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25); 
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3); 
     }
     .btn-orange { 
       background: linear-gradient(135deg, #FF7A45 0%, #D64F1C 100%); 
       color: #FFFFFF; 
-      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.25); 
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3); 
     }
     
     .alert { display: none; padding: 11px; background: rgba(0,230,118,0.12); border: 1px solid #00E676; border-radius: 8px; color: #69F0AE; font-size: 12px; margin-bottom: 12px; text-align: center; }
     
-    /* Ticket Modal */
     .modal {
       position: fixed;
       inset: 0;
@@ -237,7 +230,7 @@
     }
     .modal.show { display: flex; }
     .modal-card {
-      background: rgba(10, 16, 32, 0.95);
+      background: rgba(9, 14, 30, 0.96);
       border: 1.5px solid var(--gold-primary);
       box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px rgba(212,175,55,0.25);
       border-radius: 18px;
@@ -252,38 +245,36 @@
 <body>
 
   <!-- =========================================================================
-       LUXURY MINIMALIST GOLDEN LINE-ART SVG CANVAS
+       NATIVE VECTOR ARTWORK: MAVELI (LEFT), VALLAMKALI (RIGHT), POOKKALAM (BASE)
        ========================================================================= -->
   <svg class="bg-artwork" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
     <defs>
-      <!-- Metallic Linear & Radial Gradients -->
-      <linearGradient id="goldLinear" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#F3E5AB" />
+      <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FCE8A2" />
         <stop offset="50%" stop-color="#D4AF37" />
         <stop offset="100%" stop-color="#AA771C" />
       </linearGradient>
 
-      <linearGradient id="goldGlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <linearGradient id="glowLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stop-color="#D4AF37" stop-opacity="0" />
         <stop offset="50%" stop-color="#D4AF37" stop-opacity="0.8" />
         <stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
       </linearGradient>
 
-      <radialGradient id="bokehGlow" cx="50%" cy="50%" r="50%">
+      <radialGradient id="softBokeh" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.25" />
         <stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
       </radialGradient>
 
-      <radialGradient id="pookkalamCenter" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#FFD700" stop-opacity="0.15" />
-        <stop offset="45%" stop-color="#FF6B35" stop-opacity="0.08" />
-        <stop offset="70%" stop-color="#00C853" stop-opacity="0.03" />
-        <stop offset="100%" stop-color="#070B18" stop-opacity="0" />
+      <radialGradient id="pookkalamRadial" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFD700" stop-opacity="0.2" />
+        <stop offset="40%" stop-color="#FF6B35" stop-opacity="0.1" />
+        <stop offset="70%" stop-color="#00C853" stop-opacity="0.04" />
+        <stop offset="100%" stop-color="#050814" stop-opacity="0" />
       </radialGradient>
 
-      <!-- Glow Filter -->
-      <filter id="luminousGlow" x="-30%" y="-30%" width="160%" height="160%">
-        <feGaussianBlur stdDeviation="6" result="blur" />
+      <filter id="goldGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="5" result="blur" />
         <feMerge>
           <feMergeNode in="blur" />
           <feMergeNode in="SourceGraphic" />
@@ -291,109 +282,97 @@
       </filter>
     </defs>
 
-    <!-- Deep Midnight Gradient Base -->
-    <rect width="1920" height="1080" fill="#070B18" />
+    <!-- Dark Night Sky -->
+    <rect width="1920" height="1080" fill="#050814" />
 
-    <!-- Ambient Subtle Bokeh Lights -->
-    <circle cx="280" cy="220" r="180" fill="url(#bokehGlow)" />
-    <circle cx="1650" cy="300" r="220" fill="url(#bokehGlow)" />
-    <circle cx="960" cy="950" r="420" fill="url(#bokehGlow)" />
-    <circle cx="500" cy="780" r="140" fill="url(#bokehGlow)" opacity="0.6" />
-    <circle cx="1400" cy="750" r="160" fill="url(#bokehGlow)" opacity="0.6" />
+    <!-- Ambient Bokeh Lights -->
+    <circle cx="250" cy="240" r="180" fill="url(#softBokeh)" />
+    <circle cx="1680" cy="280" r="220" fill="url(#softBokeh)" />
+    <circle cx="960" cy="980" r="450" fill="url(#softBokeh)" />
 
     <!-- =========================================================================
-         1. LEFT FLANK: REGAL PROFILE OF KING MAHABALI (GOLDEN LINE ART)
+         1. LEFT SIDE: KING MAHABALI (MAVELI) WITH OLAKKUDA & CROWN
          ========================================================================= -->
-    <g transform="translate(180, 480)" opacity="0.45" filter="url(#luminousGlow)">
-      <!-- Royal Crown (Kireedam) -->
-      <path d="M-60,-120 L0,-240 L60,-120 L40,-100 L0,-140 L-40,-100 Z" fill="none" stroke="url(#goldLinear)" stroke-width="2" />
-      <circle cx="0" cy="-248" r="6" fill="#F3E5AB" />
-      <path d="M-50,-120 Q0,-100 50,-120" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" />
-      <!-- Regal Side Profile Outline -->
-      <path d="M-10,-100 C15,-80 35,-60 30,-30 C30,-10 42,-5 45,5 C48,15 35,22 30,30 C20,48 45,60 35,85 C25,110 -15,130 -45,140" fill="none" stroke="url(#goldLinear)" stroke-width="2.5" stroke-linecap="round" />
-      <!-- Traditional Royal Mustache & Smile Arch -->
-      <path d="M10,25 Q32,20 48,10 Q30,35 15,32" fill="none" stroke="url(#goldLinear)" stroke-width="2" />
-      <!-- Traditional Ornate Kundalam (Earring) -->
-      <circle cx="-15" cy="20" r="14" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" />
-      <circle cx="-15" cy="20" r="5" fill="#D4AF37" />
-      <!-- Royal Umbrella (Ola Kuda) Contour in Background -->
-      <path d="M-160,-220 Q-40,-300 80,-220 L-40,-60 Z" fill="none" stroke="url(#goldLinear)" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.6" />
-      <line x1="-40" y1="-60" x2="-40" y2="180" stroke="url(#goldLinear)" stroke-width="1.5" opacity="0.4" />
+    <g transform="translate(190, 480)" opacity="0.6" filter="url(#goldGlowFilter)">
+      <!-- Royal Olakkuda (Traditional Palm Leaf Umbrella) -->
+      <path d="M-170,-220 Q-50,-310 70,-220 L-50,-80 Z" fill="none" stroke="url(#goldGradient)" stroke-width="1.8" stroke-dasharray="5,4" />
+      <line x1="-50" y1="-80" x2="-50" y2="200" stroke="url(#goldGradient)" stroke-width="2" opacity="0.5" />
+
+      <!-- Royal Golden Crown (Kireedam) -->
+      <path d="M-60,-120 L0,-240 L60,-120 L40,-100 L0,-140 L-40,-100 Z" fill="rgba(212,175,55,0.08)" stroke="url(#goldGradient)" stroke-width="2.5" />
+      <circle cx="0" cy="-248" r="6" fill="#FCE8A2" />
+      <path d="M-50,-120 Q0,-95 50,-120" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
+      
+      <!-- Regal Face Profile -->
+      <path d="M-10,-100 C15,-80 35,-60 30,-30 C30,-10 44,-5 46,5 C48,15 35,22 30,30 C20,48 45,60 35,85 C25,110 -15,130 -45,140" fill="none" stroke="url(#goldGradient)" stroke-width="2.8" stroke-linecap="round" />
+      
+      <!-- Regal Mustache & Traditional Smile -->
+      <path d="M10,25 Q34,18 50,8 Q32,35 14,32" fill="url(#goldGradient)" opacity="0.8" />
+      
+      <!-- Ornate Earring (Kundalam) -->
+      <circle cx="-15" cy="20" r="15" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
+      <circle cx="-15" cy="20" r="6" fill="#D4AF37" />
     </g>
 
     <!-- =========================================================================
-         2. RIGHT FLANK: KATHAKALI PACCHA FACE & VALLAMKALI SNAKE BOAT
+         2. RIGHT SIDE: VALLAMKALI (SNAKE BOAT RACERS ON WATER)
          ========================================================================= -->
-    <!-- Minimalist Kathakali Visage Motif -->
-    <g transform="translate(1720, 420)" opacity="0.45" filter="url(#luminousGlow)">
-      <!-- Halo Disc (Thirumudi Kireedam) -->
-      <circle cx="0" cy="0" r="100" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" stroke-dasharray="6,4" />
-      <circle cx="0" cy="0" r="82" fill="none" stroke="url(#goldLinear)" stroke-width="1" />
-      <!-- Crown Top Peaks -->
-      <polygon points="0,-130 -25,-85 25,-85" fill="none" stroke="url(#goldLinear)" stroke-width="2" />
-      <!-- Stylized Facial Contour & Chutti Ridge -->
-      <path d="M-40,-20 Q0,80 40,-20" fill="none" stroke="url(#goldLinear)" stroke-width="2.5" />
-      <path d="M-52,-15 Q0,105 52,-15" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" stroke-dasharray="3,3" />
-      <!-- Signature Expressive Eyes & Tilak Motif -->
-      <path d="M-32,5 Q-18,-8 -5,5" fill="none" stroke="url(#goldLinear)" stroke-width="2" />
-      <path d="M5,5 Q18,-8 32,5" fill="none" stroke="url(#goldLinear)" stroke-width="2" />
-      <path d="M0,-15 L-6,5 L0,15 L6,5 Z" fill="url(#goldLinear)" />
-    </g>
-
-    <!-- Vallamkali Snake Boat Silhouettes Across Lower Flanks -->
-    <g transform="translate(1420, 820)" opacity="0.4" filter="url(#luminousGlow)">
-      <!-- Long Slender Chundan Vallam Hull -->
-      <path d="M-220,15 Q0,-5 220,-35 Q240,-45 255,-80 Q245,-30 180,20 Q0,40 -220,15 Z" fill="none" stroke="url(#goldLinear)" stroke-width="2" />
-      <!-- Rhythmic Oarsmen in Unison -->
-      <g stroke="url(#goldLinear)" stroke-width="1.5" stroke-linecap="round">
-        <line x1="-160" y1="12" x2="-170" y2="35" /><circle cx="-160" cy="5" r="3" fill="#D4AF37" />
-        <line x1="-120" y1="9" x2="-130" y2="32" /><circle cx="-120" cy="2" r="3" fill="#D4AF37" />
-        <line x1="-80" y1="6" x2="-90" y2="29" /><circle cx="-80" cy="-1" r="3" fill="#D4AF37" />
-        <line x1="-40" y1="3" x2="-50" y2="26" /><circle cx="-40" cy="-4" r="3" fill="#D4AF37" />
-        <line x1="0" y1="0" x2="-10" y2="23" /><circle cx="0" cy="-7" r="3" fill="#D4AF37" />
-        <line x1="40" y1="-3" x2="30" y2="20" /><circle cx="40" cy="-10" r="3" fill="#D4AF37" />
-        <line x1="80" y1="-7" x2="70" y2="16" /><circle cx="80" cy="-14" r="3" fill="#D4AF37" />
-        <line x1="120" y1="-12" x2="110" y2="12" /><circle cx="120" cy="-19" r="3" fill="#D4AF37" />
+    <g transform="translate(1420, 780)" opacity="0.55" filter="url(#goldGlowFilter)">
+      <!-- Chundan Vallam Hull (Snake Boat) -->
+      <path d="M-260,20 Q0,-10 240,-45 Q265,-55 280,-95 Q268,-40 200,25 Q0,45 -260,20 Z" fill="rgba(212,175,55,0.08)" stroke="url(#goldGradient)" stroke-width="2.5" />
+      
+      <!-- Rhythmic Oarsmen in Action -->
+      <g stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round">
+        <line x1="-200" y1="16" x2="-212" y2="40" /><circle cx="-200" cy="8" r="3.5" fill="#D4AF37" />
+        <line x1="-160" y1="12" x2="-172" y2="36" /><circle cx="-160" cy="4" r="3.5" fill="#D4AF37" />
+        <line x1="-120" y1="8" x2="-132" y2="32" /><circle cx="-120" cy="0" r="3.5" fill="#D4AF37" />
+        <line x1="-80" y1="4" x2="-92" y2="28" /><circle cx="-80" cy="-4" r="3.5" fill="#D4AF37" />
+        <line x1="-40" y1="0" x2="-52" y2="24" /><circle cx="-40" cy="-8" r="3.5" fill="#D4AF37" />
+        <line x1="0" y1="-4" x2="-12" y2="20" /><circle cx="0" cy="-12" r="3.5" fill="#D4AF37" />
+        <line x1="40" y1="-8" x2="28" y2="16" /><circle cx="40" cy="-16" r="3.5" fill="#D4AF37" />
+        <line x1="80" y1="-14" x2="68" y2="10" /><circle cx="80" cy="-22" r="3.5" fill="#D4AF37" />
+        <line x1="120" y1="-20" x2="108" y2="4" /><circle cx="120" cy="-28" r="3.5" fill="#D4AF37" />
       </g>
-      <!-- Water Ripples -->
-      <path d="M-240,32 Q-100,20 100,32 Q200,38 300,18" fill="none" stroke="url(#goldGlowGrad)" stroke-width="1.5" />
+
+      <!-- Water Wave Lines -->
+      <path d="M-280,38 Q-120,22 80,36 Q200,42 320,18" fill="none" stroke="url(#glowLineGrad)" stroke-width="2" />
+      <path d="M-220,52 Q-60,38 140,50 Q240,56 340,35" fill="none" stroke="url(#glowLineGrad)" stroke-width="1.2" opacity="0.6" />
     </g>
 
     <!-- =========================================================================
-         3. BOTTOM BASE: ILLUMINATED INTRICATE ATHAPOOKKALAM MANDALA
+         3. BOTTOM CENTER: ILLUMINATED ATHAPOOKKALAM FLORAL MANDALA
          ========================================================================= -->
-    <g transform="translate(960, 960)">
-      <!-- Radiance Floor Glow -->
-      <circle cx="0" cy="0" r="480" fill="url(#pookkalamCenter)" />
+    <g transform="translate(960, 970)">
+      <!-- Radial Aura Glow -->
+      <circle cx="0" cy="0" r="500" fill="url(#pookkalamRadial)" />
 
-      <!-- Outer Geometric Concentric Rings -->
-      <circle cx="0" cy="0" r="430" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" stroke-dasharray="14,10" opacity="0.35" />
-      <circle cx="0" cy="0" r="380" fill="none" stroke="url(#goldLinear)" stroke-width="2" opacity="0.4" />
-      <circle cx="0" cy="0" r="320" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" stroke-dasharray="8,6" opacity="0.45" />
-      <circle cx="0" cy="0" r="250" fill="none" stroke="url(#goldLinear)" stroke-width="2" opacity="0.5" />
+      <!-- Concentric Pattern Rings -->
+      <circle cx="0" cy="0" r="440" fill="none" stroke="url(#goldGradient)" stroke-width="1.8" stroke-dasharray="16,10" opacity="0.45" />
+      <circle cx="0" cy="0" r="380" fill="none" stroke="url(#goldGradient)" stroke-width="2.2" opacity="0.5" />
+      <circle cx="0" cy="0" r="310" fill="none" stroke="url(#goldGradient)" stroke-width="1.8" stroke-dasharray="10,6" opacity="0.55" />
+      <circle cx="0" cy="0" r="240" fill="none" stroke="url(#goldGradient)" stroke-width="2.2" opacity="0.6" />
 
-      <!-- Sacred Geometric Star & Floral Petal Lattice -->
-      <g stroke="url(#goldLinear)" stroke-width="1.5" fill="none" opacity="0.4" filter="url(#luminousGlow)">
-        <!-- 12-Fold Radial Petal Arches -->
-        <path d="M0,-250 Q60,-120 0,0 Q-60,-120 0,-250" />
-        <path d="M0,250 Q60,120 0,0 Q-60,120 0,250" />
-        <path d="M-250,0 Q-120,60 0,0 Q-120,-60 -250,0" />
-        <path d="M250,0 Q120,60 0,0 Q120,-60 250,0" />
+      <!-- Intricate 12-Petal Sacred Geometry Lattice -->
+      <g stroke="url(#goldGradient)" stroke-width="1.8" fill="none" opacity="0.5" filter="url(#goldGlowFilter)">
+        <path d="M0,-240 Q65,-115 0,0 Q-65,-115 0,-240" />
+        <path d="M0,240 Q65,115 0,0 Q-65,115 0,240" />
+        <path d="M-240,0 Q-115,65 0,0 Q-115,-65 -240,0" />
+        <path d="M240,0 Q115,65 0,0 Q115,-65 240,0" />
         
-        <path d="M-176,-176 Q-40,-120 0,0 Q-120,-40 -176,-176" />
-        <path d="M176,-176 Q40,-120 0,0 Q120,-40 176,-176" />
-        <path d="M-176,176 Q-40,120 0,0 Q-120,40 -176,176" />
-        <path d="M176,176 Q40,120 0,0 Q120,40 176,176" />
+        <path d="M-170,-170 Q-35,-115 0,0 Q-115,-35 -170,-170" />
+        <path d="M170,-170 Q35,-115 0,0 Q115,-35 170,-170" />
+        <path d="M-170,170 Q-35,115 0,0 Q-115,35 -170,170" />
+        <path d="M170,170 Q35,115 0,0 Q115,35 170,170" />
 
-        <!-- Center Lotus Motif -->
-        <circle cx="0" cy="0" r="140" fill="none" stroke="url(#goldLinear)" stroke-width="2" />
-        <circle cx="0" cy="0" r="70" fill="none" stroke="url(#goldLinear)" stroke-width="1.5" stroke-dasharray="4,4" />
-        <circle cx="0" cy="0" r="16" fill="url(#goldLinear)" />
+        <!-- Inner Lotus Heart -->
+        <circle cx="0" cy="0" r="130" fill="rgba(212,175,55,0.06)" stroke="url(#goldGradient)" stroke-width="2" />
+        <circle cx="0" cy="0" r="60" fill="none" stroke="url(#goldGradient)" stroke-width="1.5" stroke-dasharray="4,4" />
+        <circle cx="0" cy="0" r="18" fill="url(#goldGradient)" />
       </g>
     </g>
   </svg>
 
-  <!-- Vignette Overlay -->
+  <!-- Vignette Layer -->
   <div class="bg-vignette"></div>
 
   <!-- Header -->
@@ -555,6 +534,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="app.js?v=2026_luxury_v1"></script>
+  <script src="app.js?v=2026_luxury_v2"></script>
 </body>
 </html>
