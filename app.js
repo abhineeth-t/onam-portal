@@ -11,7 +11,7 @@ function handleFileSelected(input) {
   }
 }
 
-// Auto-detect admin email and make screenshot optional
+// Auto-detect admin email for unlimited VIP passes
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("f-email");
   const screenshotInput = document.getElementById("f-screenshot");
@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Client-side image resizing and Base64 encoding
 function getCompressedBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -74,7 +75,7 @@ async function submitFoodPass(e) {
 
   errBox.style.display = "none";
   btn.disabled = true;
-  btn.innerText = isAdmin ? "Generating Unlimited VIP Pass..." : "Uploading & Saving...";
+  btn.innerText = isAdmin ? "Issuing Unlimited VIP Pass..." : "Uploading & Saving...";
 
   try {
     let base64Image = "";
@@ -92,6 +93,7 @@ async function submitFoodPass(e) {
       screenshot: base64Image
     };
 
+    // Text/plain content type prevents CORS preflight failure on Google Apps Script
     const response = await fetch(SCRIPT_URL, {
       method: "POST",
       headers: {
@@ -106,12 +108,12 @@ async function submitFoodPass(e) {
       document.getElementById("m-name").innerText = payload.name + (isAdmin ? " (VIP ACCESS)" : "");
       document.getElementById("m-id").innerText = "PASS ID: #VIP-" + Math.floor(1000 + Math.random() * 9000);
       document.getElementById("m-diet").innerText = "Preference: " + payload.diet;
-      document.getElementById("m-amt").innerText = "Pass Status: Unlimited Access Approved";
+      document.getElementById("m-amt").innerText = isAdmin ? "Unlimited VIP Access" : "Paid: ₹" + payload.amount;
 
       const qrBox = document.getElementById("m-qr");
       qrBox.innerHTML = "";
       new QRCode(qrBox, {
-        text: `UNLIMITED-VIP|${payload.name}|${payload.email}|${payload.diet}`,
+        text: `ONAM-2026|${payload.name}|${payload.email}|${payload.diet}|${isAdmin ? 'VIP' : payload.amount}`,
         width: 128,
         height: 128
       });
