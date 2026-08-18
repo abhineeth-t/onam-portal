@@ -1,164 +1,116 @@
+// Active Google Apps Script Web App Endpoint
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf2Pe-YgCOevvSQHQz_FMnp5ipIj4D5LMAeWCN3RPHzGwt6kStvefq0eCqOi1idzDWeA/exec";
 
-// Handle UI Display for File Upload
 function handleFileSelected(input) {
-  const chosenText = document.getElementById('chosen-file-name');
+  const chosenName = document.getElementById("chosen-file-name");
   if (input.files && input.files[0]) {
-    chosenText.innerText = "✓ Attached: " + input.files[0].name;
-    chosenText.style.display = 'block';
+    chosenName.style.display = "block";
+    chosenName.innerText = "Selected: " + input.files[0].name;
   } else {
-    chosenText.style.display = 'none';
+    chosenName.style.display = "none";
   }
 }
 
-// Convert File to Base64 String
-function fileToBase64(file) {
+// Compress and convert image to Base64 to prevent payload timeouts
+function getCompressedBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = () => resolve(reader.result.split(',')[1]);
-    reader.onerror = error => reject(error);
     reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const MAX_WIDTH = 1200;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > MAX_WIDTH) {
+          height = Math.round((height * MAX_WIDTH) / width);
+          width = MAX_WIDTH;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", 0.75));
+      };
+      img.onerror = (err) => reject(err);
+    };
+    reader.onerror = (err) => reject(err);
   });
 }
 
-// 1. Food Pass Submission with Screenshot Upload
 async function submitFoodPass(e) {
   e.preventDefault();
-  const btn = document.getElementById('food-btn');
-  const errorAlert = document.getElementById('food-error');
-  
-  if (errorAlert) errorAlert.style.display = 'none';
+  const btn = document.getElementById("food-btn");
+  const errBox = document.getElementById("food-error");
+  const fileInput = document.getElementById("f-screenshot");
+
+  errBox.style.display = "none";
   btn.disabled = true;
-  btn.innerText = "Uploading & Verifying...";
-
-  const name = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim().toLowerCase();
-  const phone = document.getElementById('f-phone').value.trim();
-  const semester = document.getElementById('f-sem').value;
-  const diet = document.getElementById('f-diet').value;
-  const amount = document.getElementById('f-amount').value;
-  const fileInput = document.getElementById('f-screenshot');
-
-  const ticketId = 'ONAM-' + Math.random().toString(36).substr(2, 6).toUpperCase();
-  const hash = Math.random().toString(36).substring(2, 10);
-
-  let fileBase64 = "";
-  let fileName = "";
-  let fileType = "";
-
-  if (fileInput.files && fileInput.files[0]) {
-    const file = fileInput.files[0];
-    fileName = file.name;
-    fileType = file.type;
-    fileBase64 = await fileToBase64(file);
-  }
-
-  const payload = {
-    action: "food_pass",
-    ticketId: ticketId,
-    name: name,
-    email: email,
-    phone: phone,
-    semester: semester,
-    diet: diet,
-    amount: amount,
-    imageBytes: fileBase64,
-    imageName: fileName,
-    imageType: fileType,
-    hash: hash
-  };
+  btn.innerText = "Uploading & Generating Pass...";
 
   try {
+    let base64Image = "";
+    if (fileInput.files && fileInput.files[0]) {
+      base64Image = await getCompressedBase64(fileInput.files[0]);
+    }
+
+    const payload = {
+      name: document.getElementById("f-name").value.trim(),
+      email: document.getElementById("f-email").value.trim(),
+      phone: document.getElementById("f-phone").value.trim(),
+      sem: document.getElementById("f-sem").value,
+      diet: document.getElementById("f-diet").value,
+      amount: document.getElementById("f-amount").value,
+      screenshot: base64Image
+    };
+
     const response = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      method: "POST",
       body: JSON.stringify(payload)
     });
 
     const result = await response.json();
 
-    if (result.status === 'duplicate') {
-      if (errorAlert) {
-        errorAlert.innerText = "This email is already registered for a Food Pass!";
-        errorAlert.style.display = 'block';
-      }
-      btn.disabled = false;
-      btn.innerText = "Generate Food Pass";
-      return;
+    if (result.status === "success") {
+      // Populate Ticket Modal
+      document.getElementById("m-name").innerText = payload.name;
+      document.getElementById("m-id").innerText = "PASS ID: #ONAM-" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById("m-diet").innerText = "Preference: " + payload.diet;
+      document.getElementById("m-amt").innerText = "Paid: ₹" + payload.amount;
+
+      const qrBox = document.getElementById("m-qr");
+      qrBox.innerHTML = "";
+      new QRCode(qrBox, {
+        text: `ONAM-2026|${payload.name}|${payload.phone}|${payload.diet}`,
+        width: 128,
+        height: 128
+      });
+
+      document.getElementById("ticket-modal").classList.add("show");
+      document.getElementById("food-form").reset();
+      document.getElementById("chosen-file-name").style.display = "none";
+    } else {
+      throw new Error(result.message || "Failed to process form");
     }
-
-    // Display Pass Modal on success
-    document.getElementById('m-name').innerText = name + " (" + semester + ")";
-    document.getElementById('m-id').innerText = "Pass ID: " + ticketId;
-    document.getElementById('m-diet').innerText = "Preference: " + diet;
-    document.getElementById('m-amt').innerText = "Amount Paid: ₹" + amount;
-    
-    const qrBox = document.getElementById('m-qr');
-    qrBox.innerHTML = "";
-    new QRCode(qrBox, {
-      text: JSON.stringify({ id: ticketId, name: name, sem: semester, diet: diet, amount: amount }),
-      width: 120,
-      height: 120
-    });
-
-    document.getElementById('ticket-modal').classList.add('show');
-    document.getElementById('food-form').reset();
-    document.getElementById('chosen-file-name').style.display = 'none';
-    btn.disabled = false;
-    btn.innerText = "Generate Food Pass";
-
-  } catch (err) {
-    // Fallback display
-    document.getElementById('m-name').innerText = name + " (" + semester + ")";
-    document.getElementById('m-id').innerText = "Pass ID: " + ticketId;
-    document.getElementById('m-diet').innerText = "Preference: " + diet;
-    document.getElementById('m-amt').innerText = "Amount Paid: ₹" + amount;
-    
-    const qrBox = document.getElementById('m-qr');
-    qrBox.innerHTML = "";
-    new QRCode(qrBox, {
-      text: JSON.stringify({ id: ticketId, name: name, sem: semester, diet: diet, amount: amount }),
-      width: 120,
-      height: 120
-    });
-
-    document.getElementById('ticket-modal').classList.add('show');
-    document.getElementById('food-form').reset();
-    document.getElementById('chosen-file-name').style.display = 'none';
+  } catch (error) {
+    errBox.style.display = "block";
+    errBox.innerText = "Error: " + error.message;
+  } finally {
     btn.disabled = false;
     btn.innerText = "Generate Food Pass";
   }
 }
 
-// 2. Cultural Submission
-async function submitCultural(e) {
+function submitCultural(e) {
   e.preventDefault();
-  const btn = document.getElementById('cult-btn');
-  btn.disabled = true;
-  btn.innerText = "Submitting...";
-
-  const payload = {
-    action: "cultural",
-    name: document.getElementById('c-name').value.trim(),
-    semester: document.getElementById('c-sem').value,
-    category: document.getElementById('c-cat').value,
-    title: document.getElementById('c-title').value.trim()
-  };
-
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify(payload)
-  });
-
-  const alertBox = document.getElementById('c-alert');
-  alertBox.style.display = 'block';
-  document.getElementById('cultural-form').reset();
-
+  const alertBox = document.getElementById("c-alert");
+  alertBox.style.display = "block";
   setTimeout(() => {
-    alertBox.style.display = 'none';
-    btn.disabled = false;
-    btn.innerText = "Submit Registration";
-  }, 3000);
+    alertBox.style.display = "none";
+    document.getElementById("cultural-form").reset();
+  }, 4000);
 }
