@@ -1,4 +1,3 @@
-// Active Google Apps Script Web App Endpoint
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf2Pe-YgCOevvSQHQz_FMnp5ipIj4D5LMAeWCN3RPHzGwt6kStvefq0eCqOi1idzDWeA/exec";
 
 function handleFileSelected(input) {
@@ -11,7 +10,6 @@ function handleFileSelected(input) {
   }
 }
 
-// Compress and convert image to Base64 to prevent payload timeouts
 function getCompressedBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -21,7 +19,7 @@ function getCompressedBase64(file) {
       img.src = event.target.result;
       img.onload = () => {
         const canvas = document.createElement("canvas");
-        const MAX_WIDTH = 1200;
+        const MAX_WIDTH = 1000;
         let width = img.width;
         let height = img.height;
 
@@ -34,7 +32,7 @@ function getCompressedBase64(file) {
         canvas.height = height;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL("image/jpeg", 0.75));
+        resolve(canvas.toDataURL("image/jpeg", 0.7));
       };
       img.onerror = (err) => reject(err);
     };
@@ -50,7 +48,7 @@ async function submitFoodPass(e) {
 
   errBox.style.display = "none";
   btn.disabled = true;
-  btn.innerText = "Uploading & Generating Pass...";
+  btn.innerText = "Uploading & Saving...";
 
   try {
     let base64Image = "";
@@ -68,15 +66,18 @@ async function submitFoodPass(e) {
       screenshot: base64Image
     };
 
+    // Sending as text/plain avoids CORS preflight blockage on Google Apps Script
     const response = await fetch(SCRIPT_URL, {
       method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
       body: JSON.stringify(payload)
     });
 
     const result = await response.json();
 
     if (result.status === "success") {
-      // Populate Ticket Modal
       document.getElementById("m-name").innerText = payload.name;
       document.getElementById("m-id").innerText = "PASS ID: #ONAM-" + Math.floor(1000 + Math.random() * 9000);
       document.getElementById("m-diet").innerText = "Preference: " + payload.diet;
@@ -85,7 +86,7 @@ async function submitFoodPass(e) {
       const qrBox = document.getElementById("m-qr");
       qrBox.innerHTML = "";
       new QRCode(qrBox, {
-        text: `ONAM-2026|${payload.name}|${payload.phone}|${payload.diet}`,
+        text: `ONAM-2026|${payload.name}|${payload.phone}|${payload.diet}|${payload.amount}`,
         width: 128,
         height: 128
       });
@@ -98,7 +99,7 @@ async function submitFoodPass(e) {
     }
   } catch (error) {
     errBox.style.display = "block";
-    errBox.innerText = "Error: " + error.message;
+    errBox.innerText = "Submission Error: " + error.message;
   } finally {
     btn.disabled = false;
     btn.innerText = "Generate Food Pass";
