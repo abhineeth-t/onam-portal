@@ -1,4 +1,5 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzodJkbLyH4Cj7wOSd3FkB0B_gwprl24E9I1qEXFDtzHmBcBEA7Si2-1jE2XuiCiNJrbg/exec";
+// Newly Deployed Google Apps Script Web App Endpoint
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6cw_4gm5a00GGPKX1ITM5ALhQoQtuwyLF0Gc2_V3bIdMW_Qbj5-YkgqA1XGHtEluA/exec";
 const ADMIN_EMAILS = ["abhineetht1@gmail.com", "abhineeth.btmtcs25@tr.nfsu.edu.in"];
 
 function handleFileSelected(input) {
@@ -70,7 +71,7 @@ function getCompressedBase64(file) {
   });
 }
 
-// 1. Food Pass Submission
+// 1. Food Pass Handler
 async function submitFoodPass(e) {
   e.preventDefault();
   const btn = document.getElementById("food-btn");
@@ -88,7 +89,7 @@ async function submitFoodPass(e) {
 
   errBox.style.display = "none";
   btn.disabled = true;
-  btn.innerText = isAdmin ? "Issuing Unlimited VIP Pass..." : "Generating Pass...";
+  btn.innerText = isAdmin ? "Issuing VIP Pass..." : "Generating Pass...";
 
   try {
     let base64Image = "";
@@ -144,7 +145,7 @@ async function submitFoodPass(e) {
   }
 }
 
-// 2. Cultural Programme Submission (Connected to Sheet)
+// 2. Cultural Programme Handler
 async function submitCultural(e) {
   e.preventDefault();
   const btn = document.getElementById("cult-btn");
@@ -178,7 +179,7 @@ async function submitCultural(e) {
         alertBox.style.display = "none";
       }, 4000);
     } else {
-      alert("Error submitting cultural registration: " + (result.message || "Please try again."));
+      alert("Error: " + (result.message || "Please try again."));
     }
   } catch (err) {
     alert("Submission failed: " + err.message);
