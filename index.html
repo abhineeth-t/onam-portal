@@ -10,7 +10,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
-      background-color: #060914;
+      background-color: #050711;
       min-height: 100vh;
       padding: 0 16px 50px;
       position: relative;
@@ -19,16 +19,16 @@
       overflow-x: hidden;
     }
 
-    /* Fixed Photographic Kerala Onam Background Layer */
+    /* Vibrant, High-Visibility Background Canvas */
     .bg-canvas {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
       background: 
-        linear-gradient(180deg, rgba(6, 9, 20, 0.72) 0%, rgba(6, 9, 20, 0.86) 100%),
+        radial-gradient(circle at 50% 50%, rgba(5, 8, 20, 0.4) 0%, rgba(5, 8, 20, 0.75) 100%),
         url("bg.png") center center/cover no-repeat;
-      filter: contrast(1.08) brightness(0.92);
+      filter: contrast(1.1) brightness(1.05) saturate(1.15);
     }
 
     header, .hero, .grid, .modal {
@@ -37,46 +37,49 @@
     }
 
     header {
-      max-width: 1060px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 22px 0 18px;
+      padding: 20px 0 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
     }
     .brand-box { display: flex; flex-direction: column; }
     .brand { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: 0.5px; }
-    .brand span { color: #D4AF37; text-shadow: 0 0 12px rgba(212, 175, 55, 0.6); }
-    .brand-sub { font-size: 11px; color: #E5C358; letter-spacing: 3px; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
+    .brand span { color: #FFD700; text-shadow: 0 0 14px rgba(255, 215, 0, 0.7); }
+    .brand-sub { font-size: 11px; color: #FCE8A2; letter-spacing: 3px; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
     
-    .hero { text-align: center; max-width: 650px; margin: 26px auto 24px; }
+    .hero { text-align: center; max-width: 650px; margin: 24px auto 22px; }
     .hero h1 { 
       font-family: 'Cinzel', serif; 
       font-size: clamp(28px, 4.5vw, 42px); 
-      margin-bottom: 8px; 
-      letter-spacing: 1px;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 25px rgba(212, 175, 55, 0.5); 
+      margin-bottom: 6px; 
+      letter-spacing: 1.5px;
+      color: #FFFFFF;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 1), 0 0 30px rgba(255, 215, 0, 0.6); 
     }
-    .hero h1 span { color: #D4AF37; }
-    .hero p { color: #E2E8F0; font-size: 14px; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+    .hero h1 span { color: #FFD700; }
+    .hero p { color: #F1F5F9; font-size: 14px; font-weight: 500; text-shadow: 0 2px 12px rgba(0,0,0,1); }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
-      max-width: 1060px;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 26px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
+    /* Frosted Glass Dark Card with Clear Visibility of Flanks */
     .card {
-      background: rgba(10, 16, 32, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(212, 175, 55, 0.15);
+      background: rgba(7, 12, 26, 0.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 215, 0, 0.15);
       border-radius: 18px;
-      padding: 26px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
     }
@@ -89,36 +92,37 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
     }
-    .card-title i { color: #D4AF37; }
-    .card-sub { font-size: 12px; color: #CBD5E1; margin-bottom: 18px; }
+    .card-title i { color: #FFD700; }
+    .card-sub { font-size: 12px; color: #CBD5E1; margin-bottom: 16px; }
     
-    .form-group { margin-bottom: 13px; }
-    label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #E5C358; margin-bottom: 5px; letter-spacing: 0.5px; }
+    .form-group { margin-bottom: 12px; }
+    label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #FCE8A2; margin-bottom: 5px; letter-spacing: 0.5px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
     
     input, select {
       width: 100%;
       padding: 10px 12px;
-      background: rgba(4, 7, 18, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: rgba(3, 6, 16, 0.88);
+      border: 1px solid rgba(255, 215, 0, 0.4);
       border-radius: 8px;
       color: #fff;
       font-size: 13px;
       outline: none;
     }
-    input:focus, select:focus { border-color: #D4AF37; box-shadow: 0 0 8px rgba(212, 175, 55, 0.35); }
+    input:focus, select:focus { border-color: #FFD700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.45); }
 
     .file-dropzone {
       position: relative;
-      border: 1.5px dashed rgba(212, 175, 55, 0.55);
-      background: rgba(4, 7, 18, 0.85);
+      border: 1.5px dashed rgba(255, 215, 0, 0.55);
+      background: rgba(3, 6, 16, 0.85);
       border-radius: 8px;
       padding: 14px;
       text-align: center;
       cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
     }
-    .file-dropzone:hover { border-color: #D4AF37; background: rgba(212, 175, 55, 0.08); }
+    .file-dropzone:hover { border-color: #FFD700; background: rgba(255, 215, 0, 0.1); }
     .file-dropzone input[type="file"] {
       position: absolute;
       inset: 0;
@@ -128,12 +132,12 @@
       height: 100%;
     }
     .file-dropzone-text { font-size: 12px; color: #E2E8F0; }
-    .file-dropzone-text i { font-size: 22px; color: #D4AF37; display: block; margin-bottom: 6px; }
+    .file-dropzone-text i { font-size: 22px; color: #FFD700; display: block; margin-bottom: 6px; }
     .file-chosen-name { font-size: 11px; color: #4ADE80; margin-top: 5px; font-weight: 600; display: none; }
 
     .qr-container {
-      background: rgba(4, 7, 18, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(3, 6, 16, 0.88);
+      border: 1px solid rgba(255, 215, 0, 0.35);
       border-radius: 12px;
       padding: 12px;
       display: flex;
@@ -143,7 +147,7 @@
     }
     .qr-container img { width: 95px; height: 95px; background: #fff; padding: 4px; border-radius: 6px; }
     .qr-text { font-size: 11px; color: #CBD5E1; }
-    .qr-text code { display: block; color: #D4AF37; font-weight: 700; margin: 3px 0; user-select: all; }
+    .qr-text code { display: block; color: #FFD700; font-weight: 700; margin: 3px 0; user-select: all; font-size: 12px; }
 
     .btn {
       width: 100%;
@@ -154,14 +158,14 @@
       font-size: 13px;
       cursor: pointer;
       margin-top: 10px;
-      transition: transform 0.1s ease, filter 0.2s;
+      transition: transform 0.1s ease;
     }
     .btn:active { transform: scale(0.98); }
     .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .btn-gold { background: linear-gradient(135deg, #D4AF37, #B8860B); color: #070B16; box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35); }
-    .btn-orange { background: linear-gradient(135deg, #FF6B35, #D64F1C); color: #fff; box-shadow: 0 4px 14px rgba(255, 107, 53, 0.35); }
+    .btn-gold { background: linear-gradient(135deg, #FFD700, #B8860B); color: #070B16; box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4); }
+    .btn-orange { background: linear-gradient(135deg, #FF6B35, #D64F1C); color: #fff; box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4); }
     
-    .alert { display: none; padding: 10px; background: rgba(0,200,83,0.2); border: 1px solid #00C853; border-radius: 8px; color: #4ADE80; font-size: 12px; margin-bottom: 12px; text-align: center; }
+    .alert { display: none; padding: 10px; background: rgba(0,200,83,0.25); border: 1px solid #00E676; border-radius: 8px; color: #69F0AE; font-size: 12px; margin-bottom: 12px; text-align: center; font-weight: 600; }
     
     .modal {
       position: fixed;
@@ -175,9 +179,9 @@
     }
     .modal.show { display: flex; }
     .modal-card {
-      background: rgba(10, 16, 32, 0.96);
-      border: 2px solid #D4AF37;
-      box-shadow: 0 10px 45px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.3);
+      background: rgba(8, 14, 28, 0.96);
+      border: 2px solid #FFD700;
+      box-shadow: 0 10px 45px rgba(0,0,0,0.9), 0 0 25px rgba(255,215,0,0.3);
       border-radius: 16px;
       max-width: 380px;
       width: 100%;
@@ -188,7 +192,7 @@
   </style>
 </head>
 <body>
-  <!-- Realistic Kerala Backdrop -->
+  <!-- High-Visibility Onam Backdrop -->
   <div class="bg-canvas"></div>
 
   <header>
@@ -196,7 +200,7 @@
       <div class="brand">ONAM <span>@ NFSU TC</span></div>
       <div class="brand-sub">smart boyz</div>
     </div>
-    <div style="font-size:12px; color:#D4AF37;"><i class="fa-solid fa-circle" style="font-size:8px;"></i> Live Portal</div>
+    <div style="font-size:12px; color:#FFD700; text-shadow:0 0 10px rgba(255,215,0,0.8);"><i class="fa-solid fa-circle" style="font-size:8px; color:#00E676;"></i> Live Portal</div>
   </header>
 
   <div class="hero">
@@ -335,11 +339,11 @@
   <!-- Ticket Modal -->
   <div class="modal" id="ticket-modal">
     <div class="modal-card">
-      <h2 style="font-family:'Cinzel',serif; color:#D4AF37; font-size:18px;">ONAM 2026 FOOD PASS</h2>
+      <h2 style="font-family:'Cinzel',serif; color:#FFD700; font-size:18px;">ONAM 2026 FOOD PASS</h2>
       <p style="font-size:12px; color:#9CA3AF; margin-top:4px;" id="m-name"></p>
       <div class="ticket-qr" id="m-qr"></div>
       <p style="font-size:13px; font-weight:700; color:#fff;" id="m-id"></p>
-      <p style="font-size:12px; color:#D4AF37; margin-top:2px;" id="m-diet"></p>
+      <p style="font-size:12px; color:#FFD700; margin-top:2px;" id="m-diet"></p>
       <p style="font-size:11px; color:#9CA3AF;" id="m-amt"></p>
       <p style="font-size:11px; color:#4ADE80; margin-top:6px;"><i class="fa-solid fa-envelope"></i> Confirmation sent to your email</p>
       <button onclick="document.getElementById('ticket-modal').classList.remove('show')" class="btn btn-gold" style="margin-top:14px;">Done</button>
@@ -347,6 +351,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="app.js?v=20260818v_final"></script>
+  <script src="app.js?v=20260818v_bright"></script>
 </body>
 </html>
