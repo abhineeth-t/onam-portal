@@ -1,4 +1,5 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf2Pe-YgCOevvSQHQz_FMnp5ipIj4D5LMAeWCN3RPHzGwt6kStvefq0eCqOi1idzDWeA/exec";
+const ADMIN_EMAILS = ["abhineetht1@gmail.com", "abhineeth.btmtcs25@tr.nfsu.edu.in"];
 
 function handleFileSelected(input) {
   const chosenName = document.getElementById("chosen-file-name");
@@ -9,6 +10,29 @@ function handleFileSelected(input) {
     chosenName.style.display = "none";
   }
 }
+
+// Auto-detect admin email and make screenshot optional
+document.addEventListener("DOMContentLoaded", () => {
+  const emailInput = document.getElementById("f-email");
+  const screenshotInput = document.getElementById("f-screenshot");
+  const amountInput = document.getElementById("f-amount");
+
+  if (emailInput) {
+    emailInput.addEventListener("input", (e) => {
+      const email = e.target.value.toLowerCase().trim();
+      if (ADMIN_EMAILS.includes(email)) {
+        if (screenshotInput) screenshotInput.removeAttribute("required");
+        if (amountInput) {
+          amountInput.removeAttribute("min");
+          if (!amountInput.value) amountInput.value = "0";
+        }
+      } else {
+        if (screenshotInput) screenshotInput.setAttribute("required", "true");
+        if (amountInput) amountInput.setAttribute("min", "100");
+      }
+    });
+  }
+});
 
 function getCompressedBase64(file) {
   return new Promise((resolve, reject) => {
@@ -45,10 +69,12 @@ async function submitFoodPass(e) {
   const btn = document.getElementById("food-btn");
   const errBox = document.getElementById("food-error");
   const fileInput = document.getElementById("f-screenshot");
+  const emailVal = document.getElementById("f-email").value.toLowerCase().trim();
+  const isAdmin = ADMIN_EMAILS.includes(emailVal);
 
   errBox.style.display = "none";
   btn.disabled = true;
-  btn.innerText = "Uploading & Saving...";
+  btn.innerText = isAdmin ? "Generating Unlimited VIP Pass..." : "Uploading & Saving...";
 
   try {
     let base64Image = "";
@@ -58,15 +84,14 @@ async function submitFoodPass(e) {
 
     const payload = {
       name: document.getElementById("f-name").value.trim(),
-      email: document.getElementById("f-email").value.trim(),
+      email: emailVal,
       phone: document.getElementById("f-phone").value.trim(),
       sem: document.getElementById("f-sem").value,
       diet: document.getElementById("f-diet").value,
-      amount: document.getElementById("f-amount").value,
+      amount: document.getElementById("f-amount").value || "0",
       screenshot: base64Image
     };
 
-    // Sending as text/plain avoids CORS preflight blockage on Google Apps Script
     const response = await fetch(SCRIPT_URL, {
       method: "POST",
       headers: {
@@ -78,15 +103,15 @@ async function submitFoodPass(e) {
     const result = await response.json();
 
     if (result.status === "success") {
-      document.getElementById("m-name").innerText = payload.name;
-      document.getElementById("m-id").innerText = "PASS ID: #ONAM-" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById("m-name").innerText = payload.name + (isAdmin ? " (VIP ACCESS)" : "");
+      document.getElementById("m-id").innerText = "PASS ID: #VIP-" + Math.floor(1000 + Math.random() * 9000);
       document.getElementById("m-diet").innerText = "Preference: " + payload.diet;
-      document.getElementById("m-amt").innerText = "Paid: ₹" + payload.amount;
+      document.getElementById("m-amt").innerText = "Pass Status: Unlimited Access Approved";
 
       const qrBox = document.getElementById("m-qr");
       qrBox.innerHTML = "";
       new QRCode(qrBox, {
-        text: `ONAM-2026|${payload.name}|${payload.phone}|${payload.diet}|${payload.amount}`,
+        text: `UNLIMITED-VIP|${payload.name}|${payload.email}|${payload.diet}`,
         width: 128,
         height: 128
       });
@@ -95,7 +120,7 @@ async function submitFoodPass(e) {
       document.getElementById("food-form").reset();
       document.getElementById("chosen-file-name").style.display = "none";
     } else {
-      throw new Error(result.message || "Failed to process form");
+      throw new Error(result.message || "Failed to process pass");
     }
   } catch (error) {
     errBox.style.display = "block";
