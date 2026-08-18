@@ -1,4 +1,3 @@
-// Active Google Apps Script Web App Endpoint
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzodJkbLyH4Cj7wOSd3FkB0B_gwprl24E9I1qEXFDtzHmBcBEA7Si2-1jE2XuiCiNJrbg/exec";
 const ADMIN_EMAILS = ["abhineetht1@gmail.com", "abhineeth.btmtcs25@tr.nfsu.edu.in"];
 
@@ -12,12 +11,20 @@ function handleFileSelected(input) {
   }
 }
 
-// Auto-detect admin email for unlimited VIP passes
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("f-email");
+  const phoneInput = document.getElementById("f-phone");
   const screenshotInput = document.getElementById("f-screenshot");
   const amountInput = document.getElementById("f-amount");
 
+  // Prevent non-numeric entries in phone
+  if (phoneInput) {
+    phoneInput.addEventListener("input", (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+    });
+  }
+
+  // Admin auto-whitelist
   if (emailInput) {
     emailInput.addEventListener("input", (e) => {
       const email = e.target.value.toLowerCase().trim();
@@ -71,11 +78,18 @@ async function submitFoodPass(e) {
   const errBox = document.getElementById("food-error");
   const fileInput = document.getElementById("f-screenshot");
   const emailVal = document.getElementById("f-email").value.toLowerCase().trim();
+  const phoneVal = document.getElementById("f-phone").value.trim();
   const isAdmin = ADMIN_EMAILS.includes(emailVal);
+
+  if (phoneVal.length !== 10) {
+    errBox.style.display = "block";
+    errBox.innerText = "Please enter a valid 10-digit mobile number.";
+    return;
+  }
 
   errBox.style.display = "none";
   btn.disabled = true;
-  btn.innerText = isAdmin ? "Issuing Unlimited VIP Pass..." : "Generating Pass...";
+  btn.innerText = isAdmin ? "Issuing Unlimited VIP Pass..." : "Verifying & Generating Pass...";
 
   try {
     let base64Image = "";
@@ -86,14 +100,13 @@ async function submitFoodPass(e) {
     const payload = {
       name: document.getElementById("f-name").value.trim(),
       email: emailVal,
-      phone: document.getElementById("f-phone").value.trim(),
+      phone: phoneVal,
       sem: document.getElementById("f-sem").value,
       diet: document.getElementById("f-diet").value,
       amount: document.getElementById("f-amount").value || "0",
       screenshot: base64Image
     };
 
-    // Text/plain avoids CORS preflight blockage on Google Apps Script
     const response = await fetch(SCRIPT_URL, {
       method: "POST",
       headers: {
@@ -106,14 +119,14 @@ async function submitFoodPass(e) {
 
     if (result.status === "success") {
       document.getElementById("m-name").innerText = payload.name + (isAdmin ? " (VIP ACCESS)" : "");
-      document.getElementById("m-id").innerText = "PASS ID: #VIP-" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById("m-id").innerText = "PASS ID: #ONAM-" + Math.floor(1000 + Math.random() * 9000);
       document.getElementById("m-diet").innerText = "Preference: " + payload.diet;
       document.getElementById("m-amt").innerText = isAdmin ? "Unlimited VIP Access" : "Paid: ₹" + payload.amount;
 
       const qrBox = document.getElementById("m-qr");
       qrBox.innerHTML = "";
       new QRCode(qrBox, {
-        text: `ONAM-2026|${payload.name}|${payload.email}|${payload.diet}|${isAdmin ? 'VIP' : payload.amount}`,
+        text: `ONAM-2026|${payload.name}|${payload.phone}|${payload.diet}|${isAdmin ? 'VIP' : payload.amount}`,
         width: 128,
         height: 128
       });
@@ -122,11 +135,11 @@ async function submitFoodPass(e) {
       document.getElementById("food-form").reset();
       document.getElementById("chosen-file-name").style.display = "none";
     } else {
-      throw new Error(result.message || "Unable to complete registration");
+      throw new Error(result.message || "Registration failed.");
     }
   } catch (error) {
     errBox.style.display = "block";
-    errBox.innerText = "Error: " + error.message;
+    errBox.innerText = error.message;
   } finally {
     btn.disabled = false;
     btn.innerText = "Generate Food Pass";
