@@ -5,46 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Onam @ NFSU TC | 2026 Portal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    :root {
-      --bg-dark: #050711;
-      --gold-primary: #E5C358;
-      --gold-light: #FFF0B8;
-      --gold-deep: #B38728;
-      --text-main: #F4EEDD;
-      --text-muted: #A3AEC4;
-    }
-
     body {
-      background-color: var(--bg-dark);
+      background-color: #060914;
       min-height: 100vh;
-      padding: 0 16px 60px;
+      padding: 0 16px 50px;
       position: relative;
-      color: var(--text-main);
+      color: #F3ECE0;
       font-family: 'Outfit', sans-serif;
       overflow-x: hidden;
     }
 
-    /* High-Definition Background Vector Layer */
-    .bg-artwork {
+    /* Fixed Photographic Kerala Onam Background Layer */
+    .bg-canvas {
       position: fixed;
       inset: 0;
-      width: 100vw;
-      height: 100vh;
       z-index: 0;
       pointer-events: none;
-    }
-
-    /* Ambient Soft Vignette */
-    .bg-vignette {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: radial-gradient(circle at center, transparent 35%, rgba(5, 7, 17, 0.4) 75%, rgba(5, 7, 17, 0.9) 100%);
+      background: 
+        linear-gradient(180deg, rgba(6, 9, 20, 0.72) 0%, rgba(6, 9, 20, 0.86) 100%),
+        url("bg.png") center center/cover no-repeat;
+      filter: contrast(1.08) brightness(0.92);
     }
 
     header, .hero, .grid, .modal {
@@ -53,116 +37,88 @@
     }
 
     header {
-      max-width: 1100px;
+      max-width: 1060px;
       margin: 0 auto;
-      padding: 24px 0 20px;
+      padding: 22px 0 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(229, 195, 88, 0.3);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
     }
-
     .brand-box { display: flex; flex-direction: column; }
-    .brand { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: 1px; }
-    .brand span { color: var(--gold-primary); text-shadow: 0 0 16px rgba(229, 195, 88, 0.6); }
-    .brand-sub { font-size: 10px; color: var(--gold-light); letter-spacing: 4px; font-weight: 600; text-transform: uppercase; margin-top: 3px; }
+    .brand { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: 0.5px; }
+    .brand span { color: #D4AF37; text-shadow: 0 0 12px rgba(212, 175, 55, 0.6); }
+    .brand-sub { font-size: 11px; color: #E5C358; letter-spacing: 3px; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
     
-    .live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 5px 12px;
-      background: rgba(229, 195, 88, 0.1);
-      border: 1px solid rgba(229, 195, 88, 0.35);
-      border-radius: 20px;
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--gold-light);
-    }
-    .live-badge i { font-size: 7px; color: #00E676; text-shadow: 0 0 8px #00E676; }
-
-    .hero { text-align: center; max-width: 680px; margin: 30px auto 26px; }
+    .hero { text-align: center; max-width: 650px; margin: 26px auto 24px; }
     .hero h1 { 
       font-family: 'Cinzel', serif; 
-      font-size: clamp(28px, 4.5vw, 44px); 
+      font-size: clamp(28px, 4.5vw, 42px); 
       margin-bottom: 8px; 
-      letter-spacing: 2px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFFFFF 30%, var(--gold-light) 70%, var(--gold-primary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 4px 25px rgba(0, 0, 0, 0.9); 
+      letter-spacing: 1px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 25px rgba(212, 175, 55, 0.5); 
     }
-    .hero p { color: var(--text-muted); font-size: 13px; letter-spacing: 0.5px; }
+    .hero h1 span { color: #D4AF37; }
+    .hero p { color: #E2E8F0; font-size: 14px; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 32px;
-      max-width: 1040px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      max-width: 1060px;
       margin: 0 auto;
     }
 
     .card {
-      background: rgba(9, 14, 28, 0.82);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(229, 195, 88, 0.35);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 25px rgba(229, 195, 88, 0.1);
-      border-radius: 20px;
-      padding: 28px;
+      background: rgba(10, 16, 32, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(212, 175, 55, 0.15);
+      border-radius: 18px;
+      padding: 26px;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.3s ease;
     }
-    .card:hover { border-color: rgba(229, 195, 88, 0.55); }
 
     .card-title {
       font-family: 'Cinzel', serif;
-      font-size: 19px;
-      font-weight: 700;
-      color: #FFFFFF;
+      font-size: 18px;
+      color: #fff;
       margin-bottom: 4px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      letter-spacing: 0.5px;
+      gap: 8px;
     }
-    .card-title i { color: var(--gold-primary); filter: drop-shadow(0 0 6px rgba(229, 195, 88, 0.5)); }
-    .card-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+    .card-title i { color: #D4AF37; }
+    .card-sub { font-size: 12px; color: #CBD5E1; margin-bottom: 18px; }
     
-    .form-group { margin-bottom: 14px; }
-    label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; letter-spacing: 0.8px; }
+    .form-group { margin-bottom: 13px; }
+    label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #E5C358; margin-bottom: 5px; letter-spacing: 0.5px; }
     
     input, select {
       width: 100%;
-      padding: 11px 14px;
-      background: rgba(4, 7, 16, 0.9);
-      border: 1px solid rgba(229, 195, 88, 0.3);
-      border-radius: 9px;
-      color: #FFFFFF;
+      padding: 10px 12px;
+      background: rgba(4, 7, 18, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 8px;
+      color: #fff;
       font-size: 13px;
       outline: none;
-      transition: all 0.2s ease;
     }
-    input:focus, select:focus { 
-      border-color: var(--gold-primary); 
-      box-shadow: 0 0 12px rgba(229, 195, 88, 0.35); 
-      background: rgba(6, 10, 24, 0.95);
-    }
+    input:focus, select:focus { border-color: #D4AF37; box-shadow: 0 0 8px rgba(212, 175, 55, 0.35); }
 
     .file-dropzone {
       position: relative;
-      border: 1.5px dashed rgba(229, 195, 88, 0.45);
-      background: rgba(4, 7, 16, 0.85);
-      border-radius: 9px;
-      padding: 16px;
+      border: 1.5px dashed rgba(212, 175, 55, 0.55);
+      background: rgba(4, 7, 18, 0.85);
+      border-radius: 8px;
+      padding: 14px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .file-dropzone:hover { border-color: var(--gold-primary); background: rgba(229, 195, 88, 0.08); }
+    .file-dropzone:hover { border-color: #D4AF37; background: rgba(212, 175, 55, 0.08); }
     .file-dropzone input[type="file"] {
       position: absolute;
       inset: 0;
@@ -171,56 +127,46 @@
       width: 100%;
       height: 100%;
     }
-    .file-dropzone-text { font-size: 12px; color: #CBD5E1; }
-    .file-dropzone-text i { font-size: 24px; color: var(--gold-primary); display: block; margin-bottom: 6px; }
-    .file-chosen-name { font-size: 11px; color: #4ADE80; margin-top: 6px; font-weight: 600; display: none; }
+    .file-dropzone-text { font-size: 12px; color: #E2E8F0; }
+    .file-dropzone-text i { font-size: 22px; color: #D4AF37; display: block; margin-bottom: 6px; }
+    .file-chosen-name { font-size: 11px; color: #4ADE80; margin-top: 5px; font-weight: 600; display: none; }
 
     .qr-container {
-      background: rgba(4, 7, 16, 0.85);
-      border: 1px solid rgba(229, 195, 88, 0.25);
+      background: rgba(4, 7, 18, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       border-radius: 12px;
-      padding: 12px 14px;
+      padding: 12px;
       display: flex;
-      gap: 14px;
+      gap: 12px;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
-    .qr-container img { width: 90px; height: 90px; background: #fff; padding: 4px; border-radius: 6px; }
-    .qr-text { font-size: 11px; color: var(--text-muted); }
-    .qr-text code { display: block; color: var(--gold-light); font-weight: 700; font-size: 12px; margin: 3px 0; user-select: all; }
+    .qr-container img { width: 95px; height: 95px; background: #fff; padding: 4px; border-radius: 6px; }
+    .qr-text { font-size: 11px; color: #CBD5E1; }
+    .qr-text code { display: block; color: #D4AF37; font-weight: 700; margin: 3px 0; user-select: all; }
 
     .btn {
       width: 100%;
-      padding: 13px;
+      padding: 12px;
       border: none;
-      border-radius: 9px;
+      border-radius: 8px;
       font-weight: 700;
       font-size: 13px;
-      letter-spacing: 0.5px;
       cursor: pointer;
       margin-top: 10px;
-      transition: transform 0.1s ease;
+      transition: transform 0.1s ease, filter 0.2s;
     }
     .btn:active { transform: scale(0.98); }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .btn-gold { 
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-deep) 100%); 
-      color: #050711; 
-      box-shadow: 0 6px 20px rgba(229, 195, 88, 0.35); 
-    }
-    .btn-orange { 
-      background: linear-gradient(135deg, #FF7A45 0%, #D64F1C 100%); 
-      color: #FFFFFF; 
-      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35); 
-    }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-gold { background: linear-gradient(135deg, #D4AF37, #B8860B); color: #070B16; box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35); }
+    .btn-orange { background: linear-gradient(135deg, #FF6B35, #D64F1C); color: #fff; box-shadow: 0 4px 14px rgba(255, 107, 53, 0.35); }
     
-    .alert { display: none; padding: 11px; background: rgba(0,230,118,0.15); border: 1px solid #00E676; border-radius: 8px; color: #69F0AE; font-size: 12px; margin-bottom: 12px; text-align: center; }
+    .alert { display: none; padding: 10px; background: rgba(0,200,83,0.2); border: 1px solid #00C853; border-radius: 8px; color: #4ADE80; font-size: 12px; margin-bottom: 12px; text-align: center; }
     
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(4, 7, 16, 0.88);
-      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.88);
       display: none;
       align-items: center;
       justify-content: center;
@@ -229,167 +175,37 @@
     }
     .modal.show { display: flex; }
     .modal-card {
-      background: rgba(9, 14, 28, 0.96);
-      border: 1.5px solid var(--gold-primary);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px rgba(229, 195, 88, 0.3);
-      border-radius: 18px;
+      background: rgba(10, 16, 32, 0.96);
+      border: 2px solid #D4AF37;
+      box-shadow: 0 10px 45px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.3);
+      border-radius: 16px;
       max-width: 380px;
       width: 100%;
-      padding: 26px;
+      padding: 24px;
       text-align: center;
     }
-    .ticket-qr { margin: 16px auto; background: #fff; padding: 10px; display: inline-block; border-radius: 8px; }
+    .ticket-qr { margin: 14px auto; background: #fff; padding: 10px; display: inline-block; border-radius: 8px; }
   </style>
 </head>
 <body>
+  <!-- Realistic Kerala Backdrop -->
+  <div class="bg-canvas"></div>
 
-  <!-- =========================================================================
-       REPOSITIONED HIGH-VISIBILITY GOLDEN ARTWORK: MAVELI (LEFT), VALLAMKALI (RIGHT), POOKKALAM (CENTER)
-       ========================================================================= -->
-  <svg class="bg-artwork" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#FFF0B8" />
-        <stop offset="50%" stop-color="#E5C358" />
-        <stop offset="100%" stop-color="#B38728" />
-      </linearGradient>
-
-      <linearGradient id="glowLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#E5C358" stop-opacity="0" />
-        <stop offset="50%" stop-color="#E5C358" stop-opacity="0.9" />
-        <stop offset="100%" stop-color="#E5C358" stop-opacity="0" />
-      </linearGradient>
-
-      <radialGradient id="softBokeh" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#E5C358" stop-opacity="0.35" />
-        <stop offset="100%" stop-color="#E5C358" stop-opacity="0" />
-      </radialGradient>
-
-      <radialGradient id="pookkalamRadial" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#FFD700" stop-opacity="0.25" />
-        <stop offset="45%" stop-color="#FF6B35" stop-opacity="0.12" />
-        <stop offset="75%" stop-color="#00C853" stop-opacity="0.05" />
-        <stop offset="100%" stop-color="#050711" stop-opacity="0" />
-      </radialGradient>
-
-      <filter id="goldGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
-        <feGaussianBlur stdDeviation="4" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </defs>
-
-    <!-- Dark Canvas Base -->
-    <rect width="1920" height="1080" fill="#050711" />
-
-    <!-- Ambient Glowing Bokeh Flares -->
-    <circle cx="160" cy="380" r="160" fill="url(#softBokeh)" />
-    <circle cx="1760" cy="540" r="180" fill="url(#softBokeh)" />
-    <circle cx="960" cy="980" r="420" fill="url(#softBokeh)" />
-
-    <!-- =========================================================================
-         1. LEFT FLANK (FULLY VISIBLE BESIDE FOOD PASS): KING MAHABALI WITH OLAKKUDA
-         ========================================================================= -->
-    <g transform="translate(135, 470)" opacity="0.85" filter="url(#goldGlowFilter)">
-      <!-- Royal Olakkuda (Traditional Palm Umbrella) -->
-      <path d="M-130,-210 Q-30,-290 70,-210 L-30,-80 Z" fill="rgba(229,195,88,0.06)" stroke="url(#goldGradient)" stroke-width="2" stroke-dasharray="6,4" />
-      <line x1="-30" y1="-80" x2="-30" y2="180" stroke="url(#goldGradient)" stroke-width="2.5" opacity="0.7" />
-
-      <!-- Royal Kireedam (Crown) -->
-      <path d="M-45,-120 L5,-230 L55,-120 L35,-100 L5,-140 L-25,-100 Z" fill="rgba(229,195,88,0.15)" stroke="url(#goldGradient)" stroke-width="2.5" />
-      <circle cx="5" cy="-238" r="6" fill="#FFF0B8" />
-      <path d="M-35,-120 Q5,-95 45,-120" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
-      
-      <!-- Regal Profile Contour -->
-      <path d="M0,-100 C20,-80 40,-60 35,-30 C35,-10 48,-5 52,5 C55,16 42,22 36,30 C26,48 50,60 40,85 C30,110 -10,130 -40,140" fill="none" stroke="url(#goldGradient)" stroke-width="3" stroke-linecap="round" />
-      
-      <!-- Royal Mustache -->
-      <path d="M16,24 Q38,17 56,7 Q36,34 18,31" fill="url(#goldGradient)" />
-      
-      <!-- Traditional Earring (Kundalam) -->
-      <circle cx="-10" cy="20" r="14" fill="none" stroke="url(#goldGradient)" stroke-width="2" />
-      <circle cx="-10" cy="20" r="5" fill="#E5C358" />
-    </g>
-
-    <!-- =========================================================================
-         2. RIGHT FLANK (FULLY VISIBLE BESIDE CULTURAL): VALLAMKALI SNAKE BOAT
-         ========================================================================= -->
-    <g transform="translate(1730, 520)" opacity="0.85" filter="url(#goldGlowFilter)">
-      <!-- Snake Boat Stern & Hull (Chundan Vallam) -->
-      <path d="M-180,90 Q-60,30 80,-40 Q110,-55 130,-120 Q120,-40 60,40 Q-40,80 -180,90 Z" fill="rgba(229,195,88,0.12)" stroke="url(#goldGradient)" stroke-width="2.8" />
-      
-      <!-- Upward Prow Crest -->
-      <circle cx="130" cy="-125" r="5" fill="#FFF0B8" />
-
-      <!-- Rowers in Rhythmic Action -->
-      <g stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round">
-        <line x1="-150" y1="85" x2="-160" y2="115" /><circle cx="-150" cy="77" r="4" fill="#E5C358" />
-        <line x1="-115" y1="65" x2="-125" y2="95" /><circle cx="-115" cy="57" r="4" fill="#E5C358" />
-        <line x1="-80" y1="45" x2="-90" y2="75" /><circle cx="-80" cy="37" r="4" fill="#E5C358" />
-        <line x1="-45" y1="25" x2="-55" y2="55" /><circle cx="-45" cy="17" r="4" fill="#E5C358" />
-        <line x1="-10" y1="5" x2="-20" y2="35" /><circle cx="-10" cy="-3" r="4" fill="#E5C358" />
-        <line x1="25" y1="-15" x2="15" y2="15" /><circle cx="25" cy="-23" r="4" fill="#E5C358" />
-      </g>
-
-      <!-- Water Wave Crests -->
-      <path d="M-220,105 Q-80,85 60,60 Q120,48 180,20" fill="none" stroke="url(#glowLineGrad)" stroke-width="2" />
-      <path d="M-180,120 Q-50,100 80,75" fill="none" stroke="url(#glowLineGrad)" stroke-width="1.4" opacity="0.6" />
-    </g>
-
-    <!-- =========================================================================
-         3. CENTER BASE: ILLUMINATED ATHAPOOKKALAM MANDALA
-         ========================================================================= -->
-    <g transform="translate(960, 960)">
-      <circle cx="0" cy="0" r="500" fill="url(#pookkalamRadial)" />
-
-      <!-- Concentric Decorative Circles -->
-      <circle cx="0" cy="0" r="440" fill="none" stroke="url(#goldGradient)" stroke-width="2" stroke-dasharray="16,10" opacity="0.5" />
-      <circle cx="0" cy="0" r="370" fill="none" stroke="url(#goldGradient)" stroke-width="2.5" opacity="0.6" />
-      <circle cx="0" cy="0" r="290" fill="none" stroke="url(#goldGradient)" stroke-width="2" stroke-dasharray="10,6" opacity="0.65" />
-      <circle cx="0" cy="0" r="210" fill="none" stroke="url(#goldGradient)" stroke-width="2.5" opacity="0.7" />
-
-      <!-- Floral Petal Geometry -->
-      <g stroke="url(#goldGradient)" stroke-width="2" fill="none" opacity="0.6" filter="url(#goldGlowFilter)">
-        <path d="M0,-210 Q65,-100 0,0 Q-65,-100 0,-210" />
-        <path d="M0,210 Q65,100 0,0 Q-65,100 0,210" />
-        <path d="M-210,0 Q-100,65 0,0 Q-100,-65 -210,0" />
-        <path d="M210,0 Q100,65 0,0 Q100,-65 210,0" />
-        
-        <path d="M-148,-148 Q-30,-100 0,0 Q-100,-30 -148,-148" />
-        <path d="M148,-148 Q30,-100 0,0 Q100,-30 148,-148" />
-        <path d="M-148,148 Q-30,100 0,0 Q-100,30 -148,148" />
-        <path d="M148,148 Q30,100 0,0 Q100,30 148,148" />
-
-        <circle cx="0" cy="0" r="110" fill="rgba(229,195,88,0.1)" stroke="url(#goldGradient)" stroke-width="2.2" />
-        <circle cx="0" cy="0" r="50" fill="none" stroke="url(#goldGradient)" stroke-width="1.8" stroke-dasharray="4,4" />
-        <circle cx="0" cy="0" r="16" fill="url(#goldGradient)" />
-      </g>
-    </g>
-  </svg>
-
-  <!-- Vignette Layer -->
-  <div class="bg-vignette"></div>
-
-  <!-- Header -->
   <header>
     <div class="brand-box">
       <div class="brand">ONAM <span>@ NFSU TC</span></div>
       <div class="brand-sub">smart boyz</div>
     </div>
-    <div class="live-badge"><i class="fa-solid fa-circle"></i> Live Portal</div>
+    <div style="font-size:12px; color:#D4AF37;"><i class="fa-solid fa-circle" style="font-size:8px;"></i> Live Portal</div>
   </header>
 
-  <!-- Hero Section -->
   <div class="hero">
     <h1>CELEBRATION <span>2026</span></h1>
     <p>Fill either or both sections below to register.</p>
   </div>
 
-  <!-- Forms Grid -->
   <div class="grid">
-    <!-- Food Pass Card -->
+    <!-- Food Form -->
     <div class="card">
       <div class="card-title"><i class="fa-solid fa-ticket"></i> Food Pass</div>
       <div class="card-sub">Generate your instant digital food pass (Min. ₹100).</div>
@@ -465,7 +281,7 @@
       </form>
     </div>
 
-    <!-- Cultural Programme Card -->
+    <!-- Cultural Form -->
     <div class="card">
       <div class="card-title"><i class="fa-solid fa-microphone"></i> Cultural Programme</div>
       <div class="card-sub">Register your event performance.</div>
@@ -519,18 +335,18 @@
   <!-- Ticket Modal -->
   <div class="modal" id="ticket-modal">
     <div class="modal-card">
-      <h2 style="font-family:'Cinzel',serif; color:var(--gold-primary); font-size:18px; letter-spacing:1px;">ONAM 2026 FOOD PASS</h2>
-      <p style="font-size:12px; color:var(--text-muted); margin-top:4px;" id="m-name"></p>
+      <h2 style="font-family:'Cinzel',serif; color:#D4AF37; font-size:18px;">ONAM 2026 FOOD PASS</h2>
+      <p style="font-size:12px; color:#9CA3AF; margin-top:4px;" id="m-name"></p>
       <div class="ticket-qr" id="m-qr"></div>
       <p style="font-size:13px; font-weight:700; color:#fff;" id="m-id"></p>
-      <p style="font-size:12px; color:var(--gold-light); margin-top:2px;" id="m-diet"></p>
-      <p style="font-size:11px; color:var(--text-muted);" id="m-amt"></p>
+      <p style="font-size:12px; color:#D4AF37; margin-top:2px;" id="m-diet"></p>
+      <p style="font-size:11px; color:#9CA3AF;" id="m-amt"></p>
       <p style="font-size:11px; color:#4ADE80; margin-top:6px;"><i class="fa-solid fa-envelope"></i> Confirmation sent to your email</p>
       <button onclick="document.getElementById('ticket-modal').classList.remove('show')" class="btn btn-gold" style="margin-top:14px;">Done</button>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="app.js?v=2026_repositioned_v1"></script>
+  <script src="app.js?v=20260818v_final"></script>
 </body>
 </html>
