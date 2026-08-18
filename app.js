@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Client-side image resizing and Base64 encoding
 function getCompressedBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -44,7 +43,7 @@ function getCompressedBase64(file) {
       img.src = event.target.result;
       img.onload = () => {
         const canvas = document.createElement("canvas");
-        const MAX_WIDTH = 1000;
+        const MAX_WIDTH = 900;
         let width = img.width;
         let height = img.height;
 
@@ -57,7 +56,7 @@ function getCompressedBase64(file) {
         canvas.height = height;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL("image/jpeg", 0.7));
+        resolve(canvas.toDataURL("image/jpeg", 0.65));
       };
       img.onerror = (err) => reject(err);
     };
@@ -75,7 +74,7 @@ async function submitFoodPass(e) {
 
   errBox.style.display = "none";
   btn.disabled = true;
-  btn.innerText = isAdmin ? "Issuing Unlimited VIP Pass..." : "Uploading & Saving...";
+  btn.innerText = isAdmin ? "Issuing Unlimited VIP Pass..." : "Generating Pass...";
 
   try {
     let base64Image = "";
@@ -93,7 +92,7 @@ async function submitFoodPass(e) {
       screenshot: base64Image
     };
 
-    // Text/plain content type prevents CORS preflight failure on Google Apps Script
+    // Sending as text/plain prevents CORS preflight errors on Google Apps Script
     const response = await fetch(SCRIPT_URL, {
       method: "POST",
       headers: {
@@ -122,11 +121,11 @@ async function submitFoodPass(e) {
       document.getElementById("food-form").reset();
       document.getElementById("chosen-file-name").style.display = "none";
     } else {
-      throw new Error(result.message || "Failed to process pass");
+      throw new Error(result.message || "Unable to complete registration");
     }
   } catch (error) {
     errBox.style.display = "block";
-    errBox.innerText = "Submission Error: " + error.message;
+    errBox.innerText = "Error: " + error.message;
   } finally {
     btn.disabled = false;
     btn.innerText = "Generate Food Pass";

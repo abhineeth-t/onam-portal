@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Onam @ NFSU TC | 2026 Portal</title>
   
-  <!-- Integrated Favicon (Fixes 404 console error) -->
+  <!-- Inline SVG Favicon (Eliminates 404 Console Error) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,14 +23,13 @@
       overflow-x: hidden;
     }
 
-    /* Fixed Dark Photographic Background */
     .bg-canvas {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
       background: 
-        radial-gradient(circle at 50% 50%, rgba(5, 8, 20, 0.35) 0%, rgba(5, 8, 20, 0.72) 100%),
+        radial-gradient(circle at 50% 50%, rgba(5, 8, 20, 0.3) 0%, rgba(5, 8, 20, 0.7) 100%),
         url("bg.png") center center/cover no-repeat;
       filter: contrast(1.1) brightness(1.05) saturate(1.15);
     }
@@ -353,6 +352,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="app.js?v=2026_authorized_v1"></script>
+  <script src="app.js?v=2026_deploy_final"></script>
 </body>
 </html>
