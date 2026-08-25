@@ -277,12 +277,6 @@
           <label class="label">SEMESTER / PROGRAM *</label>
           <select id="semester" class="input-field" required>
             <option value="">Select Semester / Program</option>
-            
-            <!-- B.Tech -->
-            <option value="B.Tech Sem 1">B.Tech Sem 1</option>
-            <option value="B.Tech Sem 3">B.Tech Sem 3</option>
-            <option value="B.Tech Sem 5">B.Tech Sem 5</option>
-            <option value="B.Tech Sem 7">B.Tech Sem 7</option>
 
             <!-- B.Tech-M.Tech (Integrated) -->
             <option value="B.Tech-M.Tech Sem 1">B.Tech-M.Tech Sem 1</option>
@@ -301,15 +295,6 @@
             <!-- M.Sc -->
             <option value="M.Sc Sem 1">M.Sc Sem 1</option>
             <option value="M.Sc Sem 3">M.Sc Sem 3</option>
-
-            <!-- M.Tech -->
-            <option value="M.Tech Sem 1">M.Tech Sem 1</option>
-            <option value="M.Tech Sem 3">M.Tech Sem 3</option>
-
-            <!-- Other Roles -->
-            <option value="Ph.D / Scholar">Ph.D / Research Scholar</option>
-            <option value="Faculty / Staff">Faculty / Staff</option>
-            <option value="Other">Other</option>
           </select>
         </div>
 
@@ -321,7 +306,7 @@
           </select>
         </div>
 
-        <!-- UPI Payment Box with QR Code -->
+        <!-- UPI Payment Box with Restored QR Code -->
         <div class="upi-box">
           <div class="upi-qr-wrapper">
             <div id="upi-qrcode-container"></div>
@@ -391,7 +376,6 @@
     let base64File = "";
     let fileType = "image/jpeg";
 
-    // Generate the payment QR code on page load
     window.addEventListener("DOMContentLoaded", () => {
       const upiPayUri = "upi://pay?pa=abhineetht1-2@oksbi&pn=NFSU%20Onam%202026&am=100&cu=INR";
       new QRCode(document.getElementById("upi-qrcode-container"), {
