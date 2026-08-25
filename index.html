@@ -471,7 +471,7 @@
   </div>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbycE7KwhYmH5jNvh_qE-rQ4u6b-y2qXy2F7E-aR_replace/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzodJkbLyH4Cj7wOSd3FkB0B_gwprl24E9I1qEXFDtzHmBcBEA7Si2-1jE2XuiCiNJrbg/exec";
 
     let base64File = "";
     let fileType = "image/jpeg";
@@ -573,6 +573,9 @@
       try {
         const response = await fetch(SCRIPT_URL, {
           method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
           body: JSON.stringify(payload)
         });
 
@@ -587,6 +590,7 @@
           btn.innerText = "Generate Food Pass";
         }
       } catch (networkErr) {
+        console.error("Submission Error:", networkErr);
         showError("Network connection error. Please try again.");
         btn.disabled = false;
         btn.innerText = "Generate Food Pass";
