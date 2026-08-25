@@ -3,79 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NFSU ONAM 2026 - Official Registration Portal</title>
+  <title>NFSU ONAM 2026</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="styles.css" />
-  <!-- QR Code Generator Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
-    /* Restore background and exact font theme */
-    body {
-      background: #07090e url('onam_bg.jpg') no-repeat center center fixed;
-      background-size: cover;
-      min-height: 100vh;
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@700;900&display=swap');
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 30px 14px 60px;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #000000 url('bg.png') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      padding: 40px 16px;
       color: #ffffff;
     }
 
-    /* Fallback to bg.png if onam_bg.jpg is unavailable */
-    @supports not (background: url('onam_bg.jpg')) {
-      body {
-        background-image: url('bg.png');
-      }
-    }
-
-    .main-wrapper {
+    .card {
       width: 100%;
-      max-width: 480px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      margin: 0 auto;
-    }
-
-    .portal-card {
-      background: rgba(10, 13, 20, 0.92);
+      max-width: 440px;
+      background: rgba(10, 12, 18, 0.94);
       border: 1px solid rgba(234, 179, 8, 0.35);
-      border-radius: 18px;
-      padding: 26px 22px;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
     }
 
-    .card-header {
+    .brand-header {
       text-align: center;
       margin-bottom: 22px;
     }
 
-    .card-header h1 {
-      font-size: 1.65rem;
+    .brand-title {
+      font-size: 1.45rem;
+      font-weight: 800;
       color: #facc15;
-      font-weight: 900;
-      letter-spacing: 0.5px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      letter-spacing: 0.5px;
     }
 
-    .card-header p {
-      font-size: 0.84rem;
+    .brand-subtitle {
+      font-size: 0.78rem;
       color: #94a3b8;
       margin-top: 4px;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
 
-    .form-label {
+    .label {
       display: block;
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 800;
       color: #cbd5e1;
       text-transform: uppercase;
@@ -83,77 +75,78 @@
       margin-bottom: 6px;
     }
 
-    .form-input, .form-select {
+    .input-field {
       width: 100%;
-      padding: 12px 14px;
-      background: #05070d;
+      padding: 11px 14px;
+      background: #04060a;
       border: 1px solid #1e293b;
       border-radius: 8px;
       color: #ffffff;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       outline: none;
-      box-sizing: border-box;
       transition: border-color 0.2s;
     }
 
-    .form-input:focus, .form-select:focus {
+    .input-field:focus {
       border-color: #ca8a04;
     }
 
-    .upi-box {
-      background: rgba(202, 138, 4, 0.08);
-      border: 1px dashed rgba(202, 138, 4, 0.45);
-      border-radius: 10px;
-      padding: 14px;
-      text-align: center;
-      margin: 18px 0;
+    .input-field::placeholder {
+      color: #475569;
     }
 
-    .upi-title {
-      font-size: 0.8rem;
+    .upi-box {
+      background: rgba(202, 138, 4, 0.05);
+      border: 1px dashed rgba(202, 138, 4, 0.3);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .upi-text {
+      font-size: 0.78rem;
       color: #94a3b8;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .upi-id {
-      font-size: 1.05rem;
-      font-weight: 900;
+      font-size: 0.98rem;
+      font-weight: 800;
       color: #facc15;
-      margin-top: 4px;
-      letter-spacing: 0.5px;
+      margin-top: 3px;
     }
 
     .upload-zone {
-      border: 2px dashed #ca8a04;
-      border-radius: 10px;
-      padding: 20px;
+      border: 1px dashed #ca8a04;
+      border-radius: 8px;
+      padding: 16px;
       text-align: center;
       cursor: pointer;
-      background: #05070d;
-      transition: all 0.2s;
+      background: #04060a;
+      transition: 0.2s;
     }
 
     .upload-zone:hover {
       border-color: #facc15;
-      background: #0a0e1a;
     }
 
     .upload-icon {
-      font-size: 1.6rem;
-      margin-bottom: 4px;
+      font-size: 1.4rem;
+      margin-bottom: 2px;
     }
 
     .upload-text {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: #cbd5e1;
       font-weight: 600;
     }
 
     .file-status {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #4ade80;
       font-weight: 700;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .error-box {
@@ -161,31 +154,30 @@
       background: rgba(239, 68, 68, 0.2);
       border: 1px solid #ef4444;
       color: #fca5a5;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 0.82rem;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
       font-weight: 700;
       text-align: center;
-      margin: 14px 0;
+      margin: 12px 0;
     }
 
     .btn-submit {
       width: 100%;
-      padding: 14px;
-      background: #ca8a04;
+      padding: 13px;
+      background: #a16207;
       border: none;
       border-radius: 8px;
       color: #ffffff;
-      font-size: 0.95rem;
-      font-weight: 900;
+      font-size: 0.92rem;
+      font-weight: 800;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 8px;
       transition: background 0.2s;
     }
 
     .btn-submit:hover {
-      background: #eab308;
-      color: #000;
+      background: #ca8a04;
     }
 
     .btn-submit:disabled {
@@ -194,216 +186,163 @@
       cursor: not-allowed;
     }
 
-    /* Pass Output Presentation */
+    /* Output Pass View */
     .pass-container {
       display: none;
-      background: #080b12;
-      border: 2px solid #ca8a04;
-      border-radius: 16px;
-      padding: 22px;
       text-align: center;
     }
 
-    .pass-tag {
-      display: inline-block;
-      padding: 5px 16px;
-      border-radius: 6px;
-      font-weight: 900;
-      font-size: 0.85rem;
-      margin: 12px 0 16px;
+    .pass-header {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #facc15;
     }
 
-    .tag-veg { background: #15803d; color: #fff; }
-    .tag-nonveg { background: #b91c1c; color: #fff; }
+    .diet-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      margin: 10px 0 14px;
+    }
 
-    .qr-box {
+    .diet-veg { background: #15803d; color: #fff; }
+    .diet-nonveg { background: #b91c1c; color: #fff; }
+
+    .qr-wrap {
       display: flex;
       justify-content: center;
-      align-items: center;
-      margin: 14px auto;
-      padding: 12px;
+      margin: 12px auto 16px;
+      padding: 10px;
       background: #ffffff;
-      border-radius: 12px;
+      border-radius: 10px;
       width: fit-content;
     }
 
-    .pass-details-row {
+    .pass-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.85rem;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .pass-details-row:last-child {
-      border-bottom: none;
-    }
-
-    /* Cultural Closed Block */
-    .cultural-closed-box {
-      background: rgba(10, 13, 20, 0.85);
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      border-radius: 16px;
-      padding: 22px 18px;
-      text-align: center;
-    }
-
-    .cultural-closed-title {
-      color: #f87171;
-      font-size: 1.15rem;
-      font-weight: 900;
-      margin-bottom: 6px;
-    }
-
-    .cultural-closed-desc {
-      color: #94a3b8;
       font-size: 0.82rem;
-      line-height: 1.5;
-    }
-
-    .cultural-closed-badge {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 6px 14px;
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid #ef4444;
-      color: #fca5a5;
-      border-radius: 6px;
-      font-weight: 800;
-      font-size: 0.78rem;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
   </style>
 </head>
 <body>
 
-  <div class="main-wrapper">
-
-    <!-- 1. FOOD PASS REGISTRATION -->
-    <div class="portal-card">
-      <div id="form-section">
-        <div class="card-header">
-          <h1>🌾 NFSU ONAM 2026</h1>
-          <p>Grand Celebration Food Pass Registration</p>
-        </div>
-
-        <form id="pass-form" onsubmit="handleFormSubmit(event)">
-          <div class="form-group">
-            <label class="form-label">Full Name *</label>
-            <input type="text" id="fullname" class="form-input" placeholder="Enter your full name" required />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Phone Number *</label>
-            <input type="tel" id="phone" class="form-input" placeholder="10-digit mobile number" maxlength="10" required />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Email Address *</label>
-            <input type="email" id="email" class="form-input" placeholder="student@nfsu.ac.in" required />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Semester / Program *</label>
-            <select id="semester" class="form-select" required>
-              <option value="">Select Semester / Program</option>
-              <option value="B.Tech Sem 1">B.Tech Sem 1</option>
-              <option value="B.Tech Sem 3">B.Tech Sem 3</option>
-              <option value="B.Tech Sem 5">B.Tech Sem 5</option>
-              <option value="B.Tech-M.Tech Sem 3">B.Tech-M.Tech Sem 3</option>
-              <option value="B.Tech-M.Tech Sem 5">B.Tech-M.Tech Sem 5</option>
-              <option value="M.Sc Sem 1">M.Sc Sem 1</option>
-              <option value="M.Sc Sem 3">M.Sc Sem 3</option>
-              <option value="M.Tech Sem 1">M.Tech Sem 1</option>
-              <option value="Faculty / Staff">Faculty / Staff</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Dietary Preference *</label>
-            <select id="diet" class="form-select" required>
-              <option value="Veg">Veg</option>
-              <option value="Non-Veg">Non-Veg</option>
-            </select>
-          </div>
-
-          <!-- UPI Section -->
-          <div class="upi-box">
-            <div class="upi-title">Scan & Pay ₹100 via UPI:</div>
-            <div class="upi-id">abhineetht1-2@oksbi</div>
-          </div>
-
-          <!-- Screenshot Upload -->
-          <div class="form-group">
-            <label class="form-label">Payment Screenshot *</label>
-            <input type="file" id="screenshot" accept="image/*" style="display: none;" onchange="handleFileSelect(event)" required />
-            <div class="upload-zone" onclick="document.getElementById('screenshot').click()">
-              <div class="upload-icon">🗳️</div>
-              <div class="upload-text" id="upload-label">Click to Upload Payment Screenshot</div>
-              <div class="file-status" id="file-name-display"></div>
-            </div>
-          </div>
-
-          <div class="error-box" id="error-box"></div>
-
-          <button type="submit" class="btn-submit" id="submit-btn">Generate Food Pass</button>
-        </form>
+  <div class="card">
+    
+    <!-- Registration Form Screen -->
+    <div id="form-section">
+      <div class="brand-header">
+        <div class="brand-title">🌾 NFSU ONAM 2026</div>
+        <div class="brand-subtitle">Grand Celebration Food Pass Registration</div>
       </div>
 
-      <!-- Generated Pass Section -->
-      <div id="pass-section" class="pass-container">
-        <div class="card-header" style="margin-bottom: 12px;">
-          <h1 style="font-size: 1.4rem;">🌾 ONAM 2026 ENTRY PASS</h1>
-          <p>NFSU Tripura Campus</p>
+      <form id="pass-form" onsubmit="handleFormSubmit(event)">
+        
+        <div class="form-group">
+          <label class="label">FULL NAME *</label>
+          <input type="text" id="fullname" class="input-field" placeholder="Enter your full name" required />
         </div>
 
-        <div id="diet-tag-display" class="pass-tag tag-veg">VEG</div>
-
-        <div class="qr-box">
-          <div id="qrcode"></div>
+        <div class="form-group">
+          <label class="label">PHONE NUMBER *</label>
+          <input type="tel" id="phone" class="input-field" placeholder="10-digit mobile number" maxlength="10" required />
         </div>
 
-        <div class="pass-details-row">
-          <span style="color: #94a3b8;">Pass ID:</span>
-          <strong id="p-id" style="color: #facc15;">ONAM-XXXXXX</strong>
-        </div>
-        <div class="pass-details-row">
-          <span style="color: #94a3b8;">Attendee:</span>
-          <strong id="p-name">Attendee Name</strong>
-        </div>
-        <div class="pass-details-row">
-          <span style="color: #94a3b8;">Phone:</span>
-          <strong id="p-phone">9999999999</strong>
-        </div>
-        <div class="pass-details-row">
-          <span style="color: #94a3b8;">Program:</span>
-          <strong id="p-sem">B.Tech</strong>
-        </div>
-        <div class="pass-details-row">
-          <span style="color: #94a3b8;">Status:</span>
-          <strong style="color: #4ade80;">₹100 (VERIFIED)</strong>
+        <div class="form-group">
+          <label class="label">EMAIL ADDRESS *</label>
+          <input type="email" id="email" class="input-field" placeholder="student@nfsu.ac.in" required />
         </div>
 
-        <p style="font-size: 0.72rem; color: #94a3b8; margin-top: 14px;">
-          📸 Take a screenshot of this pass and present the QR code at the food counter.
-        </p>
-      </div>
+        <div class="form-group">
+          <label class="label">SEMESTER / PROGRAM *</label>
+          <select id="semester" class="input-field" required>
+            <option value="">Select Semester / Program</option>
+            <option value="B.Tech Sem 1">B.Tech Sem 1</option>
+            <option value="B.Tech Sem 3">B.Tech Sem 3</option>
+            <option value="B.Tech Sem 5">B.Tech Sem 5</option>
+            <option value="B.Tech-M.Tech Sem 3">B.Tech-M.Tech Sem 3</option>
+            <option value="B.Tech-M.Tech Sem 5">B.Tech-M.Tech Sem 5</option>
+            <option value="M.Sc Sem 1">M.Sc Sem 1</option>
+            <option value="M.Sc Sem 3">M.Sc Sem 3</option>
+            <option value="M.Tech Sem 1">M.Tech Sem 1</option>
+            <option value="Faculty / Staff">Faculty / Staff</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="label">DIETARY PREFERENCE *</label>
+          <select id="diet" class="input-field" required>
+            <option value="Veg">Veg</option>
+            <option value="Non-Veg">Non-Veg</option>
+          </select>
+        </div>
+
+        <div class="upi-box">
+          <div class="upi-text">Scan & Pay ₹100 via UPI:</div>
+          <div class="upi-id">abhineetht1-2@oksbi</div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">PAYMENT SCREENSHOT *</label>
+          <input type="file" id="screenshot" accept="image/*" style="display: none;" onchange="handleFileSelect(event)" required />
+          <div class="upload-zone" onclick="document.getElementById('screenshot').click()">
+            <div class="upload-icon">🗳️</div>
+            <div class="upload-text" id="upload-label">Click to Upload Payment Screenshot</div>
+            <div class="file-status" id="file-name-display"></div>
+          </div>
+        </div>
+
+        <div class="error-box" id="error-box"></div>
+
+        <button type="submit" class="btn-submit" id="submit-btn">Generate Food Pass</button>
+      </form>
     </div>
 
-    <!-- 2. CULTURAL PROGRAMME (REGISTRATIONS CLOSED) -->
-    <div class="cultural-closed-box">
-      <div style="font-size: 1.8rem; margin-bottom: 6px;">🎭</div>
-      <div class="cultural-closed-title">CULTURAL PROGRAMME</div>
-      <p class="cultural-closed-desc">
-        Stage event and performance slots are fully booked. Thank you for your registrations!
+    <!-- Verified Ticket Pass Screen -->
+    <div id="pass-section" class="pass-container">
+      <div class="pass-header">🌾 ONAM 2026 ENTRY PASS</div>
+      <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">NFSU Tripura Campus</div>
+
+      <div id="diet-tag-display" class="diet-badge diet-veg">VEG</div>
+
+      <div class="qr-wrap">
+        <div id="qrcode"></div>
+      </div>
+
+      <div class="pass-row">
+        <span style="color: #94a3b8;">Pass ID:</span>
+        <strong id="p-id" style="color: #facc15;">ONAM-XXXXXX</strong>
+      </div>
+      <div class="pass-row">
+        <span style="color: #94a3b8;">Name:</span>
+        <strong id="p-name">Attendee Name</strong>
+      </div>
+      <div class="pass-row">
+        <span style="color: #94a3b8;">Phone:</span>
+        <strong id="p-phone">9999999999</strong>
+      </div>
+      <div class="pass-row">
+        <span style="color: #94a3b8;">Program:</span>
+        <strong id="p-sem">B.Tech</strong>
+      </div>
+      <div class="pass-row">
+        <span style="color: #94a3b8;">Amount:</span>
+        <strong style="color: #4ade80;">₹100 (VERIFIED)</strong>
+      </div>
+
+      <p style="font-size: 0.72rem; color: #94a3b8; margin-top: 14px;">
+        📸 Screenshot this pass and present the QR code at the counter.
       </p>
-      <div class="cultural-closed-badge">⛔ Registrations Closed</div>
     </div>
 
   </div>
 
   <script>
-    // Food Pass Google Apps Script Web App Endpoint
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbycE7KwhYmH5jNvh_qE-rQ4u6b-y2qXy2F7E-aR_replace/exec";
 
     let base64File = "";
@@ -522,7 +461,7 @@
 
       const dietTag = document.getElementById("diet-tag-display");
       const isNonVeg = (data.diet || "").toLowerCase().includes("non");
-      dietTag.className = isNonVeg ? "pass-tag tag-nonveg" : "pass-tag tag-veg";
+      dietTag.className = isNonVeg ? "diet-badge diet-nonveg" : "diet-badge diet-veg";
       dietTag.innerText = isNonVeg ? "🍗 NON-VEG" : "🥗 VEG";
 
       const qrData = `ONAM|${data.name}|${data.phone}|${data.diet}|${data.sem}|${data.passId}`;
