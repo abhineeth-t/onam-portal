@@ -6,7 +6,6 @@
   <title>NFSU ONAM 2026</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="styles.css" />
-  <!-- QR Code Generator Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@700;900&display=swap');
@@ -103,7 +102,6 @@
       color: #475569;
     }
 
-    /* UPI Box with QR Code and Copy Button */
     .upi-box {
       background: rgba(202, 138, 4, 0.06);
       border: 1px dashed rgba(202, 138, 4, 0.4);
@@ -114,7 +112,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .upi-qr-wrapper {
@@ -125,6 +123,12 @@
       justify-content: center;
       align-items: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .upi-qr-wrapper img {
+      display: block;
+      width: 140px;
+      height: 140px;
     }
 
     .upi-text {
@@ -157,8 +161,8 @@
     .btn-copy {
       background: #ca8a04;
       border: none;
-      color: #000;
-      padding: 4px 10px;
+      color: #000000;
+      padding: 5px 10px;
       border-radius: 6px;
       font-size: 0.75rem;
       font-weight: 800;
@@ -243,7 +247,6 @@
       cursor: not-allowed;
     }
 
-    /* Output Pass View */
     .pass-container {
       display: none;
       text-align: center;
@@ -285,7 +288,6 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Cultural Closed Card in bottom */
     .closed-cultural-card {
       background: rgba(15, 23, 42, 0.92);
       border: 1px solid rgba(239, 68, 68, 0.4);
@@ -330,7 +332,7 @@
 
   <div class="wrapper">
     
-    <!-- 1. FOOD PASS REGISTRATION -->
+    <!-- FOOD PASS REGISTRATION -->
     <div class="card">
       <div id="form-section">
         <div class="brand-header">
@@ -360,14 +362,14 @@
             <select id="semester" class="input-field" required>
               <option value="">Select Semester / Program</option>
 
-              <!-- B.Tech-M.Tech (Integrated) -->
+              <!-- B.Tech-M.Tech -->
               <option value="B.Tech-M.Tech Sem 1">B.Tech-M.Tech Sem 1</option>
               <option value="B.Tech-M.Tech Sem 3">B.Tech-M.Tech Sem 3</option>
               <option value="B.Tech-M.Tech Sem 5">B.Tech-M.Tech Sem 5</option>
               <option value="B.Tech-M.Tech Sem 7">B.Tech-M.Tech Sem 7</option>
               <option value="B.Tech-M.Tech Sem 9">B.Tech-M.Tech Sem 9</option>
 
-              <!-- B.Sc-M.Sc (Integrated) -->
+              <!-- B.Sc-M.Sc -->
               <option value="B.Sc-M.Sc Sem 1">B.Sc-M.Sc Sem 1</option>
               <option value="B.Sc-M.Sc Sem 3">B.Sc-M.Sc Sem 3</option>
               <option value="B.Sc-M.Sc Sem 5">B.Sc-M.Sc Sem 5</option>
@@ -388,10 +390,10 @@
             </select>
           </div>
 
-          <!-- UPI Payment Box with QR Code and Copy Button -->
+          <!-- UPI Payment Box with QR Code & Copy Button -->
           <div class="upi-box">
             <div class="upi-qr-wrapper">
-              <div id="upi-qrcode-container"></div>
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=upi://pay?pa=abhineetht1-2@oksbi&pn=NFSU%20Onam%202026&am=100&cu=INR" alt="UPI QR Code" />
             </div>
             <div class="upi-text">Scan to pay ₹100 with UPI:</div>
             
@@ -419,7 +421,7 @@
         </form>
       </div>
 
-      <!-- Verified Ticket Pass Screen -->
+      <!-- Generated Pass Screen -->
       <div id="pass-section" class="pass-container">
         <div class="pass-header">🌾 ONAM 2026 ENTRY PASS</div>
         <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">NFSU Tripura Campus</div>
@@ -457,11 +459,11 @@
       </div>
     </div>
 
-    <!-- 2. CULTURAL PROGRAMME CLOSED SECTION -->
+    <!-- CULTURAL PROGRAMME CLOSED NOTIFICATION -->
     <div class="closed-cultural-card">
       <div class="closed-cultural-title">🎭 Cultural Programme Registration</div>
       <p class="closed-cultural-desc">
-        Stage event and cultural programme slots are fully booked.
+        Stage event and cultural programme performance slots are now completely full.
       </p>
       <div class="closed-tag">⛔ Registrations Closed</div>
     </div>
@@ -473,18 +475,6 @@
 
     let base64File = "";
     let fileType = "image/jpeg";
-
-    window.addEventListener("DOMContentLoaded", () => {
-      const upiPayUri = "upi://pay?pa=abhineetht1-2@oksbi&pn=NFSU%20Onam%202026&am=100&cu=INR";
-      new QRCode(document.getElementById("upi-qrcode-container"), {
-        text: upiPayUri,
-        width: 140,
-        height: 140,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.M
-      });
-    });
 
     function copyUpiId() {
       const upiText = document.getElementById("upi-val").innerText.trim();
