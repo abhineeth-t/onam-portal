@@ -24,14 +24,21 @@
       background-size: cover;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 40px 16px;
+      align-items: flex-start;
+      padding: 40px 16px 80px;
       color: #ffffff;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .card {
       width: 100%;
-      max-width: 440px;
       background: rgba(10, 12, 18, 0.94);
       border: 1px solid rgba(234, 179, 8, 0.35);
       border-radius: 16px;
@@ -96,7 +103,7 @@
       color: #475569;
     }
 
-    /* UPI Box with QR Code */
+    /* UPI Box with QR Code and Copy Button */
     .upi-box {
       background: rgba(202, 138, 4, 0.06);
       border: 1px dashed rgba(202, 138, 4, 0.4);
@@ -126,11 +133,45 @@
       font-weight: 600;
     }
 
+    .upi-copy-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      padding: 6px 12px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 320px;
+    }
+
     .upi-id {
-      font-size: 0.98rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: #facc15;
       letter-spacing: 0.5px;
+      word-break: break-all;
+    }
+
+    .btn-copy {
+      background: #ca8a04;
+      border: none;
+      color: #000;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-copy:hover {
+      background: #facc15;
     }
 
     .upload-zone {
@@ -243,129 +284,186 @@
       padding: 7px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
+
+    /* Cultural Closed Card in bottom */
+    .closed-cultural-card {
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 16px;
+      padding: 20px 18px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+    }
+
+    .closed-cultural-title {
+      color: #f87171;
+      font-size: 1.1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .closed-cultural-desc {
+      color: #94a3b8;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .closed-tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 5px 12px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #fca5a5;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.75rem;
+    }
   </style>
 </head>
 <body>
 
-  <div class="card">
+  <div class="wrapper">
     
-    <!-- Registration Form Screen -->
-    <div id="form-section">
-      <div class="brand-header">
-        <div class="brand-title">🌾 NFSU ONAM 2026</div>
-        <div class="brand-subtitle">Grand Celebration Food Pass Registration</div>
+    <!-- 1. FOOD PASS REGISTRATION -->
+    <div class="card">
+      <div id="form-section">
+        <div class="brand-header">
+          <div class="brand-title">🌾 NFSU ONAM 2026</div>
+          <div class="brand-subtitle">Grand Celebration Food Pass Registration</div>
+        </div>
+
+        <form id="pass-form" onsubmit="handleFormSubmit(event)">
+          
+          <div class="form-group">
+            <label class="label">FULL NAME *</label>
+            <input type="text" id="fullname" class="input-field" placeholder="Enter your full name" required />
+          </div>
+
+          <div class="form-group">
+            <label class="label">PHONE NUMBER *</label>
+            <input type="tel" id="phone" class="input-field" placeholder="10-digit mobile number" maxlength="10" required />
+          </div>
+
+          <div class="form-group">
+            <label class="label">EMAIL ADDRESS *</label>
+            <input type="email" id="email" class="input-field" placeholder="yourname@gmail.com" required />
+          </div>
+
+          <div class="form-group">
+            <label class="label">SEMESTER / PROGRAM *</label>
+            <select id="semester" class="input-field" required>
+              <option value="">Select Semester / Program</option>
+
+              <!-- B.Tech-M.Tech (Integrated) -->
+              <option value="B.Tech-M.Tech Sem 1">B.Tech-M.Tech Sem 1</option>
+              <option value="B.Tech-M.Tech Sem 3">B.Tech-M.Tech Sem 3</option>
+              <option value="B.Tech-M.Tech Sem 5">B.Tech-M.Tech Sem 5</option>
+              <option value="B.Tech-M.Tech Sem 7">B.Tech-M.Tech Sem 7</option>
+              <option value="B.Tech-M.Tech Sem 9">B.Tech-M.Tech Sem 9</option>
+
+              <!-- B.Sc-M.Sc (Integrated) -->
+              <option value="B.Sc-M.Sc Sem 1">B.Sc-M.Sc Sem 1</option>
+              <option value="B.Sc-M.Sc Sem 3">B.Sc-M.Sc Sem 3</option>
+              <option value="B.Sc-M.Sc Sem 5">B.Sc-M.Sc Sem 5</option>
+              <option value="B.Sc-M.Sc Sem 7">B.Sc-M.Sc Sem 7</option>
+              <option value="B.Sc-M.Sc Sem 9">B.Sc-M.Sc Sem 9</option>
+
+              <!-- M.Sc -->
+              <option value="M.Sc Sem 1">M.Sc Sem 1</option>
+              <option value="M.Sc Sem 3">M.Sc Sem 3</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="label">DIETARY PREFERENCE *</label>
+            <select id="diet" class="input-field" required>
+              <option value="Veg">Veg</option>
+              <option value="Non-Veg">Non-Veg</option>
+            </select>
+          </div>
+
+          <!-- UPI Payment Box with QR Code and Copy Button -->
+          <div class="upi-box">
+            <div class="upi-qr-wrapper">
+              <div id="upi-qrcode-container"></div>
+            </div>
+            <div class="upi-text">Scan to pay ₹100 with UPI:</div>
+            
+            <div class="upi-copy-row">
+              <span class="upi-id" id="upi-val">abhineetht1-2@oksbi</span>
+              <button type="button" class="btn-copy" id="copy-btn" onclick="copyUpiId()">
+                📋 Copy
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="label">PAYMENT SCREENSHOT *</label>
+            <input type="file" id="screenshot" accept="image/*" style="display: none;" onchange="handleFileSelect(event)" required />
+            <div class="upload-zone" onclick="document.getElementById('screenshot').click()">
+              <div class="upload-icon">🗳️</div>
+              <div class="upload-text" id="upload-label">Click to Upload Payment Screenshot</div>
+              <div class="file-status" id="file-name-display"></div>
+            </div>
+          </div>
+
+          <div class="error-box" id="error-box"></div>
+
+          <button type="submit" class="btn-submit" id="submit-btn">Generate Food Pass</button>
+        </form>
       </div>
 
-      <form id="pass-form" onsubmit="handleFormSubmit(event)">
-        
-        <div class="form-group">
-          <label class="label">FULL NAME *</label>
-          <input type="text" id="fullname" class="input-field" placeholder="Enter your full name" required />
+      <!-- Verified Ticket Pass Screen -->
+      <div id="pass-section" class="pass-container">
+        <div class="pass-header">🌾 ONAM 2026 ENTRY PASS</div>
+        <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">NFSU Tripura Campus</div>
+
+        <div id="diet-tag-display" class="diet-badge diet-veg">VEG</div>
+
+        <div class="qr-wrap">
+          <div id="qrcode"></div>
         </div>
 
-        <div class="form-group">
-          <label class="label">PHONE NUMBER *</label>
-          <input type="tel" id="phone" class="input-field" placeholder="10-digit mobile number" maxlength="10" required />
+        <div class="pass-row">
+          <span style="color: #94a3b8;">Pass ID:</span>
+          <strong id="p-id" style="color: #facc15;">ONAM-XXXXXX</strong>
+        </div>
+        <div class="pass-row">
+          <span style="color: #94a3b8;">Name:</span>
+          <strong id="p-name">Attendee Name</strong>
+        </div>
+        <div class="pass-row">
+          <span style="color: #94a3b8;">Phone:</span>
+          <strong id="p-phone">9999999999</strong>
+        </div>
+        <div class="pass-row">
+          <span style="color: #94a3b8;">Program:</span>
+          <strong id="p-sem">B.Tech</strong>
+        </div>
+        <div class="pass-row">
+          <span style="color: #94a3b8;">Amount:</span>
+          <strong style="color: #4ade80;">₹100 (VERIFIED)</strong>
         </div>
 
-        <div class="form-group">
-          <label class="label">EMAIL ADDRESS *</label>
-          <input type="email" id="email" class="input-field" placeholder="yourname@gmail.com" required />
-        </div>
-
-        <div class="form-group">
-          <label class="label">SEMESTER / PROGRAM *</label>
-          <select id="semester" class="input-field" required>
-            <option value="">Select Semester / Program</option>
-
-            <!-- B.Tech-M.Tech (Integrated) -->
-            <option value="B.Tech-M.Tech Sem 1">B.Tech-M.Tech Sem 1</option>
-            <option value="B.Tech-M.Tech Sem 3">B.Tech-M.Tech Sem 3</option>
-            <option value="B.Tech-M.Tech Sem 5">B.Tech-M.Tech Sem 5</option>
-            <option value="B.Tech-M.Tech Sem 7">B.Tech-M.Tech Sem 7</option>
-            <option value="B.Tech-M.Tech Sem 9">B.Tech-M.Tech Sem 9</option>
-
-            <!-- B.Sc-M.Sc (Integrated) -->
-            <option value="B.Sc-M.Sc Sem 1">B.Sc-M.Sc Sem 1</option>
-            <option value="B.Sc-M.Sc Sem 3">B.Sc-M.Sc Sem 3</option>
-            <option value="B.Sc-M.Sc Sem 5">B.Sc-M.Sc Sem 5</option>
-            <option value="B.Sc-M.Sc Sem 7">B.Sc-M.Sc Sem 7</option>
-            <option value="B.Sc-M.Sc Sem 9">B.Sc-M.Sc Sem 9</option>
-
-            <!-- M.Sc -->
-            <option value="M.Sc Sem 1">M.Sc Sem 1</option>
-            <option value="M.Sc Sem 3">M.Sc Sem 3</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="label">DIETARY PREFERENCE *</label>
-          <select id="diet" class="input-field" required>
-            <option value="Veg">Veg</option>
-            <option value="Non-Veg">Non-Veg</option>
-          </select>
-        </div>
-
-        <!-- UPI Payment Box with Restored QR Code -->
-        <div class="upi-box">
-          <div class="upi-qr-wrapper">
-            <div id="upi-qrcode-container"></div>
-          </div>
-          <div class="upi-text">Scan to pay ₹100 with UPI:</div>
-          <div class="upi-id">abhineetht1-2@oksbi</div>
-        </div>
-
-        <div class="form-group">
-          <label class="label">PAYMENT SCREENSHOT *</label>
-          <input type="file" id="screenshot" accept="image/*" style="display: none;" onchange="handleFileSelect(event)" required />
-          <div class="upload-zone" onclick="document.getElementById('screenshot').click()">
-            <div class="upload-icon">🗳️</div>
-            <div class="upload-text" id="upload-label">Click to Upload Payment Screenshot</div>
-            <div class="file-status" id="file-name-display"></div>
-          </div>
-        </div>
-
-        <div class="error-box" id="error-box"></div>
-
-        <button type="submit" class="btn-submit" id="submit-btn">Generate Food Pass</button>
-      </form>
+        <p style="font-size: 0.72rem; color: #94a3b8; margin-top: 14px;">
+          📸 Screenshot this pass and present the QR code at the counter.
+        </p>
+      </div>
     </div>
 
-    <!-- Verified Ticket Pass Screen -->
-    <div id="pass-section" class="pass-container">
-      <div class="pass-header">🌾 ONAM 2026 ENTRY PASS</div>
-      <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">NFSU Tripura Campus</div>
-
-      <div id="diet-tag-display" class="diet-badge diet-veg">VEG</div>
-
-      <div class="qr-wrap">
-        <div id="qrcode"></div>
-      </div>
-
-      <div class="pass-row">
-        <span style="color: #94a3b8;">Pass ID:</span>
-        <strong id="p-id" style="color: #facc15;">ONAM-XXXXXX</strong>
-      </div>
-      <div class="pass-row">
-        <span style="color: #94a3b8;">Name:</span>
-        <strong id="p-name">Attendee Name</strong>
-      </div>
-      <div class="pass-row">
-        <span style="color: #94a3b8;">Phone:</span>
-        <strong id="p-phone">9999999999</strong>
-      </div>
-      <div class="pass-row">
-        <span style="color: #94a3b8;">Program:</span>
-        <strong id="p-sem">B.Tech</strong>
-      </div>
-      <div class="pass-row">
-        <span style="color: #94a3b8;">Amount:</span>
-        <strong style="color: #4ade80;">₹100 (VERIFIED)</strong>
-      </div>
-
-      <p style="font-size: 0.72rem; color: #94a3b8; margin-top: 14px;">
-        📸 Screenshot this pass and present the QR code at the counter.
+    <!-- 2. CULTURAL PROGRAMME CLOSED SECTION -->
+    <div class="closed-cultural-card">
+      <div class="closed-cultural-title">🎭 Cultural Programme Registration</div>
+      <p class="closed-cultural-desc">
+        Stage event and cultural programme slots are fully booked.
       </p>
+      <div class="closed-tag">⛔ Registrations Closed</div>
     </div>
 
   </div>
@@ -387,6 +485,21 @@
         correctLevel: QRCode.CorrectLevel.M
       });
     });
+
+    function copyUpiId() {
+      const upiText = document.getElementById("upi-val").innerText.trim();
+      navigator.clipboard.writeText(upiText).then(() => {
+        const btn = document.getElementById("copy-btn");
+        btn.innerText = "✓ Copied!";
+        btn.style.background = "#22c55e";
+        btn.style.color = "#ffffff";
+        setTimeout(() => {
+          btn.innerText = "📋 Copy";
+          btn.style.background = "#ca8a04";
+          btn.style.color = "#000000";
+        }, 2000);
+      });
+    }
 
     function handleFileSelect(e) {
       const file = e.target.files[0];
